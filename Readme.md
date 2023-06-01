@@ -1,3 +1,6 @@
+### Description
+Getting started with Raspberry Pico, Adafruit BME280, and [Blues Wireless](https://blues.io/)
+
 ### References
 * [BME 280 Pico Code](https://www.hackster.io/shilleh/how-to-connect-bme280-to-raspberry-pi-pico-micropython-91a392)
 * [Library for bme280 package](https://github.com/SebastianRoll/mpy_bme280_esp8266)

@@ -7,7 +7,6 @@ from time import sleep
 
 import bme280
 
-
 i2c=I2C(1, sda=Pin(2), scl=Pin(3), freq=400000)
 print(f'i2c.scan(): {i2c.scan()}')
 
