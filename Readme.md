@@ -5,14 +5,16 @@ Getting started with Raspberry Pico, Adafruit BME280, and [Blues Wireless](https
 * [How to Connect BME280 to Raspberry Pi Pico MicroPython](https://www.hackster.io/shilleh/how-to-connect-bme280-to-raspberry-pi-pico-micropython-91a392)
 * [Library for bme280 package](https://github.com/SebastianRoll/mpy_bme280_esp8266)
 * [Troubleshooting error:  added address parameter](https://forums.raspberrypi.com/viewtopic.php?t=343123)
-* [code for bme280 and pico - github](https://github.com/bsatrom/notecard-pico)
 * [note-python: python library](https://github.com/bsatrom/notecard-pico)
 * [dev.blues.io api](https://dev.blues.io/api-reference/notecard-api/introduction/)
+* These two are together:
+    * [Adding Cellular to the raspberry Pico](https://www.hackster.io/brandonsatrom/adding-cellular-to-the-raspberry-pi-pico-b8a4b6)
+    * [code for bme280 and pico - github](https://github.com/bsatrom/notecard-pico)
 
 ### Blues Wireless Reference
 * [Getting Started (useful intro video)](https://blues.io/blog/get-started-cellular-raspberry-pi-webinar/)
-* [Adding Cellular to the raspberry Pico](https://www.hackster.io/brandonsatrom/adding-cellular-to-the-raspberry-pi-pico-b8a4b6)
 * [Notecarrier A and GPS](https://www.hackster.io/rob-lauer/sending-a-cellular-gps-tracker-around-the-world-literally-4b830c)
+* [Quick
 
 ### References
 * https://www.robmiles.com/journal/2021/9/27/pico-and-feather-what-are-the-differences
