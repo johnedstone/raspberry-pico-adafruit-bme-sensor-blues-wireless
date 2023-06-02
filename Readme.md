@@ -14,7 +14,7 @@ Getting started with Raspberry Pico, Adafruit BME280, and [Blues Wireless](https
 ### Blues Wireless Reference
 * [Getting Started (useful intro video)](https://blues.io/blog/get-started-cellular-raspberry-pi-webinar/)
 * [Notecarrier A and GPS](https://www.hackster.io/rob-lauer/sending-a-cellular-gps-tracker-around-the-world-literally-4b830c)
-* [Quick
+* [Quick Start: Notecard and Notecarrier](https://dev.blues.io/quickstart/notecard-quickstart/notecard-and-notecarrier-f/)
 
 ### References
 * https://www.robmiles.com/journal/2021/9/27/pico-and-feather-what-are-the-differences
