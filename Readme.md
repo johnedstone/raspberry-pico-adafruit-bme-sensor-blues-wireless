@@ -5,7 +5,7 @@ Getting started with Raspberry Pico, Adafruit BME280, and [Blues Wireless](https
 * [How to Connect BME280 to Raspberry Pi Pico MicroPython](https://www.hackster.io/shilleh/how-to-connect-bme280-to-raspberry-pi-pico-micropython-91a392)
 * [Library for bme280 package](https://github.com/SebastianRoll/mpy_bme280_esp8266)
 * [Troubleshooting error:  added address parameter](https://forums.raspberrypi.com/viewtopic.php?t=343123)
-* [note-python: python library](https://github.com/bsatrom/notecard-pico)
+* [note-python: python library](https://github.com/blues/note-python)
 * [dev.blues.io api](https://dev.blues.io/api-reference/notecard-api/introduction/)
 * These two are together:
     * [Adding Cellular to the raspberry Pico](https://www.hackster.io/brandonsatrom/adding-cellular-to-the-raspberry-pi-pico-b8a4b6)
@@ -20,6 +20,7 @@ Getting started with Raspberry Pico, Adafruit BME280, and [Blues Wireless](https
     * Enabling GPS periodic, only checks when motion has been detected.
     * In the request then, `"best_location_type":"gps"`
 * [Creating Routes, Using webhook for testing](https://dev.blues.io/guides-and-tutorials/routing-data-to-cloud/general-http-https/#introduction)
+* [SDK (python](https://dev.blues.io/tools-and-sdks/firmware-libraries/python-library/)
 
 ### References
 * [micropython docs](https://docs.micropython.org/en/latest/rp2/quickref.html)
