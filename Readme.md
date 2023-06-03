@@ -19,6 +19,7 @@ Getting started with Raspberry Pico, Adafruit BME280, and [Blues Wireless](https
 * [Notecard Built-in time and location](https://dev.blues.io/notecard/notecard-walkthrough/time-and-location-requests/)
     * Enabling GPS periodic, only checks when motion has been detected.
     * In the request then, `"best_location_type":"gps"`
+* [Creating Routes, Using webhook for testing](https://dev.blues.io/guides-and-tutorials/routing-data-to-cloud/general-http-https/#introduction)
 
 ### References
 * [micropython docs](https://docs.micropython.org/en/latest/rp2/quickref.html)
