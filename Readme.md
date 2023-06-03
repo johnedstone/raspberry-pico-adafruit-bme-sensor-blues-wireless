@@ -15,8 +15,13 @@ Getting started with Raspberry Pico, Adafruit BME280, and [Blues Wireless](https
 * [Getting Started (useful intro video)](https://blues.io/blog/get-started-cellular-raspberry-pi-webinar/)
 * [Notecarrier A and GPS](https://www.hackster.io/rob-lauer/sending-a-cellular-gps-tracker-around-the-world-literally-4b830c)
 * [Quick Start: Notecard and Notecarrier](https://dev.blues.io/quickstart/notecard-quickstart/notecard-and-notecarrier-f/)
+* [Transforming data](https://dev.blues.io/guides-and-tutorials/routing-data-to-cloud/general-http-https/)
+* [Notecard Built-in time and location](https://dev.blues.io/notecard/notecard-walkthrough/time-and-location-requests/)
+    Enabling GPS periodic, only checks when motion has been detected.
+    In the request then, `"best_location_type":"gps"`
 
 ### References
+* [micropython docs](https://docs.micropython.org/en/latest/rp2/quickref.html)
 * https://www.robmiles.com/journal/2021/9/27/pico-and-feather-what-are-the-differences
 * https://dev.blues.io/notecard/notecard-walkthrough/time-and-location-requests/
 * [Detecting USB/battery power](https://forums.raspberrypi.com/viewtopic.php?t=300676)
