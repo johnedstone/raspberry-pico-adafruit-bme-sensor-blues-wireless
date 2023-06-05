@@ -9,8 +9,9 @@ from time import sleep
 import bme280
 import adafruit_bme680
 
-i2c=I2C(1, sda=Pin(2), scl=Pin(3), freq=400000)
+i2c=I2C(1, sda=Pin(2), scl=Pin(3)) #, freq=400000)
 i2c_bme680 = I2C(0, sda=Pin(0), scl=Pin(1))
+# print(i2c_bme680) # to see actual frequency)
 
 print(f'i2c.scan(): {i2c.scan()}, i2c_bme680.scan(): {i2c_bme680.scan()}')
 
@@ -20,7 +21,8 @@ bme680_i2c_address = i2c_bme680.scan()[0]
 
 bme280_sensor = bme280.BME280(i2c=i2c, address=bme_i2c_address)
 bme680_sensor = adafruit_bme680.BME680_I2C(i2c_bme680, address=bme680_i2c_address, debug=False)
-print("Connected to BME680...")
+print("Connected to BME680... which appears to be more accurate than the bme280")
+
 
 while True:    
     temp, pressure, rh = bme280_sensor.read_compensated_data()
