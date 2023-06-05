@@ -20,7 +20,7 @@ Getting started with Raspberry Pico, Adafruit BME280, and [Blues Wireless](https
     * Enabling GPS periodic, only checks when motion has been detected.
     * In the request then, `"best_location_type":"gps"`
 * [Creating Routes, Using webhook for testing](https://dev.blues.io/guides-and-tutorials/routing-data-to-cloud/general-http-https/#introduction)
-* [SDK (python](https://dev.blues.io/tools-and-sdks/firmware-libraries/python-library/)
+* [SDK (python)](https://dev.blues.io/tools-and-sdks/firmware-libraries/python-library/)
 
 ### References
 * [micropython docs](https://docs.micropython.org/en/latest/rp2/quickref.html)
