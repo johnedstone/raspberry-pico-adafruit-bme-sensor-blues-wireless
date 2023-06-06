@@ -1,0 +1,1 @@
+productUID = 'put-your-productUID-here'

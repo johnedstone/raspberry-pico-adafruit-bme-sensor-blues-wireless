@@ -22,7 +22,9 @@ bme680_i2c_address = i2c_bme680.scan()[0]
 bme280_sensor = bme280.BME280(i2c=i2c, address=bme_i2c_address)
 bme680_sensor = adafruit_bme680.BME680_I2C(i2c_bme680, address=bme680_i2c_address, debug=False)
 print("Connected to BME680... which appears to be more accurate than the bme280")
+print("Sleeping 5sec, to let the sensors settle down")
 
+sleep(5)
 
 while True:    
     temp, pressure, rh = bme280_sensor.read_compensated_data()
