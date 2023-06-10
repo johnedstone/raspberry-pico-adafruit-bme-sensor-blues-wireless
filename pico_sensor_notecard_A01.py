@@ -25,7 +25,7 @@ if DEBUG:
     
 
 bme680_sensor = adafruit_bme680.BME680_I2C(i2c_bme680, address=i2c_bme680_addr)
-card = notecard.OpenI2C(i2c_notecarrier, i2c_notecarrier_addr, 0, debug=True)
+card = notecard.OpenI2C(i2c_notecarrier, i2c_notecarrier_addr, 0, debug=DEBUG)
 
 def get_IMEI():
     global IMEI
