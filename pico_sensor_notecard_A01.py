@@ -10,6 +10,7 @@ import secrets
 START_TIME = 0
 DEBUG = True
 CARD_RESTORE = False
+IMEI = ''
 
 led_onboard = Pin(25, Pin.OUT)
 i2c_bme680 = I2C(0, sda=Pin(0), scl=Pin(1))
@@ -25,6 +26,21 @@ if DEBUG:
 
 bme680_sensor = adafruit_bme680.BME680_I2C(i2c_bme680, address=i2c_bme680_addr)
 card = notecard.OpenI2C(i2c_notecarrier, i2c_notecarrier_addr, 0, debug=True)
+
+def get_IMEI():
+    global IMEI
+    while IMEI == '':
+        req = {'req': 'card.wireless'}
+        rsp = card.Transaction(req)
+        if DEBUG:
+            print(rsp)
+        if 'net' in rsp.keys():
+            if 'imei' in rsp['net'].keys():
+                IMEI = rsp['net']['imei']
+        if DEBUG:
+            print(f'IMEI: {IMEI}')
+
+        return
 
 def set_start_time():
     global START_TIME
@@ -89,8 +105,8 @@ req["mode"] = "periodic"
 rsp = card.Transaction(req)
 
 _ = set_start_time()
-
 _ = start_gps()
+_ = get_IMEI()
 
 sleep(5) # to let sensors settle in
 
