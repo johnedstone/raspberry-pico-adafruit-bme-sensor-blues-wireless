@@ -69,9 +69,6 @@ def start_gps():
     req["seconds"] = 3600
     rsp = card.Transaction(req)
 
-    if DEBUG:
-        print(rsp)
-
     gps_location_off = True
     while gps_location_off:
         req = {"req": "card.location"}
@@ -87,8 +84,10 @@ def start_gps():
                 led_onboard.value(0)
                 sleep(2)
 
-        if DEBUG:
-            print(rsp)
+    if DEBUG:
+        req = {"req": "card.location"}
+        rsp = card.Transaction(req)
+        print(f'GPS STATUS: {rsp['status']}')
 
     return
 
