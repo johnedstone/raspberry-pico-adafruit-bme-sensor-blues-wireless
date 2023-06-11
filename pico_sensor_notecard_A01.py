@@ -1,5 +1,5 @@
 from machine import Pin, I2C
-from time import sleep, time
+from time import sleep, time, gmtime, localtime
 
 import notecard
 import utime
@@ -57,12 +57,23 @@ def set_start_time():
         if 'time' in rsp.keys():
             START_TIME = rsp['time']
             if DEBUG:
-                print(f'START_TIME: {START_TIME}')
+                print(f'START_TIME: {START_TIME}, {gmtime(START_TIME)} {localtime(START_TIME)}')
         else:
             sleep(10)
 
     led_onboard.value(0)
     return
+
+def get_now():
+    now = 0
+    req = {"req": "card.time"}
+    rsp = card.Transaction(req)
+    if 'time' in rsp.keys():
+        now = rsp['time']
+        if DEBUG:
+            print(f'NOW: {now}, {gmtime(now)}')
+
+    return now
 
 def get_gps():
     lat = ''
@@ -134,7 +145,8 @@ _ = get_IMEI()
 sleep(5) # to let sensors settle in
 
 while True:
-    uptime = f'{(START_TIME - time()) / (60*60*24):.1f} days'
+    now = get_now()
+    uptime = f'{((now - START_TIME)) / (60*60*24):.1f} days, now: {gmtime()}'
     lat, lon = get_gps()
 
     if DEBUG:
@@ -153,7 +165,6 @@ while True:
                    }
     req["sync"] = True
     rsp = card.Transaction(req)
-
     sleep(300*12)
 
 
