@@ -1,5 +1,5 @@
 from machine import Pin, I2C
-from time import sleep
+from time import sleep, time
 
 import notecard
 import utime
@@ -11,6 +11,7 @@ START_TIME = 0
 DEBUG = True
 CARD_RESTORE = False
 IMEI = ''
+DO_NOT_WAIT_FOR_GPS = True
 
 led_onboard = Pin(25, Pin.OUT)
 i2c_bme680 = I2C(0, sda=Pin(0), scl=Pin(1))
@@ -63,11 +64,34 @@ def set_start_time():
     led_onboard.value(0)
     return
 
+def get_gps():
+    lat = ''
+    lon = ''
+    req = {"req": "card.location"}
+    rsp = card.Transaction(req)
+
+    rsp_keys = rsp.keys()
+    if 'lat' in rsp_keys:
+        lat = rsp['lat']
+
+    if 'lon' in rsp_keys:
+        lon = rsp['lon']
+
+    return (lat, lon)
+
 def start_gps():
+    req = {'req': 'card.location.mode'}
+    req['mode'] = 'off'
+    rsp = card.Transaction(req)
+    sleep(2)
+
     req = {"req": "card.location.mode"}
     req["mode"] = "periodic"
     req["seconds"] = 3600
     rsp = card.Transaction(req)
+
+    if DO_NOT_WAIT_FOR_GPS:
+        return
 
     gps_location_off = True
     while gps_location_off:
@@ -110,8 +134,27 @@ _ = get_IMEI()
 sleep(5) # to let sensors settle in
 
 while True:
-    print(f'bme680_sensor: {START_TIME} {bme680_sensor.temperature:.2f}C {(bme680_sensor.temperature*9/5)+32:.2f}F, {bme680_sensor.pressure:.2f}hPa, {bme680_sensor.humidity:.2f}%RH')
-    sleep(300)
+    uptime = f'{(START_TIME - time()) / (60*60*24):.1f} days'
+    lat, lon = get_gps()
+
+    if DEBUG:
+        print(f'UPTIME: {uptime}')
+        print(f'bme680_sensor: {START_TIME} {bme680_sensor.temperature:.2f}C {(bme680_sensor.temperature*9/5)+32:.2f}F, {bme680_sensor.pressure:.2f}hPa, {bme680_sensor.humidity:.2f}%RH')
+
+    req = {"req": "note.add"}
+    req["file"] = "sensors.qo"
+    req["body"] = {'imei_string': IMEI,
+                   'start_time': START_TIME,
+                   'uptime': uptime,
+                   'temperature': f'{bme680_sensor.temperature:.2f}',
+                   'humidity': f'{bme680_sensor.humidity:.2f}',
+                   'latitude': f'{lat}',
+                   'longitude': f'{lon}',
+                   }
+    req["sync"] = True
+    rsp = card.Transaction(req)
+
+    sleep(300*12)
 
 
 # vim: ai et ts=4 sw=4 sts=4 nu
