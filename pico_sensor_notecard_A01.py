@@ -146,26 +146,46 @@ sleep(5) # to let sensors settle in
 
 while True:
     now = get_now()
-    uptime = f'{((now - START_TIME)) / (60*60*24):.1f} days, now: {gmtime()}'
+    uptime = f'uptime: {((now - START_TIME)) / (60*60*24):.3f} days, now: {gmtime()}'
     lat, lon = get_gps()
+
+    temp = 0.00
+    try:
+        temp = bme680_sensor.temperature
+    except Exception as e:
+        print(f'bme680 temperature error: {e}')
+
+    hum = 0.00
+    try:
+        hum = bme680_sensor.humidity
+    except Exception as e:
+        print(f'bme680 humidity error: {e}')
 
     if DEBUG:
         print(f'UPTIME: {uptime}')
-        print(f'bme680_sensor: {START_TIME} {bme680_sensor.temperature:.2f}C {(bme680_sensor.temperature*9/5)+32:.2f}F, {bme680_sensor.pressure:.2f}hPa, {bme680_sensor.humidity:.2f}%RH')
+        print(f'bme680_sensor: {START_TIME} {temp:.2f}C {(temp*9/5)+32:.2f}F, {hum:.2f}%RH')
 
     req = {"req": "note.add"}
     req["file"] = "sensors.qo"
     req["body"] = {'imei_string': IMEI,
                    'start_time': START_TIME,
                    'uptime': uptime,
-                   'temperature': f'{bme680_sensor.temperature:.2f}',
-                   'humidity': f'{bme680_sensor.humidity:.2f}',
+                   'temperature': f'{temp:.2f}',
+                   'humidity': f'{hum:.2f}',
                    'latitude': f'{lat}',
                    'longitude': f'{lon}',
                    }
     req["sync"] = True
     rsp = card.Transaction(req)
-    sleep(300*12)
+    for n in range(10):
+            led_onboard.value(1)
+            sleep(1)
+            led_onboard.value(0)
+            sleep(1)
+
+    if DEBUG:
+        print('FINISHED')
+    sleep((300*12)-20)
 
 
 # vim: ai et ts=4 sw=4 sts=4 nu
