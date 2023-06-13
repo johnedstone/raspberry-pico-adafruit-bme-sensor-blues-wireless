@@ -1,6 +1,9 @@
 ### Description
 Getting started with Raspberry Pico, Adafruit BME280, and [Blues Wireless](https://blues.io/)
 
+### Troubleshooting
+* When all else fails, power cycle the Raspberry Pi Pico
+
 ### References Pico and BME280
 * [How to Connect BME280 to Raspberry Pi Pico MicroPython](https://www.hackster.io/shilleh/how-to-connect-bme280-to-raspberry-pi-pico-micropython-91a392)
 * [Library for bme280 package](https://github.com/SebastianRoll/mpy_bme280_esp8266)
@@ -28,6 +31,3 @@ Getting started with Raspberry Pico, Adafruit BME280, and [Blues Wireless](https
 * https://www.robmiles.com/journal/2021/9/27/pico-and-feather-what-are-the-differences
 * https://dev.blues.io/notecard/notecard-walkthrough/time-and-location-requests/
 * [Detecting USB/battery power](https://forums.raspberrypi.com/viewtopic.php?t=300676)
-
-### Troubleshooting
-* When all else fails, power cycle the Raspberry Pi Pico
