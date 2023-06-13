@@ -28,3 +28,6 @@ Getting started with Raspberry Pico, Adafruit BME280, and [Blues Wireless](https
 * https://www.robmiles.com/journal/2021/9/27/pico-and-feather-what-are-the-differences
 * https://dev.blues.io/notecard/notecard-walkthrough/time-and-location-requests/
 * [Detecting USB/battery power](https://forums.raspberrypi.com/viewtopic.php?t=300676)
+
+### Troubleshooting
+* When all else fails, power cycle the Raspberry Pi Pico
