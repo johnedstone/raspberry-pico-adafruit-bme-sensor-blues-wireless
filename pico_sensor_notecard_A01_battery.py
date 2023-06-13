@@ -146,7 +146,7 @@ sleep(5) # to let sensors settle in
 
 while True:
     now = get_now()
-    uptime = f'uptime: {((now - START_TIME)) / (60*60*24):.3f} days, now: {gmtime()}'
+    uptime = f'uptime: {((now - START_TIME)) / (60*60*24):.3f} days, now: {gmtime(now)}'
     lat, lon = get_gps()
 
     temp = 0.00
