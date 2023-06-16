@@ -3,12 +3,11 @@ Getting started with Raspberry Pico, Adafruit BME280, and [Blues Wireless](https
 
 ### Currently running
 Currently running:
-* `apico_sensor_notecard_A01.py` 
+* `pico_sensor_notecard_A01.py` # Notecarrier A, Notecard WBNA
 
 Development scripts
 * `pico_blues_bme280_bme680.py`
 * `pico_blues_bme280.py`
-* `pico_sensor_notecard_A01_battery.py`
 
 ### Troubleshooting
 * When all else fails, power cycle the Raspberry Pi Pico

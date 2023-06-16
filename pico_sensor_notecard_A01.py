@@ -3,7 +3,6 @@ from time import sleep, time, gmtime, localtime
 
 import notecard
 import utime
-import bme280
 import adafruit_bme680
 import secrets
 
@@ -16,6 +15,7 @@ DO_NOT_WAIT_FOR_GPS = True
 led_onboard = Pin(25, Pin.OUT)
 i2c_bme680 = I2C(0, sda=Pin(0), scl=Pin(1))
 i2c_notecarrier = I2C(1, sda=Pin(2), scl=Pin(3))
+USB_POWER = Pin(24, Pin.IN)
 
 i2c_bme680_addr = i2c_bme680.scan()[0]
 i2c_notecarrier_addr = i2c_notecarrier.scan()[0]
@@ -166,8 +166,15 @@ while True:
     except Exception as e:
         print(f'bme680 humidity error: {e}')
 
+    usb_power = True
+    try:
+        if USB_POWER() != 1:
+            usb_power = False
+    except Exception as e:
+        print(f'USB_POWER() error: {e}')
+
     #uptime = f'uptime: {((now - START_TIME)) / (60*60*24):.3f} days, now: {gmtime(now)}'
-    uptime = f'uptime: {((now - START_TIME)) / (60*60*24):.3f} days, {st_year}-{st_mon}-{st_day} {temp:.0f}C {(temp*9/5)+32:.0f}F, {hum:.0f}%RH'
+    uptime = f'uptime: {((now - START_TIME)) / (60*60*24):.3f} days, {st_year}-{st_mon}-{st_day} {temp:.0f}C {(temp*9/5)+32:.0f}F, {hum:.0f}%RH, USB_Power(): {usb_power}'
 
     if DEBUG:
         print(f'UPTIME: {uptime}')
