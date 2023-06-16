@@ -145,8 +145,8 @@ _ = get_IMEI()
 sleep(5) # to let sensors settle in
 
 while True:
+    st_year, st_mon, st_day, st_hr, st_min, st_sec, st_wkday, st_yrday = gmtime(START_TIME)
     now = get_now()
-    uptime = f'uptime: {((now - START_TIME)) / (60*60*24):.3f} days, now: {gmtime(now)}'
     lat, lon = get_gps()
 
     temp = 0.00
@@ -160,6 +160,9 @@ while True:
         hum = bme680_sensor.humidity
     except Exception as e:
         print(f'bme680 humidity error: {e}')
+
+    #uptime = f'uptime: {((now - START_TIME)) / (60*60*24):.3f} days, now: {gmtime(now)}'
+    uptime = f'uptime: {((now - START_TIME)) / (60*60*24):.3f} days, {st_year}-{st_mon}-{st_day} {temp:.0f}C {(temp*9/5)+32:.0f}F, {hum:.0f}%RH'
 
     if DEBUG:
         print(f'UPTIME: {uptime}')

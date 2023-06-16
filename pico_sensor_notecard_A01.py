@@ -15,7 +15,7 @@ DO_NOT_WAIT_FOR_GPS = True
 
 led_onboard = Pin(25, Pin.OUT)
 i2c_bme680 = I2C(0, sda=Pin(0), scl=Pin(1))
-i2c_notecarrier = I2C(1, sda=Pin(6), scl=Pin(7))
+i2c_notecarrier = I2C(1, sda=Pin(2), scl=Pin(3))
 
 i2c_bme680_addr = i2c_bme680.scan()[0]
 i2c_notecarrier_addr = i2c_notecarrier.scan()[0]
@@ -145,7 +145,12 @@ _ = get_IMEI()
 sleep(5) # to let sensors settle in
 
 while True:
-    st_year, st_mon, st_day, st_hr, st_min, st_sec, st_wkday, st_yrday = gmtime(START_TIME)
+    st_year, st_mon, st_day, st_hr, st_min, st_sec, st_wkday, st_yrday = (0, 0, 0, 0, 0, 0, 0, 0)
+    try:
+        st_year, st_mon, st_day, st_hr, st_min, st_sec, st_wkday, st_yrday = gmtime(START_TIME)
+    except Exception as e:
+        print(f'gmtime(START_TIME) error: {e}')
+
     now = get_now()
     lat, lon = get_gps()
 
@@ -180,6 +185,9 @@ while True:
                    }
     req["sync"] = True
     rsp = card.Transaction(req)
+    if DEBUG:
+        print(f'POST response (note.add): {rsp}')
+
     for n in range(10):
             led_onboard.value(1)
             sleep(1)
