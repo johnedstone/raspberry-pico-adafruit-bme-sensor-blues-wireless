@@ -3,7 +3,7 @@ Getting started with Raspberry Pico, Adafruit BME280, and [Blues Wireless](https
 
 ### Currently running
 Currently running:
-* `pico_sensor_notecard_A01.py` # Notecarrier A, Notecard WBNA
+* `pico_sensor_notecard_A01.py`  _Notecarrier A, Notecard WBNA_
 
 ![current project](./images/pico_blues_bme680.png)
 
