@@ -38,6 +38,7 @@ Development scripts
 * [Creating Routes, Using webhook for testing](https://dev.blues.io/guides-and-tutorials/routing-data-to-cloud/general-http-https/#introduction)
 * [SDK (python)](https://dev.blues.io/tools-and-sdks/firmware-libraries/python-library/)
 * [Adding Cellular to the Raspberry Pi Pico with the Blues Wireless Notecard Video](https://www.youtube.com/watch?v=rxq9vc1sW_0)
+* [Notecard coverage comparison](https://dev.blues.io/datasheets/notecard-datasheet/note-nbna-500/)
 
 ### References
 * [micropython docs](https://docs.micropython.org/en/latest/rp2/quickref.html)
