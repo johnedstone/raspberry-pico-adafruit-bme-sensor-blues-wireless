@@ -152,6 +152,12 @@ while True:
         print(f'gmtime(START_TIME) error: {e}')
 
     now = get_now()
+    nw_year, nw_mon, nw_day, nw_hr, nw_min, nw_sec, nw_wkday, nw_yrday = (0, 0, 0, 0, 0, 0, 0, 0)
+    try:
+        nw_year, nw_mon, nw_day, nw_hr, nw_min, nw_sec, nw_wkday, nw_yrday = gmtime(now)
+    except Exception as e:
+        print(f'gmtime(now) error: {e}')
+
     lat, lon = get_gps()
 
     temp = 0.00
@@ -174,7 +180,8 @@ while True:
         print(f'USB_POWER() error: {e}')
 
     #uptime = f'uptime: {((now - START_TIME)) / (60*60*24):.3f} days, now: {gmtime(now)}'
-    uptime = f'uptime: {((now - START_TIME)) / (60*60*24):.3f} days, {st_year}-{st_mon}-{st_day} {temp:.0f}C {(temp*9/5)+32:.0f}F, {hum:.0f}%RH, USB_Power(): {usb_power}'
+    #uptime = f'uptime: {((now - START_TIME)) / (60*60*24):.3f} days, {st_year}-{st_mon}-{st_day} {temp:.0f}C {(temp*9/5)+32:.0f}F, {hum:.0f}%RH, USB_Power(): {usb_power}'
+    uptime = f'uptime: {((now - START_TIME)) / (60*60*24):.3f} days, {st_year}-{st_mon}-{st_day} {temp:.0f}C {(temp*9/5)+32:.0f}F, {hum:.0f}%RH, now(): {nw_year}-{nw_mon}-{nw_day}T{nw_hr}:{nw_min}:{nw_sec}.UTC USB_Power(): {usb_power}'
 
     if DEBUG:
         print(f'UPTIME: {uptime}')
