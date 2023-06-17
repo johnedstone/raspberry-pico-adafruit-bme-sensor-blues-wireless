@@ -41,6 +41,7 @@ Development scripts
 * [Notecard coverage comparison](https://dev.blues.io/datasheets/notecard-datasheet/note-nbna-500/)
 
 ### References
+* [Drop micropython on Pico](https://www.raspberrypi.com/documentation/microcontrollers/micropython.html)
 * [micropython docs](https://docs.micropython.org/en/latest/rp2/quickref.html)
 * https://www.robmiles.com/journal/2021/9/27/pico-and-feather-what-are-the-differences
 * https://dev.blues.io/notecard/notecard-walkthrough/time-and-location-requests/
