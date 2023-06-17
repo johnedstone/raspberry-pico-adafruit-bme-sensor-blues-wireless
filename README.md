@@ -14,20 +14,22 @@ Development scripts
 ### Troubleshooting
 * When all else fails, power cycle the Raspberry Pi Pico
 
+### Micropython packages for BME280 and BME680
+* BME680 _(Currently using)_ [lib/adafruit_bme680.py](https://github.com/bsatrom/notecard-pico)
+* BME680: [lib/bme680.py](https://github.com/robert-hh/BME680-Micropython/tree/master)
+* BME280: _(Currently using)_ [lib/bme280](https://github.com/SebastianRoll/mpy_bme280_esp8266)
+* BME280: [lib/bme280_float.py](https://github.com/robert-hh/BME280)
+
 ### References Pico and BME280
 * [How to Connect BME280 to Raspberry Pi Pico MicroPython](https://www.hackster.io/shilleh/how-to-connect-bme280-to-raspberry-pi-pico-micropython-91a392)
-* [Library for bme280 package](https://github.com/SebastianRoll/mpy_bme280_esp8266)
-    * [see also](https://github.com/robert-hh/BME280)
-* [Source for an adapted Adafruit BME680 library that works with MicroPython](https://github.com/bsatrom/notecard-pico)
-    * [see also](https://github.com/robert-hh/BME680-Micropython)
 * [Troubleshooting error:  added address parameter](https://forums.raspberrypi.com/viewtopic.php?t=343123)
-* [note-python: python library](https://github.com/blues/note-python)
 * [dev.blues.io api](https://dev.blues.io/api-reference/notecard-api/introduction/)
 * These two are together:
     * [Adding Cellular to the raspberry Pico bme680](https://www.hackster.io/brandonsatrom/adding-cellular-to-the-raspberry-pi-pico-b8a4b6)
     * [code for bme680 and pico - github](https://github.com/bsatrom/notecard-pico)
 
 ### Blues Wireless Reference
+* [note-python: python library](https://github.com/blues/note-python)
 * [Getting Started (useful intro video)](https://blues.io/blog/get-started-cellular-raspberry-pi-webinar/)
 * [Notecarrier A and GPS](https://www.hackster.io/rob-lauer/sending-a-cellular-gps-tracker-around-the-world-literally-4b830c)
 * [Quick Start: Notecard and Notecarrier](https://dev.blues.io/quickstart/notecard-quickstart/notecard-and-notecarrier-f/)
