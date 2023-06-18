@@ -8,6 +8,7 @@ Currently running:
 ![current project](./images/pico_blues_bme680.png)
 
 Development scripts
+* `compare_sensors_and_lib.py`
 * `pico_blues_bme280_bme680.py`
 * `pico_blues_bme280.py`
 
@@ -15,11 +16,25 @@ Development scripts
 * When all else fails, power cycle the Raspberry Pi Pico
 
 ### Micropython packages for BME280 and BME680
-* BME680 _(Currently using)_ [lib/adafruit_bme680.py](https://github.com/bsatrom/notecard-pico)
+* BME680: _(Currently using)_ [lib/adafruit_bme680.py](https://github.com/bsatrom/notecard-pico)
 * BME680: [lib/bme680.py](https://github.com/robert-hh/BME680-Micropython/tree/master)
-* BME280: _(Currently using)_ [lib/bme280](https://github.com/SebastianRoll/mpy_bme280_esp8266)
-* BME280: [lib/bme280_float.py](https://github.com/robert-hh/BME280)
+* BME280: [lib/bme280](https://github.com/SebastianRoll/mpy_bme280_esp8266)
+* BME280: _(Recommended)_ [lib/bme280_float.py](https://github.com/robert-hh/BME280)
+* BME280: [lib/bme280_int.py](https://github.com/robert-hh/BME280)
 
+Recommending:
+* bm680 libraries about the same: go with `adafruit_bme680.py` 
+* bme280: go with `bme_280_float.py`, though the humidity is a little hight
+
+Results running `compare_sensors_and_lib.py`:
+```
+bme680_sensor_ada: 23.16711 47.33186 985.0639 23455
+bme680_sensor_rhh: 23.29191 47.38399 985.0844 13908
+bme680_sensor_rhi: 24.44328 47.17461 985.1328 19586
+bme280_sensor_ada: ('20.82C', '668.43hPa', '64.96%')
+bme280_sensor_rhh: ('22.56C', '985.90hPa', '58.32%')
+bme280_sensor_rhi: ('22.56C', '985.90hPa', '58.32%')
+```
 ### References Pico and BME280
 * [How to Connect BME280 to Raspberry Pi Pico MicroPython](https://www.hackster.io/shilleh/how-to-connect-bme280-to-raspberry-pi-pico-micropython-91a392)
 * [Troubleshooting error:  added address parameter](https://forums.raspberrypi.com/viewtopic.php?t=343123)
