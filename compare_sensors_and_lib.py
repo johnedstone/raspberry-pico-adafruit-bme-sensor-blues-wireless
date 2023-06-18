@@ -1,4 +1,5 @@
 from machine import Pin, I2C
+from time import sleep
 
 import adafruit_bme680
 import bme680
@@ -7,7 +8,7 @@ import bme280
 import bme280_float
 import bme280_int
 
-BME280 = False
+BME280 = True
 
 i2c_bme680 = I2C(0, sda=Pin(0), scl=Pin(1))
 i2c_bme680_addr = i2c_bme680.scan()[0]
@@ -28,20 +29,25 @@ bme680_sensor_rhh = bme680.BME680_I2C(i2c_bme680, address=i2c_bme680_addr)
 bme680_sensor_rhi = bme680i.BME680_I2C(i2c_bme680, address=i2c_bme680_addr)
 #print(f'bme680_sensor_ada: {dir(bme680_sensor_ada)}')
 #print(f'bme680_sensor_rhh: {dir(bme680_sensor_rhh)}')
-print(f'bme680_sensor_ada: {bme680_sensor_ada.temperature} {bme680_sensor_ada.humidity} {bme680_sensor_ada.pressure} {bme680_sensor_ada.gas}')
-print(f'bme680_sensor_rhh: {bme680_sensor_rhh.temperature} {bme680_sensor_rhh.humidity} {bme680_sensor_rhh.pressure} {bme680_sensor_rhh.gas}')
-print(f'bme680_sensor_rhi: {bme680_sensor_rhh.temperature} {bme680_sensor_rhh.humidity} {bme680_sensor_rhh.pressure} {bme680_sensor_rhh.gas}')
 
-print(f'{"#"*40}')
+while True:
+    print(f'bme680_sensor_ada: {bme680_sensor_ada.temperature} {bme680_sensor_ada.humidity} {bme680_sensor_ada.pressure} {bme680_sensor_ada.gas}')
+    print(f'bme680_sensor_rhh: {bme680_sensor_rhh.temperature} {bme680_sensor_rhh.humidity} {bme680_sensor_rhh.pressure} {bme680_sensor_rhh.gas}')
+    print(f'bme680_sensor_rhi: {bme680_sensor_rhh.temperature} {bme680_sensor_rhh.humidity} {bme680_sensor_rhh.pressure} {bme680_sensor_rhh.gas}')
 
-if BME280:
-    bme280_sensor_ada = bme280.BME280(i2c=i2c_bme280, address=i2c_bme280_addr)
-    bme280_sensor_rhh = bme280_float.BME280(i2c=i2c_bme280, address=i2c_bme280_addr)
-    bme280_sensor_rhh_mode_1 = bme280_float.BME280(mode=1, i2c=i2c_bme280, address=i2c_bme280_addr)
-    bme280_sensor_rhi = bme280_int.BME280(i2c=i2c_bme280, address=i2c_bme280_addr)
-    print(f'bme280_sensor_ada: {bme280_sensor_ada.values}')
-    print(f'bme280_sensor_rhh: {bme280_sensor_rhh.values}')
-    print(f'bme280_sensor_rhh_mode_1: {bme280_sensor_rhh_mode_1.values}')
-    print(f'bme280_sensor_rhi: {bme280_sensor_rhi.values}')
 
+
+
+    if BME280:
+        bme280_sensor_ada = bme280.BME280(i2c=i2c_bme280, address=i2c_bme280_addr)
+        bme280_sensor_rhh = bme280_float.BME280(i2c=i2c_bme280, address=i2c_bme280_addr)
+        bme280_sensor_rhh_mode_1 = bme280_float.BME280(mode=1, i2c=i2c_bme280, address=i2c_bme280_addr)
+        bme280_sensor_rhi = bme280_int.BME280(i2c=i2c_bme280, address=i2c_bme280_addr)
+        print(f'bme280_sensor_ada: {bme280_sensor_ada.values}')
+        print(f'bme280_sensor_rhh: {bme280_sensor_rhh.values}')
+        print(f'bme280_sensor_rhh_mode_1: {bme280_sensor_rhh_mode_1.values}')
+        print(f'bme280_sensor_rhi: {bme280_sensor_rhi.values}')
+
+    print(f'{"#"*40}')
+    sleep(60*30)
 # vim: ai et ts=4 sw=4 sts=4 nu
