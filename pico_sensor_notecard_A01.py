@@ -179,7 +179,7 @@ while True:
     except Exception as e:
         print(f'USB_POWER() error: {e}')
 
-    uptime = f'uptime: {START_TIME} {((now - START_TIME)) / (60*60*24):.3f}days {st_year}-{st_mon}-{st_day}T{st_hr}:{st_min}:{st_sec}Z {temp:.0f}C {(temp*9/5)+32:.0f}F, {hum:.0f}%RH, now: {nw_year}-{nw_mon}-{nw_day}T{nw_hr}:{nw_min}:{nw_sec}Z USB_Power(): {usb_power}'
+    uptime = f'uptime: {START_TIME} {((now - START_TIME)) / (60*60*24):.3f}days {st_year}-{st_mon:02}-{st_day:02}T{st_hr:02}:{st_min:02}:{st_sec:02}Z {temp:.0f}C {(temp*9/5)+32:.0f}F, {hum:.0f}%RH, now: {nw_year}-{nw_mon:02}-{nw_day:02}T{nw_hr:02}:{nw_min:02}:{nw_sec:02}Z USB_Power(): {usb_power}'
 
     if DEBUG:
         print(f'UPTIME: {uptime}')
