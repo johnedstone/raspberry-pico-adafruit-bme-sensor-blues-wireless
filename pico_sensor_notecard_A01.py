@@ -13,8 +13,8 @@ IMEI = ''
 DO_NOT_WAIT_FOR_GPS = True
 
 led_onboard = Pin(25, Pin.OUT)
-i2c_bme680 = I2C(0, sda=Pin(0), scl=Pin(1))
-i2c_notecarrier = I2C(1, sda=Pin(2), scl=Pin(3))
+i2c_bme680 = I2C(0, sda=Pin(16), scl=Pin(17))
+i2c_notecarrier = I2C(1, sda=Pin(18), scl=Pin(19))
 USB_POWER = Pin(24, Pin.IN)
 
 i2c_bme680_addr = i2c_bme680.scan()[0]
