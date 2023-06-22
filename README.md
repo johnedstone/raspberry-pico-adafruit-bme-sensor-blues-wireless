@@ -45,6 +45,7 @@ bme280_sensor_rhi: ('22.56C', '985.90hPa', '58.32%')
 
 ### Blues Wireless Reference
 * [note-python: python library](https://github.com/blues/note-python)
+* [installing lib on Pico](https://dev.blues.io/tools-and-sdks/firmware-libraries/python-library/)
 * [Getting Started (useful intro video)](https://blues.io/blog/get-started-cellular-raspberry-pi-webinar/)
 * [Notecarrier A and GPS](https://www.hackster.io/rob-lauer/sending-a-cellular-gps-tracker-around-the-world-literally-4b830c)
 * [Quick Start: Notecard and Notecarrier](https://dev.blues.io/quickstart/notecard-quickstart/notecard-and-notecarrier-f/)
