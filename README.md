@@ -43,6 +43,12 @@ bme280_sensor_rhi: ('22.56C', '985.90hPa', '58.32%')
     * [Adding Cellular to the raspberry Pico bme680](https://www.hackster.io/brandonsatrom/adding-cellular-to-the-raspberry-pi-pico-b8a4b6)
     * [code for bme680 and pico - github](https://github.com/bsatrom/notecard-pico)
 
+### Notes about Pico LiPo Shim
+It appears, that once on battery, and once the Pico/Shim/Notecard stops reporting, e.g after some hours, that
+after the USB Power is connected, the device waits 6 hours, charging the battery, before starting up the Pico.
+That is, using the shim is not a relevant indicator for "when" the power is restored, because time is spent recharging the
+battery, before restarting the Pico. Question: is the Adafruit RP2040 Feather a better indicator for when power is restored?
+
 ### Blues Wireless Reference
 * [note-python: python library](https://github.com/blues/note-python)
 * [installing lib on Pico](https://dev.blues.io/tools-and-sdks/firmware-libraries/python-library/)
@@ -58,7 +64,12 @@ bme280_sensor_rhi: ('22.56C', '985.90hPa', '58.32%')
 * [Adding Cellular to the Raspberry Pi Pico with the Blues Wireless Notecard Video](https://www.youtube.com/watch?v=rxq9vc1sW_0)
 * [Notecard coverage comparison](https://dev.blues.io/datasheets/notecard-datasheet/note-nbna-500/)
 
-### References
+### Adafruit
+* [Getting started with Raspberry Pi Pico and CircuitPython ](https://learn.adafruit.com/getting-started-with-raspberry-pi-pico-circuitpython/overview)
+* [CircuitPython Essentials](https://learn.adafruit.com/circuitpython-essentials/circuitpython-pins-and-modules)
+* [Feather RP2040](https://learn.adafruit.com/adafruit-feather-rp2040-pico)
+
+### Other References
 * [Drop micropython on Pico](https://www.raspberrypi.com/documentation/microcontrollers/micropython.html)
 * [micropython docs](https://docs.micropython.org/en/latest/rp2/quickref.html)
 * https://www.robmiles.com/journal/2021/9/27/pico-and-feather-what-are-the-differences
