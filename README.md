@@ -65,9 +65,12 @@ battery, before restarting the Pico. Question: is the Adafruit RP2040 Feather a 
 * [Notecard coverage comparison](https://dev.blues.io/datasheets/notecard-datasheet/note-nbna-500/)
 
 ### Adafruit
+* [Adafruit Feather M4 on Notecarrier with CircuitPython](https://dev.blues.io/guides-and-tutorials/collecting-sensor-data/notecarrier-f/adafruit-feather-m4-express/circuitpython/)
 * [Getting started with Raspberry Pi Pico and CircuitPython ](https://learn.adafruit.com/getting-started-with-raspberry-pi-pico-circuitpython/overview)
 * [CircuitPython Essentials](https://learn.adafruit.com/circuitpython-essentials/circuitpython-pins-and-modules)
 * [Feather RP2040](https://learn.adafruit.com/adafruit-feather-rp2040-pico)
+* [Introducing the New Feather Compatible Notecarrer](https://dev.blues.io/guides-and-tutorials/collecting-sensor-data/notecarrier-f/adafruit-feather-m4-express/circuitpython/)
+* [More from Adafuit on Notecarrier](https://blog.adafruit.com/2021/12/02/eye-on-npi-blues-wireless-notecard-cellular-modem-modules-and-notecarriers-eyeonnpi-digikey-digikey-blueswireless/)
 
 ### Other References
 * [Drop micropython on Pico](https://www.raspberrypi.com/documentation/microcontrollers/micropython.html)
