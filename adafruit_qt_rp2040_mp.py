@@ -1,3 +1,8 @@
+# Adafruit QT RP2040 with micropython
+# https://micropython.org/download/ADAFRUIT_QTPY_RP2040/
+# https://learn.adafruit.com/adafruit-qt-py-2040/pinouts
+# Using just I2C1 and STEMMA QT Connector
+
 from machine import Pin, I2C
 from time import sleep, time, gmtime, localtime
 
@@ -12,21 +17,11 @@ CARD_RESTORE = False
 IMEI = ''
 DO_NOT_WAIT_FOR_GPS = True
 
-led_onboard = Pin(25, Pin.OUT)
-i2c_bme680 = I2C(0, sda=Pin(16), scl=Pin(17))
-i2c_notecarrier = I2C(1, sda=Pin(18), scl=Pin(19))
-USB_POWER = Pin(24, Pin.IN)
+i2c1 = I2C(1, sda=Pin(22), scl=Pin(23))
+print(f'i2c1.scan(): {i2c1.scan()}')
 
-i2c_bme680_addr = i2c_bme680.scan()[0]
-i2c_notecarrier_addr = i2c_notecarrier.scan()[0]
-
-if DEBUG:
-    print(f'i2c_bme_680: {i2c_bme680}, {i2c_bme680_addr}')
-    print(f'i2c_notecarrier: {i2c_notecarrier}, {i2c_notecarrier_addr}')
-    
-
-bme680_sensor = adafruit_bme680.BME680_I2C(i2c_bme680, address=i2c_bme680_addr)
-card = notecard.OpenI2C(i2c_notecarrier, i2c_notecarrier_addr, 0, debug=DEBUG)
+bme680_sensor = adafruit_bme680.BME680_I2C(i2c1, address=119)
+card = notecard.OpenI2C(i2c1, 23, 0, debug=DEBUG)
 
 def get_IMEI():
     global IMEI
@@ -45,7 +40,6 @@ def get_IMEI():
 
 def set_start_time():
     global START_TIME
-    led_onboard.value(1)
     counter = 1
     while START_TIME == 0:
         req = {"req": "card.time"}
@@ -61,7 +55,6 @@ def set_start_time():
         else:
             sleep(10)
 
-    led_onboard.value(0)
     return
 
 def get_now():
@@ -111,13 +104,8 @@ def start_gps():
 
         if 'lat' in rsp.keys():
             gps_location_off = False
-            led_onboard.value(0)
-        else:
-            for i in range(5):
-                led_onboard.value(1)
-                sleep(2)
-                led_onboard.value(0)
-                sleep(2)
+
+        sleep(10)
 
     if DEBUG:
         req = {"req": "card.location"}
@@ -172,14 +160,8 @@ while True:
     except Exception as e:
         print(f'bme680 humidity error: {e}')
 
-    usb_power = True
-    try:
-        if USB_POWER() != 1:
-            usb_power = False
-    except Exception as e:
-        print(f'USB_POWER() error: {e}')
 
-    uptime = f'uptime: {START_TIME} {((now - START_TIME)) / (60*60*24):.3f}days {st_year}-{st_mon:02}-{st_day:02}T{st_hr:02}:{st_min:02}:{st_sec:02}Z {temp:.0f}C {(temp*9/5)+32:.0f}F, {hum:.0f}%RH, now: {nw_year}-{nw_mon:02}-{nw_day:02}T{nw_hr:02}:{nw_min:02}:{nw_sec:02}Z USB_Power(): {usb_power}'
+    uptime = f'uptime: {START_TIME} {((now - START_TIME)) / (60*60*24):.3f}days {st_year}-{st_mon:02}-{st_day:02}T{st_hr:02}:{st_min:02}:{st_sec:02}Z {temp:.0f}C {(temp*9/5)+32:.0f}F, {hum:.0f}%RH, now: {nw_year}-{nw_mon:02}-{nw_day:02}T{nw_hr:02}:{nw_min:02}:{nw_sec:02}Z'
 
     if DEBUG:
         print(f'UPTIME: {uptime}')
@@ -200,14 +182,8 @@ while True:
     if DEBUG:
         print(f'POST response (note.add): {rsp}')
 
-    for n in range(10):
-            led_onboard.value(1)
-            sleep(1)
-            led_onboard.value(0)
-            sleep(1)
 
-    #           5min * 12 = 1 hour, minus sleep (sec) above
-    sleeping = ((300*12)-20)
+    sleeping = ((300*12))
     if DEBUG:
         print(f'FINISHED: sleeping {sleeping} seconds')
     sleep(sleeping)

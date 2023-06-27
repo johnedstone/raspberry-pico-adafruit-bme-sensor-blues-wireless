@@ -3,7 +3,22 @@ Getting started with Raspberry Pico, Adafruit BME280, and [Blues Wireless](https
 
 ### Currently running
 Currently running:
-* `pico_sensor_notecard_A01.py`  _Notecarrier A, Notecard WBNA_
+* `pico_sensor_notecard_A01.py`:  *Micropython, Raspberry Pi Pico, Notecarrier A, Notecard WBNA-500 and NB-500*
+* `adafruit_qt_rp2040_mp.py`: *Micropython, Adafruit QTRP2040, Notecarrier A, Notecard WBNA-500 and NB-500*
+
+![current project](./images/pico_blues_bme680.png)
+
+Development scripts
+* `compare_sensors_and_lib.py`
+* `pico_blues_bme280_bme680.py`
+* `pico_blues_bme280.py`
+
+### Troubleshooting
+* When all else fails, power cycle the Raspberry Pi Pico
+
+### Micropython packages for BME280 and BME680
+* BME680: _(Currently using)_ [lib/adafruit_bme680.py](https://github.com/bsatrom/notecard-pico)
+* BME680: [lib/bme680.py](https://github.com/robert-hh/BME680-
 
 ![current project](./images/pico_blues_bme680.png)
 
@@ -65,6 +80,7 @@ battery, before restarting the Pico. Question: is the Adafruit RP2040 Feather a 
 * [Notecard coverage comparison](https://dev.blues.io/datasheets/notecard-datasheet/note-nbna-500/)
 
 ### Adafruit
+* [Adafruit Feather RP2040 and I2C](https://picockpit.com/raspberry-pi/circuitpython-adafruit-feather-rp2040-and-i2c/)
 * [Adafruit Feather M4 on Notecarrier with CircuitPython](https://dev.blues.io/guides-and-tutorials/collecting-sensor-data/notecarrier-f/adafruit-feather-m4-express/circuitpython/)
 * [Getting started with Raspberry Pi Pico and CircuitPython ](https://learn.adafruit.com/getting-started-with-raspberry-pi-pico-circuitpython/overview)
 * [CircuitPython Essentials](https://learn.adafruit.com/circuitpython-essentials/circuitpython-pins-and-modules)
