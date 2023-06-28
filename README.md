@@ -8,7 +8,7 @@ Currently running:
 
 ![current project](./images/pico_blues_bme680.png)
 
-Development scripts
+### Development scripts
 * `compare_sensors_and_lib.py`
 * `pico_blues_bme280_bme680.py`
 * `pico_blues_bme280.py`
@@ -21,14 +21,6 @@ Development scripts
 * BME680: [lib/bme680.py](https://github.com/robert-hh/BME680-
 
 ![current project](./images/pico_blues_bme680.png)
-
-Development scripts
-* `compare_sensors_and_lib.py`
-* `pico_blues_bme280_bme680.py`
-* `pico_blues_bme280.py`
-
-### Troubleshooting
-* When all else fails, power cycle the Raspberry Pi Pico
 
 ### Micropython packages for BME280 and BME680
 * BME680: _(Currently using)_ [lib/adafruit_bme680.py](https://github.com/bsatrom/notecard-pico)
