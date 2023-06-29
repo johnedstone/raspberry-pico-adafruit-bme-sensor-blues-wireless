@@ -73,6 +73,7 @@ battery, before restarting the Pico. Question: is the Adafruit RP2040 Feather a 
 
 ### Adafruit
 * [Adafruit Feather RP2040 and I2C](https://picockpit.com/raspberry-pi/circuitpython-adafruit-feather-rp2040-and-i2c/)
+* [Adafruit Feather RP2040 Pinout](https://learn.adafruit.com/adafruit-feather-rp2040-pico/pinouts)
 * [Adafruit Feather M4 on Notecarrier with CircuitPython](https://dev.blues.io/guides-and-tutorials/collecting-sensor-data/notecarrier-f/adafruit-feather-m4-express/circuitpython/)
 * [Getting started with Raspberry Pi Pico and CircuitPython ](https://learn.adafruit.com/getting-started-with-raspberry-pi-pico-circuitpython/overview)
 * [CircuitPython Essentials](https://learn.adafruit.com/circuitpython-essentials/circuitpython-pins-and-modules)
