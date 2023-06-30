@@ -2,11 +2,12 @@
 * Getting started with Raspberry Pico, Adafruit BME280, and [Blues Wireless](https://blues.io/)
 * Getting started with Adafruit Feather RP2040 and CircuitPython as well.
 
-### Currently running
-Currently running:
+#### Currently running
+* `adafruit_rp2040_sensor_cp.py`: Circuitpython, Adafruit Feather RP2040, Notecarrier A, BME680
+
+#### Working, but retired in favor of Adafruit Feather RP2040 with CircuitPython
 * `pico_sensor_notecard_A01.py`:  *Micropython, Raspberry Pi Pico, Notecarrier A, Notecard WBNA-500 and NB-500*
 * `adafruit_qt_rp2040_mp.py`: *Micropython, Adafruit QTRP2040, Notecarrier A, Notecard WBNA-500 and NB-500*
-* `adafruit_rp2040_sensor_cp.py`: Circuitpython, Adafruit Feather RP2040, Notecarrier A, BME680
 
 ### Development scripts
 * `compare_sensors_and_lib.py`
