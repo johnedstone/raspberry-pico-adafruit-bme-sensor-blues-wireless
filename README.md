@@ -6,8 +6,8 @@
 * `adafruit_rp2040_sensor_cp.py`: Circuitpython, Adafruit Feather RP2040, Notecarrier A, BME680
 
 #### Working, but retired in favor of Adafruit Feather RP2040 with CircuitPython
-* `pico_sensor_notecard_A01.py`:  *Micropython, Raspberry Pi Pico, Notecarrier A, Notecard WBNA-500 and NB-500*
-* `adafruit_qt_rp2040_mp.py`: *Micropython, Adafruit QT RP2040, Notecarrier A, Notecard WBNA-500 and NB-500*
+* `pico_sensor_notecard_A01.py`:  *Micropython, Raspberry Pi Pico, Notecarrier A, Notecard WBNA-500 and NBGL-500*
+* `adafruit_qt_rp2040_mp.py`: *Micropython, Adafruit QT RP2040, Notecarrier A, Notecard WBNA-500 and NBGL-500*
 
 ### Development scripts
 * `compare_sensors_and_lib.py`
