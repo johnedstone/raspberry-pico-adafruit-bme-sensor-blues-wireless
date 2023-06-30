@@ -74,7 +74,7 @@ battery, before restarting the Pico. Question: is the Adafruit RP2040 Feather a 
 ### Adafruit
 * Notes about BME680 library.
     * [Using Adafruit's library](https://github.com/adafruit/Adafruit_CircuitPython_BME680/blob/main/adafruit_bme680.py)
-    * Renamed adafruit_bme680.py to adafruit_bme680_cp.py to avoid conflicts
+    * Renamed adafruit_bme680.py in this project to adafruit_bme680_cp.py to avoid conflicts from micropython bme680 packages (listed above).
 * [Adafruit: working with two I2C devices](https://learn.adafruit.com/working-with-multiple-i2c-devices/two-devices-using-alternate-address)
 * [Adafruit Feather RP2040 and I2C](https://picockpit.com/raspberry-pi/circuitpython-adafruit-feather-rp2040-and-i2c/)
 * [Adafruit Feather RP2040 Pinout](https://learn.adafruit.com/adafruit-feather-rp2040-pico/pinouts)
