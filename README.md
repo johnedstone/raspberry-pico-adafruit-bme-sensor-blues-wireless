@@ -19,10 +19,12 @@ Currently running:
 ### Troubleshooting
 * When all else fails, power cycle the Raspberry Pi Pico
 
-### Micropython packages for BME280 and BME680
+### Micropython packages for BME280 and BME680 *not circuitpython lib*
 * BME680: _(Currently using)_ [lib/adafruit_bme680.py](https://github.com/bsatrom/notecard-pico)
 * BME680: [lib/bme680.py](https://github.com/robert-hh/BME680-
 
+### 
+#### Raspberry Pi Pico with BME680 with LiPo Shim
 ![current project](./images/pico_blues_bme680.png)
 
 ### Micropython packages for BME280 and BME680
