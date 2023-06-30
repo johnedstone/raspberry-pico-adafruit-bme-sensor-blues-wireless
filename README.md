@@ -1,12 +1,12 @@
 ### Description
-Getting started with Raspberry Pico, Adafruit BME280, and [Blues Wireless](https://blues.io/)
-Getting started with Adafruit Feather RP2040 and CircuitPython as well.
+* Getting started with Raspberry Pico, Adafruit BME280, and [Blues Wireless](https://blues.io/)
+* Getting started with Adafruit Feather RP2040 and CircuitPython as well.
 
 ### Currently running
 Currently running:
 * `pico_sensor_notecard_A01.py`:  *Micropython, Raspberry Pi Pico, Notecarrier A, Notecard WBNA-500 and NB-500*
 * `adafruit_qt_rp2040_mp.py`: *Micropython, Adafruit QTRP2040, Notecarrier A, Notecard WBNA-500 and NB-500*
-* `adafruit_rp2040_sensor_cp.py': Circuitpython, Adafruit Feather RP2040, Notecarrier A, BME680
+* `adafruit_rp2040_sensor_cp.py`: Circuitpython, Adafruit Feather RP2040, Notecarrier A, BME680
 
 ![current project](./images/pico_blues_bme680.png)
 
@@ -78,6 +78,7 @@ battery, before restarting the Pico. Question: is the Adafruit RP2040 Feather a 
 * Notes about BME680 library.
     * [Using Adafruit's library](https://github.com/adafruit/Adafruit_CircuitPython_BME680/blob/main/adafruit_bme680.py)
     * Renamed adafruit_bme680.py to adafruit_bme680_cp.py to avoid conflicts
+* [Adafruit: working with two I2C devices](https://learn.adafruit.com/working-with-multiple-i2c-devices/two-devices-using-alternate-address)
 * [Adafruit Feather RP2040 and I2C](https://picockpit.com/raspberry-pi/circuitpython-adafruit-feather-rp2040-and-i2c/)
 * [Adafruit Feather RP2040 Pinout](https://learn.adafruit.com/adafruit-feather-rp2040-pico/pinouts)
 * [Adafruit Feather M4 on Notecarrier with CircuitPython](https://dev.blues.io/guides-and-tutorials/collecting-sensor-data/notecarrier-f/adafruit-feather-m4-express/circuitpython/)
