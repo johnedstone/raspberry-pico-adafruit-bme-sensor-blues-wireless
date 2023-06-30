@@ -8,8 +8,6 @@ Currently running:
 * `adafruit_qt_rp2040_mp.py`: *Micropython, Adafruit QTRP2040, Notecarrier A, Notecard WBNA-500 and NB-500*
 * `adafruit_rp2040_sensor_cp.py`: Circuitpython, Adafruit Feather RP2040, Notecarrier A, BME680
 
-![current project](./images/pico_blues_bme680.png)
-
 ### Development scripts
 * `compare_sensors_and_lib.py`
 * `pico_blues_bme280_bme680.py`
@@ -19,20 +17,13 @@ Currently running:
 ### Troubleshooting
 * When all else fails, power cycle the Raspberry Pi Pico
 
-### Micropython packages for BME280 and BME680 *not circuitpython lib*
-* BME680: _(Currently using)_ [lib/adafruit_bme680.py](https://github.com/bsatrom/notecard-pico)
-* BME680: [lib/bme680.py](https://github.com/robert-hh/BME680-
-
-### 
-#### Raspberry Pi Pico with BME680 with LiPo Shim
-![current project](./images/pico_blues_bme680.png)
-
 ### Micropython packages for BME280 and BME680
 * BME680: _(Currently using)_ [lib/adafruit_bme680.py](https://github.com/bsatrom/notecard-pico)
 * BME680: [lib/bme680.py](https://github.com/robert-hh/BME680-Micropython/tree/master)
 * BME280: [lib/bme280](https://github.com/SebastianRoll/mpy_bme280_esp8266)
 * BME280: _(Recommended)_ [lib/bme280_float.py](https://github.com/robert-hh/BME280)
 * BME280: [lib/bme280_int.py](https://github.com/robert-hh/BME280)
+* Note: these are not *circuitpython libraries*
 
 Recommending:
 * bm680 libraries about the same: go with `adafruit_bme680.py` 
@@ -47,6 +38,10 @@ bme280_sensor_ada: ('20.82C', '668.43hPa', '64.96%')
 bme280_sensor_rhh: ('22.56C', '985.90hPa', '58.32%')
 bme280_sensor_rhi: ('22.56C', '985.90hPa', '58.32%')
 ```
+
+#### Raspberry Pi Pico with BME680 with LiPo Shim
+![current project](./images/pico_blues_bme680.png)
+
 ### References Pico and BME280
 * [How to Connect BME280 to Raspberry Pi Pico MicroPython](https://www.hackster.io/shilleh/how-to-connect-bme280-to-raspberry-pi-pico-micropython-91a392)
 * [Troubleshooting error:  added address parameter](https://forums.raspberrypi.com/viewtopic.php?t=343123)
