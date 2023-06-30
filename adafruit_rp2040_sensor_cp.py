@@ -17,7 +17,7 @@ START_TIME = 0
 DEBUG = True
 CARD_RESTORE = False
 IMEI = ''
-DO_NOT_WAIT_FOR_GPS = True
+DO_NOT_WAIT_FOR_GPS = False 
 
 led = digitalio.DigitalInOut(board.LED)
 led.direction = digitalio.Direction.OUTPUT
@@ -58,6 +58,44 @@ def set_start_time():
     return
 
 
+def start_gps():
+    req = {'req': 'card.location.mode'}
+    req['mode'] = 'off'
+    rsp = card.Transaction(req)
+    sleep(2)
+
+    req = {"req": "card.location.mode"}
+    req["mode"] = "periodic"
+    req["seconds"] = 3600
+    rsp = card.Transaction(req)
+
+    if DO_NOT_WAIT_FOR_GPS:
+        return
+
+    gps_location_off = True
+    while gps_location_off:
+        req = {"req": "card.location"}
+        rsp = card.Transaction(req)
+
+        if 'lat' in rsp.keys():
+            gps_location_off = False
+            led.value = False
+        else:
+            for i in range(5):
+                led.value = True
+                sleep(2)
+                led.value = False
+                sleep(2)
+            if DEBUG:
+                print(f'card.location: {rsp}')
+
+    if DEBUG:
+        req = {"req": "card.location"}
+        rsp = card.Transaction(req)
+        print(f'GPS STATUS: {rsp['status']}')
+
+    return
+
 ## Let's get started
 if CARD_RESTORE:
     req = {"req": "card.restore"}
@@ -72,6 +110,8 @@ req["mode"] = "periodic"
 rsp = card.Transaction(req)
 
 _ = set_start_time()
+_ = start_gps()
+#_ = get_IMEI()
 
 sleep(5) # to let sensors settle in
 
