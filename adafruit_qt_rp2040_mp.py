@@ -3,6 +3,10 @@
 # https://learn.adafruit.com/adafruit-qt-py-2040/pinouts
 # Using just I2C1 and STEMMA QT Connector
 
+# This also works with the Adafruit Feather RP2040, but
+# the power for the notecarrier cannot come from the QT connector.
+# For the Feather, the notecarrier must be powered from the USB pin.
+
 from machine import Pin, I2C
 from time import sleep, time, gmtime, localtime
 

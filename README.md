@@ -8,7 +8,9 @@
 * `adafruit_qt_rp2040_mp.py`: Micropython, Adafruit QT RP2040, BME680, Notecarrier A, Notecard WBNA-500 or NBGL-500
     * great combination if you don't need a battery
     * no soldering or breadboard needed
-    * Works with STEMMA QT connected to Notecarrier header, and BME680 connected to Notecarier I2C connector
+    * For the QT this works with STEMMA QT connected to Notecarrier header, and BME680 connected to Notecarier I2C connector
+    * This also works with the Adafruit Feather RP2040, but the voltage to the notecarier can not be from the STEMMA QT Connector.
+      For the Feather the voltage must come from the USB pin, as the Feather does not deliver enough power (amps) through the STEMMA QT Connector
 * `pico_sensor_notecard_A01.py`:  Micropython, Raspberry Pi Pico, BME680, Notecarrier A, Notecard WBNA-500 or NBGL-500
     * great combination if you don't need a battery
     * shim works, just doesn't power up Pico until battery is recharged.
