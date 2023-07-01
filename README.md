@@ -47,6 +47,7 @@ bme280_sensor_rhi: ('22.56C', '985.90hPa', '58.32%')
 ```
 
 #### Raspberry Pi Pico with BME680 with LiPo Shim
+This is not the preferred wiring.  It is preferable to power MCU through Notecarrier.  See other images here.
 ![current project](./images/pico_blues_bme680.png)
 
 ### References Pico and BME280
