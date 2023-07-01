@@ -31,7 +31,7 @@
 * Note: these are not *circuitpython libraries*
 
 Recommending:
-* bm680 libraries are all about the same: go with `adafruit_bme680.py` 
+* bm680 libraries are all about the same: go with [`adafruit_bme680.py`](https://github.com/bsatrom/notecard-pico)
 * bme280: go with `bme_280_float.py`, though the humidity is a little hight
 
 Results running `compare_sensors_and_lib.py`:
