@@ -1,5 +1,5 @@
 ### Description
-* Getting started with Raspberry Pico, Adafruit BME280, and [Blues Wireless](https://blues.io/)
+* Getting started with Raspberry Pico, Adafruit BME680 and BME280, and [Blues Wireless](https://blues.io/)
 * Getting started with Adafruit Feather RP2040 and CircuitPython as well.
 
 #### Currently running
