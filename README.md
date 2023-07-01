@@ -5,12 +5,12 @@
 #### Currently running
 * `adafruit_rp2040_sensor_cp.py`: Circuitpython, Adafruit Feather RP2040, BME680, Notecarrier A
     * in development - not working yet
-* `adafruit_qt_rp2040_mp.py`: Micropython, Adafruit QT RP2040, BME680, Notecarrier A, Notecard WBNA-500 or NBGL-500
+* `adafruit_qt_feather_rp2040_mp.py`: Micropython, Adafruit QT (or Feather) RP2040, BME680, Notecarrier A, Notecard WBNA-500 or NBGL-500
     * great combination if you don't need a battery
     * no soldering or breadboard needed
-    * For the QT this works with STEMMA QT connected to Notecarrier header, and BME680 connected to Notecarier I2C connector
-    * This also works with the Adafruit Feather RP2040, but the voltage to the notecarier can not be from the STEMMA QT Connector.
-      For the Feather the voltage must come from the USB pin, as the Feather does not deliver enough power (amps) through the STEMMA QT Connector
+    * *Work on this, should be wired like the Feather:* For the QT this works with STEMMA QT connected to Notecarrier header, and BME680 connected to Notecarier I2C connector
+    * This also works with the Adafruit Feather RP2040. Powered by Notecarrier A: see photo below.  This is the preferred wiring.
+      Works on USB or battery.  Photo show how to get to both prompts (Thonny for Feather, Chrome for Notecarrier)
 * `pico_sensor_notecard_A01.py`:  Micropython, Raspberry Pi Pico, BME680, Notecarrier A, Notecard WBNA-500 or NBGL-500
     * great combination if you don't need a battery
     * shim works, just doesn't power up Pico until battery is recharged.
@@ -22,7 +22,7 @@
 * etc., etc.
 
 ### Troubleshooting
-* When all else fails, power cycle the Raspberry Pi Pico
+* When all else fails, power cycle the Raspberry Pi Pico, Feather, MCU, etc.
 
 ### Micropython packages for BME280 and BME680
 * BME680: _(Currently using)_ [lib/adafruit_bme680.py](https://github.com/bsatrom/notecard-pico)

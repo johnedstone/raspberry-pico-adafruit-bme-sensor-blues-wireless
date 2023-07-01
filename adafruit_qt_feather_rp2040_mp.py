@@ -3,9 +3,7 @@
 # https://learn.adafruit.com/adafruit-qt-py-2040/pinouts
 # Using just I2C1 and STEMMA QT Connector
 
-# This also works with the Adafruit Feather RP2040, but
-# the power for the notecarrier cannot come from the QT connector.
-# For the Feather, the notecarrier must be powered from the USB pin.
+# This also works with the Adafruit Feather RP2040
 
 from machine import Pin, I2C
 from time import sleep, time, gmtime, localtime
@@ -15,13 +13,24 @@ import time
 import adafruit_bme680
 import secrets
 
+# for QT set to False as there is no led on a QT
+FEATHER = True
+if FEATHER:
+    from machine import Pin
+    led = Pin(13, Pin.OUT)
+
 START_TIME = 0
 DEBUG = True
 CARD_RESTORE = False
 IMEI = ''
 DO_NOT_WAIT_FOR_GPS = True
 
-i2c1 = I2C(1, sda=Pin(22), scl=Pin(23))
+if FEATHER:
+    i2c1 = I2C(1, sda=Pin(2), scl=Pin(3))
+else:
+    # For QT RP2040
+    i2c1 = I2C(1, sda=Pin(22), scl=Pin(23))
+
 print(f'i2c1.scan(): {i2c1.scan()}')
 
 bme680_sensor = adafruit_bme680.BME680_I2C(i2c1, address=119)
@@ -190,6 +199,14 @@ while True:
     sleeping = ((300*12))
     if DEBUG:
         print(f'FINISHED: sleeping {sleeping} seconds')
+
+    if FEATHER:
+        for n in range(5):
+            led.value(1)
+            sleep(2)
+            led.value(0)
+            sleep(2)
+
     sleep(sleeping)
 
 
