@@ -3,11 +3,15 @@
 * Getting started with Adafruit Feather RP2040 and CircuitPython as well.
 
 #### Currently running
-* `adafruit_rp2040_sensor_cp.py`: Circuitpython, Adafruit Feather RP2040, Notecarrier A, BME680
-
-#### Working, but retired in favor of Adafruit Feather RP2040 with CircuitPython
-* `pico_sensor_notecard_A01.py`:  *Micropython, Raspberry Pi Pico, Notecarrier A, Notecard WBNA-500 and NBGL-500*
-* `adafruit_qt_rp2040_mp.py`: *Micropython, Adafruit QT RP2040, Notecarrier A, Notecard WBNA-500 and NBGL-500*
+* `adafruit_rp2040_sensor_cp.py`: Circuitpython, Adafruit Feather RP2040, BME680, Notecarrier A
+    * in development - not working yet
+* `adafruit_qt_rp2040_mp.py`: Micropython, Adafruit QT RP2040, BME680, Notecarrier A, Notecard WBNA-500 or NBGL-500
+    * great combination if you don't need a battery
+    * no soldering or breadboard needed
+    * Works with STEMMA QT connected to Notecarrier header, and BME680 connected to Notecarier I2C connector
+* `pico_sensor_notecard_A01.py`:  Micropython, Raspberry Pi Pico, BME680, Notecarrier A, Notecard WBNA-500 or NBGL-500
+    * great combination if you don't need a battery
+    * shim works, just doesn't power up Pico until battery is recharged.
 
 ### Development scripts
 * `compare_sensors_and_lib.py`
@@ -27,7 +31,7 @@
 * Note: these are not *circuitpython libraries*
 
 Recommending:
-* bm680 libraries about the same: go with `adafruit_bme680.py` 
+* bm680 libraries are all about the same: go with `adafruit_bme680.py` 
 * bme280: go with `bme_280_float.py`, though the humidity is a little hight
 
 Results running `compare_sensors_and_lib.py`:
