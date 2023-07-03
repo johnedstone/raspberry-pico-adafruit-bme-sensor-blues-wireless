@@ -31,4 +31,4 @@
 
 ### Images
 Notecarrier F Antennas for WBNA: GPS [Pulse W3908B0100](https://www.digikey.com/en/products/detail/pulse-electronics/W3908B0100/7667475) and for Wireless [Pulse W6112B0100, cut in half](https://www.digikey.com/en/products/detail/pulse-electronics/W6112B0100/6566097)
-![Notecarrier F/Adafruit Feather RP2040](../images/NC-F_feather_rp2040.png)
+![Notecarrier F/Adafruit Feather RP2040](images/NC-F_feather_rp2040.png)
