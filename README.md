@@ -6,8 +6,9 @@
 There are scripts in the historical archive for these MCUs and Blues Notecarriers and Cards.
 
 ### Micropython Adafruit Feather RP2040
-* put scripts here.
-* note which library using for bme680
+* Script: `adafruit_qt_feather_rp2040_mp.py`
+* make a note which library using for bme680
+* need image here for both NC-F and NC-A
 
 ### Circuitpython Adafruit Feather RP2040
 * put scripts here.
