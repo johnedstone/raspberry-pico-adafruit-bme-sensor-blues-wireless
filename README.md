@@ -19,7 +19,7 @@
 * Sensor: Adafruit BME680
 * Script: `adafruit_qt_feather_rp2040_mp.py`
 * Sensor library: [lib/adafruit_bme680.py](https://github.com/bsatrom/notecard-pico) which is a modification for micropython from Adafruit's circuitpython library.
-* need image here for both NC-F and NC-A powered for production
+* need image here for both NC-A powered for production
 
 ### Circuitpython Adafruit Feather RP2040
 * Using Circuitpython
@@ -30,5 +30,5 @@
 * need image here for both NC-F and NC-A powered for production
 
 ### Images
-Notecarrier F Antennas for WBNA: GPS [Pulse W3908B0100](https://www.digikey.com/en/products/detail/pulse-electronics/W3908B0100/7667475) and for Wireless [Pulse W6112B0100, cut in half](https://www.digikey.com/en/products/detail/pulse-electronics/W6112B0100/6566097)
+Notecarrier F Antennas for WBNA: GPS [Pulse W3908B0100](https://www.digikey.com/en/products/detail/pulse-electronics/W3908B0100/7667475) and for Wireless [Pulse W6112B0100](https://www.digikey.com/en/products/detail/pulse-electronics/W6112B0100/6566097), cut in half.
 ![Notecarrier F/Adafruit Feather RP2040](images/NC-F_feather_rp2040.png)
