@@ -91,6 +91,15 @@ def get_gps():
     return (lat, lon)
 
 def start_gps():
+    # Need to test
+    #req = {"req": "card.triangulate"}
+    #req["mode": "-"}
+    #rsp = card.Transaction(req)
+    #    if DEBUG:
+    #        print(f"Turning off card.triangulate: {rsp]")
+#
+#    sleep(2)
+
     req = {'req': 'card.location.mode'}
     req['mode'] = 'off'
     rsp = card.Transaction(req)

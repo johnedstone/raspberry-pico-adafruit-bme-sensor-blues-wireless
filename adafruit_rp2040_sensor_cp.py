@@ -16,7 +16,7 @@ import adafruit_bme680_cp as adafruit_bme680
 START_TIME = 0
 DEBUG = True
 CARD_RESTORE = False
-IMEI = ''
+IMEI = ""
 DO_NOT_WAIT_FOR_GPS = False 
 
 led = digitalio.DigitalInOut(board.LED)
@@ -30,7 +30,7 @@ i2c1 = busio.I2C(board.SCL, board.SDA)
 
 if DEBUG:
     i2c1.try_lock()
-    print(f'i2c1.scan(): {i2c1.scan()}')
+    print(f"i2c1.scan(): {i2c1.scan()}")
     i2c1.unlock()
 
 bme680_sensor = adafruit_bme680.Adafruit_BME680_I2C(i2c1, 0x77) 
@@ -47,20 +47,39 @@ def set_start_time():
             print(rsp)
             print(counter)
             counter += 1
-        if 'time' in rsp.keys():
-            START_TIME = rsp['time']
+        if "time" in rsp.keys():
+            START_TIME = rsp["time"]
             if DEBUG:
-                print(f'START_TIME: {START_TIME}, {localtime(START_TIME)}')
+                print(f"START_TIME: {START_TIME}, {localtime(START_TIME)}")
         else:
             sleep(10)
 
     led.value = False
     return
 
+def get_usb_status():
+    req = {"req": "card.voltage"}
+    rsp = card.Transaction(req)
+
+    usb_status = rsp.get("usb", False)
+
+    if DEBUG:
+            print(f"USB Status: {usb_status}")
+
+    return usb_status
+
 
 def start_gps():
-    req = {'req': 'card.location.mode'}
-    req['mode'] = 'off'
+    req = {"req": "card.triangulate"}
+    req["mode": "-"}
+    rsp = card.Transaction(req)
+        if DEBUG:
+            print(f"Turning off card.triangulate: {rsp]")
+
+    sleep(2)
+
+    req = {"req": "card.location.mode"}
+    req["mode"] = "off"
     rsp = card.Transaction(req)
     sleep(2)
 
@@ -77,7 +96,7 @@ def start_gps():
         req = {"req": "card.location"}
         rsp = card.Transaction(req)
 
-        if 'lat' in rsp.keys():
+        if "lat" in rsp.keys():
             gps_location_off = False
             led.value = False
         else:
@@ -87,12 +106,12 @@ def start_gps():
                 led.value = False
                 sleep(2)
             if DEBUG:
-                print(f'card.location: {rsp}')
+                print(f"card.location: {rsp}")
 
     if DEBUG:
         req = {"req": "card.location"}
         rsp = card.Transaction(req)
-        print(f'GPS STATUS: {rsp['status']}')
+        print(f"GPS STATUS: {rsp['status']}")
 
     return
 
@@ -111,6 +130,7 @@ rsp = card.Transaction(req)
 
 _ = set_start_time()
 _ = start_gps()
+_ = get_usb_status()
 #_ = get_IMEI()
 
 sleep(5) # to let sensors settle in
