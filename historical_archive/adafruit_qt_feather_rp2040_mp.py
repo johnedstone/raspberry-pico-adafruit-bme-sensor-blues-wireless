@@ -36,6 +36,19 @@ print(f'i2c1.scan(): {i2c1.scan()}')
 bme680_sensor = adafruit_bme680.BME680_I2C(i2c1, address=119)
 card = notecard.OpenI2C(i2c1, 23, 0, debug=DEBUG)
 
+
+def get_usb_status():
+    req = {"req": "card.voltage"}
+    rsp = card.Transaction(req)
+
+    usb_status = rsp.get("usb", False)
+
+    if DEBUG:
+        print(f"USB Status: {usb_status}")
+
+    return usb_status
+
+
 def get_IMEI():
     global IMEI
     while IMEI == '':
@@ -97,6 +110,14 @@ def get_gps():
     return (lat, lon)
 
 def start_gps():
+    req = {"req": "card.triangulate"}
+    req['mode'] = "-"
+    rsp = card.Transaction(req)
+    if DEBUG:
+        print(f"Turning off card.triangulate: {rsp}")
+
+    sleep(2)
+
     req = {'req': 'card.location.mode'}
     req['mode'] = 'off'
     rsp = card.Transaction(req)
@@ -174,7 +195,7 @@ while True:
         print(f'bme680 humidity error: {e}')
 
 
-    uptime = f'uptime: {START_TIME} {((now - START_TIME)) / (60*60*24):.3f}days {st_year}-{st_mon:02}-{st_day:02}T{st_hr:02}:{st_min:02}:{st_sec:02}Z {temp:.0f}C {(temp*9/5)+32:.0f}F, {hum:.0f}%RH, now: {nw_year}-{nw_mon:02}-{nw_day:02}T{nw_hr:02}:{nw_min:02}:{nw_sec:02}Z'
+    uptime = f'uptime: {START_TIME} {((now - START_TIME)) / (60*60*24):.3f}days {st_year}-{st_mon:02}-{st_day:02}T{st_hr:02}:{st_min:02}:{st_sec:02}Z {temp:.0f}C {(temp*9/5)+32:.0f}F, {hum:.0f}%RH, now: {nw_year}-{nw_mon:02}-{nw_day:02}T{nw_hr:02}:{nw_min:02}:{nw_sec:02}Z, USB Status:{get_usb_status()}'
 
     if DEBUG:
         print(f'UPTIME: {uptime}')

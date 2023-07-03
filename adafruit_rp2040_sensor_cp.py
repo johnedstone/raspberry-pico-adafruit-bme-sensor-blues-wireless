@@ -71,10 +71,10 @@ def get_usb_status():
 
 def start_gps():
     req = {"req": "card.triangulate"}
-    req["mode": "-"}
+    req['mode'] = "-"
     rsp = card.Transaction(req)
-        if DEBUG:
-            print(f"Turning off card.triangulate: {rsp]")
+    if DEBUG:
+        print(f"Turning off card.triangulate: {rsp}")
 
     sleep(2)
 
