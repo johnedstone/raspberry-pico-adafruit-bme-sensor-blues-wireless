@@ -48,7 +48,7 @@ bme280_sensor_rhi: ('22.56C', '985.90hPa', '58.32%')
 
 #### Raspberry Pi Pico with BME680 with LiPo Shim
 This is not the preferred wiring, as it's USB powered through Pico (not shown).  It is preferable to power MCU through Notecarrier and use LiPo on Notecarrier.  See other images here.
-![current project](./images/pico_blues_bme680.png)
+![current project](../images/pico_blues_bme680.png)
 
 ### References Pico and BME280
 * [How to Connect BME280 to Raspberry Pi Pico MicroPython](https://www.hackster.io/shilleh/how-to-connect-bme280-to-raspberry-pi-pico-micropython-91a392)
