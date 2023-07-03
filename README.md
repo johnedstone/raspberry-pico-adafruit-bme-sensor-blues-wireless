@@ -8,23 +8,23 @@
 * The LiPo ([example](https://www.adafruit.com/product/2011)), connected to the Notecarrier, is optional
 
 #### Raspberry Pi Pico
-* Using Micropython
+* Using Micropython for rp2040
 * Sensor: Adafruit BME680
 * Script _(in progress)_: `pico_notecarrier_a_v2.py`
-* Sensor library:[lib/adafruit_bme680.py](https://github.com/bsatrom/notecard-pico)
+* Sensor library: [lib/adafruit_bme680.py](https://github.com/bsatrom/notecard-pico) which is a modification for micropython from Adafruit's original library.
 * Need image of Pico and Notecarried powered for production
 
 ### Micropython Adafruit Feather RP2040
-* Using Micropython
+* Using Micropython for rp2040
 * Sensor: Adafruit BME680
 * Script: `adafruit_qt_feather_rp2040_mp.py`
-* Sensor library:[lib/adafruit_bme680.py](https://github.com/bsatrom/notecard-pico)
+* Sensor library: [lib/adafruit_bme680.py](https://github.com/bsatrom/notecard-pico) which is a modification for micropython from Adafruit's original library.
 * need image here for both NC-F and NC-A powered for production
 
 ### Circuitpython Adafruit Feather RP2040
 * Using Circuitpython
 * Sensor: Adafruit BME680
 * Script _(in progress)_:
-* Sensor library: [Using Adafruit's library](https://github.com/adafruit/Adafruit_CircuitPython_BME680/blob/main/adafruit_bme680.py) renamed for this project to adafruit_bme680_cp.py
+* Sensor library: [Using Adafruit's original library](https://github.com/adafruit/Adafruit_CircuitPython_BME680/blob/main/adafruit_bme680.py) renamed for this project to adafruit_bme680_cp.py
 * need image here for both NC-F and NC-A
 * need image here for both NC-F and NC-A powered for production
