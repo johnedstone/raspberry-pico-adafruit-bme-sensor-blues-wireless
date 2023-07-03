@@ -216,6 +216,15 @@ while True:
     if DEBUG:
         print(f'POST response (note.add): {rsp}')
 
+    # Need to test
+#    for n in range(5):
+#            led_onboard.value(1)
+#            sleep(2)
+#            led_onboard.value(0)
+#            sleep(2)
+#
+#    #           5min * 12 = 1 hour, minus sleep (20) above
+
 
     sleeping = ((300*12))
     if DEBUG:
