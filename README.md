@@ -30,5 +30,9 @@
 * need image here for both NC-F and NC-A powered for production
 
 ### Images
+#### Adafruit RP2040
 Notecarrier F Antennas for WBNA-500 Notecard: GPS [Pulse W3908B0100](https://www.digikey.com/en/products/detail/pulse-electronics/W3908B0100/7667475) and for Wireless [Pulse W6112B0100](https://www.digikey.com/en/products/detail/pulse-electronics/W6112B0100/6566097), cut in half.
 ![Notecarrier F/Adafruit Feather RP2040](images/NC-F_feather_rp2040.png)
+
+#### Raspberry Pi Pico
+![Notecarrier A/Raspberry Pi Pico](images/NC-A_pico.png)
