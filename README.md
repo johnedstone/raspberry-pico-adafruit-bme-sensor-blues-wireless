@@ -12,7 +12,6 @@
 * Sensor: Adafruit BME680
 * Script _(in progress)_: `pico_notecarrier_a_v2.py`
 * Sensor library: [lib/adafruit_bme680.py](https://github.com/bsatrom/notecard-pico) which is a modification for micropython from Adafruit's circuitpython library.
-* Need image of Pico and Notecarried powered for production
 
 ### Micropython Adafruit Feather RP2040
 * Using Micropython for rp2040: [link](https://micropython.org/download/ADAFRUIT_FEATHER_RP2040/)
