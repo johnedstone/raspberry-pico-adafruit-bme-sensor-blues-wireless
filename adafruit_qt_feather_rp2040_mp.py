@@ -1,4 +1,6 @@
-# Adafruit QT RP2040 with micropython
+# script: adafruit_qt_feather_rp2040_mp.py
+# Adafruit Feather/QT RP2040 with micropython
+
 # https://micropython.org/download/ADAFRUIT_QTPY_RP2040/
 # https://learn.adafruit.com/adafruit-qt-py-2040/pinouts
 # Using just I2C1 and STEMMA QT Connector
@@ -215,15 +217,6 @@ while True:
     rsp = card.Transaction(req)
     if DEBUG:
         print(f'POST response (note.add): {rsp}')
-
-    # Need to test
-#    for n in range(5):
-#            led_onboard.value(1)
-#            sleep(2)
-#            led_onboard.value(0)
-#            sleep(2)
-#
-#    #           5min * 12 = 1 hour, minus sleep (20) above
 
 
     sleeping = ((300*12))
