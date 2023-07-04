@@ -30,8 +30,10 @@
 
 ### Images
 #### Adafruit Feather RP2040 in Notecarrier F
-Notecarrier F Antennas for WBNA-500 Notecard: GPS [Pulse W3908B0100](https://www.digikey.com/en/products/detail/pulse-electronics/W3908B0100/7667475) and for Wireless [Pulse W6112B0100](https://www.digikey.com/en/products/detail/pulse-electronics/W6112B0100/6566097), cut in half.
+Notecarrier F Antennas for WBNA-500 Notecard: GPS [Pulse W3908B0100](https://www.digikey.com/en/products/detail/pulse-electronics/W3908B0100/7667475) and for Wireless [Pulse W6112B0100 cut in half](https://www.digikey.com/en/products/detail/pulse-electronics/W6112B0100/6566097)
+
 ![Notecarrier F/Adafruit Feather RP2040](images/NC-F_feather_rp2040.png)
 
-#### Raspberry Pi Pico
+#### Raspberry Pi Pico in Notecarrier A
+
 ![Notecarrier A/Raspberry Pi Pico](images/NC-A_pico.png)
