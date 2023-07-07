@@ -20,7 +20,7 @@
 * Sensor library: [lib/adafruit_bme680.py](https://github.com/bsatrom/notecard-pico) which is a modification for micropython from Adafruit's circuitpython library.
 
 ### Circuitpython Adafruit Feather RP2040
-* Using Circuitpython
+* Using [Circuitpython for Feather RP2040](https://circuitpython.org/board/adafruit_feather_rp2040/)
 * Sensor: Adafruit BME680
 * Script _(in progress)_:
 * Sensor library: [Using Adafruit's original library](https://github.com/adafruit/Adafruit_CircuitPython_BME680/blob/main/adafruit_bme680.py) renamed for this project to adafruit_bme680_cp.py

@@ -90,7 +90,7 @@ def get_now():
     if 'time' in rsp.keys():
         now = rsp['time']
         if DEBUG:
-            print(f'NOW: {now}, {gmtime(now)}')
+            print(f'NOW: {now}, {localtime(now)}')
 
     return now
 
@@ -168,9 +168,67 @@ _ = get_IMEI()
 sleep(5) # to let sensors settle in
 
 while True:
-    led.value = True
-    sleep(0.5)
-    led.value = False
-    sleep(0.5)
+    st_year, st_mon, st_day, st_hr, st_min, st_sec, st_wkday, st_yrday, st_isdst = (0, 0, 0, 0, 0, 0, 0, 0, -1)
+    try:
+        st_year, st_mon, st_day, st_hr, st_min, st_sec, st_wkday, st_yrday, st_isdst = localtime(START_TIME)
+    except Exception as e:
+        print(f'localtime(START_TIME) error: {e}')
+
+    now = get_now()
+    nw_year, nw_mon, nw_day, nw_hr, nw_min, nw_sec, nw_wkday, nw_yrday, nw_isdst = (0, 0, 0, 0, 0, 0, 0, 0, -1)
+    try:
+        nw_year, nw_mon, nw_day, nw_hr, nw_min, nw_sec, nw_wkday, nw_yrday, nw_isdst = localtime(now)
+    except Exception as e:
+        print(f'localtime(now) error: {e}')
+
+    lat, lon = get_gps()
+
+    temp = 0.00
+    try:
+        temp = bme680_sensor.temperature
+    except Exception as e:
+        print(f'bme680 temperature error: {e}')
+
+    hum = 0.00
+    try:
+        hum = bme680_sensor.humidity
+    except Exception as e:
+        print(f'bme680 humidity error: {e}')
+
+
+    uptime = f'uptime: {START_TIME} {((now - START_TIME)) / (60*60*24):.3f}days {st_year}-{st_mon:02}-{st_day:02}T{st_hr:02}:{st_min:02}:{st_sec:02}Z {temp:.0f}C {(temp*9/5)+32:.0f}F, {hum:.0f}%RH, now: {nw_year}-{nw_mon:02}-{nw_day:02}T{nw_hr:02}:{nw_min:02}:{nw_sec:02}Z, USB Status:{get_usb_status()}'
+
+    if DEBUG:
+        print(f'UPTIME: {uptime}')
+        print(f'bme680_sensor: {START_TIME} {temp:.2f}C {(temp*9/5)+32:.2f}F, {hum:.2f}%RH')
+
+    req = {"req": "note.add"}
+    req["file"] = "sensors.qo"
+    req["body"] = {'imei_string': IMEI,
+                   'start_time': START_TIME,
+                   'uptime': uptime,
+                   'temperature': f'{temp:.2f}',
+                   'humidity': f'{hum:.2f}',
+                   'latitude': f'{lat}',
+                   'longitude': f'{lon}',
+                   }
+    req["sync"] = True
+    rsp = card.Transaction(req)
+    if DEBUG:
+        print(f'POST response (note.add): {rsp}')
+
+
+    sleeping = ((300*12))
+    if DEBUG:
+        print(f'FINISHED: sleeping {sleeping} seconds')
+
+    for n in range(5):
+        led.value = True
+        sleep(2)
+        led.value = False
+        sleep(2)
+
+    sleep(sleeping)
+
 
 # vim: ai et ts=4 sw=4 sts=4 nu
