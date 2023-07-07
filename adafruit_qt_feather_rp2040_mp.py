@@ -202,9 +202,7 @@ while True:
 
         hum = 0.00
         try:
-            hum = bme680_sensor.relative_humidity
-            if DEBUG:
-                print(f'relative_humidity: {hum}, humidity: {bme680_sensor.humidity}')
+            hum = bme680_sensor.humidity
         except Exception as e:
             print(f'bme680 humidity error: {e}')
 
