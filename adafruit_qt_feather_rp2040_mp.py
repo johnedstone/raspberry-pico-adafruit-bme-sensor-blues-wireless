@@ -8,18 +8,13 @@
 # This also works with the Adafruit Feather RP2040
 
 from machine import Pin, I2C
-from time import sleep, time, gmtime, localtime
 
-import notecard
+from time import sleep, time, gmtime, localtime
 import time
+import notecard
+
 import adafruit_bme680
 import secrets
-
-# for QT set to False as there is no led on a QT
-FEATHER = True
-if FEATHER:
-    from machine import Pin
-    led = Pin(13, Pin.OUT)
 
 START_TIME = 0
 DEBUG = True
@@ -27,7 +22,11 @@ CARD_RESTORE = False
 IMEI = ''
 DO_NOT_WAIT_FOR_GPS = True
 
+# for QT set to False as there is no led on a QT
+FEATHER = True
+
 if FEATHER:
+    led = Pin(13, Pin.OUT)
     i2c1 = I2C(1, sda=Pin(2), scl=Pin(3))
 else:
     # For QT RP2040
@@ -110,6 +109,7 @@ def get_gps():
         lon = rsp['lon']
 
     return (lat, lon)
+
 
 def start_gps():
     req = {"req": "card.triangulate"}
