@@ -22,7 +22,7 @@
 ### Circuitpython Adafruit Feather RP2040
 * Using [Circuitpython for Feather RP2040](https://circuitpython.org/board/adafruit_feather_rp2040/)
 * Sensor: Adafruit BME680
-* Script: adafruit_rp2040_sensor_cp.py
+* Script: `adafruit_rp2040_sensor_cp.py`
 * Sensor library: [Using Adafruit's original library](https://github.com/adafruit/Adafruit_CircuitPython_BME680/blob/main/adafruit_bme680.py) renamed for this project to adafruit_bme680_cp.py
 
 ### Images
