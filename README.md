@@ -35,11 +35,9 @@
 
 #### Adafruit Feather RP2040 in Notecarrier A
 _Note: ignore numbering on breadboard, as it's a pico-numbered breadboard_
-![Notecarrier A/Adafruit Feather RP2040 closup](images/NC-A_feather_rp2040_closeup.png)
-```
-
-```
 ![Notecarrier A/Adafruit Feather RP2040](images/NC-A_feather_rp2040.png)
+##### Closeup image
+![Notecarrier A/Adafruit Feather RP2040 closup](images/NC-A_feather_rp2040_closeup.png)
 
 #### Raspberry Pi Pico in Notecarrier A
 
