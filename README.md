@@ -26,13 +26,20 @@
 * Sensor library: [Using Adafruit's original library](https://github.com/adafruit/Adafruit_CircuitPython_BME680/blob/main/adafruit_bme680.py) renamed for this project to adafruit_bme680_cp.py
 
 ### Images
-_Need image for Feather in Notecarrier A_
 
 #### Adafruit Feather RP2040 in Notecarrier F
 * Notecarrier F Antennas for WBNA-500 Notecard: GPS [Pulse W3908B0100](https://www.digikey.com/en/products/detail/pulse-electronics/W3908B0100/7667475) and for WBNA-500 [Pulse W6112B0100 cut in half](https://www.digikey.com/en/products/detail/pulse-electronics/W6112B0100/6566097)
 * Antenna for NBGL-500: [Taoglas MFX3](https://www.mouser.com/ProductDetail/960-MFX3.07.0150C)
 
 ![Notecarrier F/Adafruit Feather RP2040](images/NC-F_feather_rp2040.png)
+
+#### Adafruit Feather RP2040 in Notecarrier A
+_Note: ignore numbering on breadboard, as it's a pico-numbered breadboard_
+![Notecarrier A/Adafruit Feather RP2040 closup](images/NC-A_feather_rp2040_closeup.png)
+```
+
+```
+![Notecarrier A/Adafruit Feather RP2040](images/NC-A_feather_rp2040.png)
 
 #### Raspberry Pi Pico in Notecarrier A
 

@@ -167,17 +167,22 @@ while True:
 
     lat, lon = get_gps()
 
-    temp = 0.00
-    try:
-        temp = bme680_sensor.temperature
-    except Exception as e:
-        print(f'bme680 temperature error: {e}')
-
-    hum = 0.00
-    try:
-        hum = bme680_sensor.humidity
-    except Exception as e:
-        print(f'bme680 humidity error: {e}')
+    for n in range(2):
+        temp = 0.00
+        try:
+            temp = bme680_sensor.temperature
+            if DEBUG:
+                print(f'temperature: {temp}')
+        except Exception as e:
+            print(f'bme680 temperature error: {e}')
+    
+        hum = 0.00
+        try:
+            hum = bme680_sensor.humidity
+            if DEBUG:
+                print(f'humidity: {hum}')
+        except Exception as e:
+            print(f'bme680 humidity error: {e}')
 
 
     uptime = f'uptime: {START_TIME} {((now - START_TIME)) / (60*60*24):.3f}days {st_year}-{st_mon:02}-{st_day:02}T{st_hr:02}:{st_min:02}:{st_sec:02}Z {temp:.0f}C {(temp*9/5)+32:.0f}F, {hum:.0f}%RH, now: {nw_year}-{nw_mon:02}-{nw_day:02}T{nw_hr:02}:{nw_min:02}:{nw_sec:02}Z, USB Status:{get_usb_status()}'
