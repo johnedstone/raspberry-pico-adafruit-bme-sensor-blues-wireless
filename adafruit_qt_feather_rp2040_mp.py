@@ -26,7 +26,7 @@ DO_NOT_WAIT_FOR_GPS = True
 # for QT set to False as there is no led on a QT
 FEATHER = True
 
-TWO_SENSORS = True
+TWO_SENSORS = False
 TEMPERATURE_OFFSET = -1
 HUMIDITY_OFFSET = +4
 
