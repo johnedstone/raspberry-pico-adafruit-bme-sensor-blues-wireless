@@ -26,8 +26,8 @@ DO_NOT_WAIT_FOR_GPS = True
 # for QT set to False as there is no led on a QT
 FEATHER = True
 
-TWO_SENSORS = False
-TEMPERATURE_OFFSET = -4
+TWO_SENSORS = True
+TEMPERATURE_OFFSET = -1
 HUMIDITY_OFFSET = +4
 
 if FEATHER:
@@ -212,9 +212,9 @@ while True:
                 print(f'bme680 temperature error: {e}')
 
             try:
-                hum_01_list.append(bme680_sensor.relative_humidity)
+                hum_01_list.append(bme680_sensor.humidity)
                 if TWO_SENSORS:
-                    hum_02_list.append(bme680_sensor_02.relative_humidity)
+                    hum_02_list.append(bme680_sensor_02.humidity)
             except Exception as e:
                 print(f'bme680 humidity error: {e}')
 
