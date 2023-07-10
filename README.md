@@ -4,6 +4,10 @@
 
 #### Note on power
 * For development, both the MCU and the Notecarrier are USB powered to the same computer
+    * Usually, it's best to plug the notecarrier into your computer first, then the MCU,
+      as the notecarrier will power both. The MCU plugged in is just to get to the code (Thonny).
+      Plugging the MCU in first, then the notecarrier, means that the MCU will power on, but fail, in some cases, to see
+      the I2C devices plugged into the notecarrier, as it sometimes doesn't power the notecarrier alone, _mystery_ here.
 * In production, only the Notecarrier is powered, and the MCU receives power from the Notecarrier
 * The LiPo ([example](https://www.adafruit.com/product/2011)), connected to the Notecarrier, is optional
 
