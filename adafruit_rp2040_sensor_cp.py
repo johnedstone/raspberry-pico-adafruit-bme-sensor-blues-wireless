@@ -117,15 +117,9 @@ def get_gps():
 
     if DEBUG:
             print(f'type(lat), type(lon): {type(lat)}, {type(lon)}')
+            print(f'lat, lon: {lat:.8f}, {lon:.8f}')
 
-    if isinstance(lat, float) and isinstance(lon, float):
-        if DEBUG:
-            print(f'lat, lon floats: {lat:.8f}, {lon:.8f}')
-        return (f'{lat:.8f}', f'{lon:.8f}')
-    else:
-        if DEBUG:
-            print(f'lat, lon: {lat}, {lon}')
-        return lat, lon
+    return (f'{lat:.8f}', f'{lon:.8f}')
 
 
 def start_gps():
