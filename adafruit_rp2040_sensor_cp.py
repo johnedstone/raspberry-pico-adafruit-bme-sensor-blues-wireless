@@ -20,7 +20,7 @@ CARD_RESTORE = False
 IMEI = ''
 DO_NOT_WAIT_FOR_GPS = True
 
-TWO_SENSORS = False 
+TWO_SENSORS = False
 TEMPERATURE_OFFSET = -4
 HUMIDITY_OFFSET = +4
 
@@ -103,8 +103,8 @@ def get_now():
     return now
 
 def get_gps():
-    lat = 0.0 
-    lon = 0.0 
+    lat = 0.0
+    lon = 0.0
     req = {"req": "card.location"}
     rsp = card.Transaction(req)
 
