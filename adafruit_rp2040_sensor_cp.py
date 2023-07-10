@@ -103,8 +103,8 @@ def get_now():
     return now
 
 def get_gps():
-    lat = ''
-    lon = ''
+    lat = 0.0 
+    lon = 0.0 
     req = {"req": "card.location"}
     rsp = card.Transaction(req)
 
@@ -115,7 +115,17 @@ def get_gps():
     if 'lon' in rsp_keys:
         lon = rsp['lon']
 
-    return (f'{lat:.8f}', f'{lon:.8f}')
+    if DEBUG:
+            print(f'type(lat), type(lon): {type(lat)}, {type(lon)}')
+
+    if isinstance(lat, float) and isinstance(lon, float):
+        if DEBUG:
+            print(f'lat, lon floats: {lat:.8f}, {lon:.8f}')
+        return (f'{lat:.8f}', f'{lon:.8f}')
+    else:
+        if DEBUG:
+            print(f'lat, lon: {lat}, {lon}')
+        return lat, lon
 
 
 def start_gps():
