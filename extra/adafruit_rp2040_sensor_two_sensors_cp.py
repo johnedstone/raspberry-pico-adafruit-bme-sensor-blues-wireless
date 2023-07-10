@@ -172,6 +172,7 @@ _ = get_IMEI()
 sleep(5) # to let sensors settle in
 
 while True:
+    time_spent = 0
     st_year, st_mon, st_day, st_hr, st_min, st_sec, st_wkday, st_yrday, st_isdst = (0, 0, 0, 0, 0, 0, 0, 0, -1)
     try:
         st_year, st_mon, st_day, st_hr, st_min, st_sec, st_wkday, st_yrday, st_isdst = localtime(START_TIME)
@@ -200,8 +201,8 @@ while True:
     for n in range(12):
         if n > 1: # discard first two readings
             try:
-                temp_01_list.append(bme680_sensor.temperature + temperature_offset)
-                temp_02_list.append(bme680_sensor_02.temperature + temperature_offset)
+                temp_01_list.append(bme680_sensor.temperature)
+                temp_02_list.append(bme680_sensor_02.temperature)
             except Exception as e:
                 print(f'bme680 temperature error: {e}')
 
@@ -211,6 +212,7 @@ while True:
             except Exception as e:
                 print(f'bme680 humidity error: {e}')
 
+        time_spent += 1
         sleep(1)
 
     hum_01_list = [n for n in hum_01_list if round(n) != 100] # remove 100
@@ -224,7 +226,7 @@ while True:
 
     temp_01_list.remove(max(temp_01_list))
     temp_01_list.remove(min(temp_01_list))
-    temp_01_avg = sum(temp_01_list) / len(temp_01_list)
+    temp_01_avg = (sum(temp_01_list) / len(temp_01_list)) + temperature_offset
 
     hum_01_list.remove(max(hum_01_list))
     hum_01_list.remove(min(hum_01_list))
@@ -232,7 +234,7 @@ while True:
 
     temp_02_list.remove(max(temp_02_list))
     temp_02_list.remove(min(temp_02_list))
-    temp_02_avg = sum(temp_02_list) / len(temp_02_list)
+    temp_02_avg = (sum(temp_02_list) / len(temp_02_list)) + temperature_offset
 
     hum_02_list.remove(max(hum_02_list))
     hum_02_list.remove(min(hum_02_list))
@@ -272,6 +274,7 @@ while True:
 
 
     sleeping = ((300*12))
+
     if DEBUG:
         print(f'FINISHED: sleeping {sleeping} seconds')
 
@@ -281,7 +284,9 @@ while True:
         led.value = False
         sleep(2)
 
-    sleep(sleeping)
+        time_spent += 4
+
+    sleep(sleeping - time_spent)
 
 
 # vim: ai et ts=4 sw=4 sts=4 nu
