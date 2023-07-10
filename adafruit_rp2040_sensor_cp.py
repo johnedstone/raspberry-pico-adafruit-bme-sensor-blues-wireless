@@ -15,9 +15,14 @@ import secrets
 
 START_TIME = 0
 DEBUG = True
+CARD_DEBUG = True
 CARD_RESTORE = False
 IMEI = ''
 DO_NOT_WAIT_FOR_GPS = True
+
+TWO_SENSORS = False 
+TEMPERATURE_OFFSET = -4
+HUMIDITY_OFFSET = +4
 
 led = digitalio.DigitalInOut(board.LED)
 led.direction = digitalio.Direction.OUTPUT
@@ -34,8 +39,11 @@ if DEBUG:
     i2c1.unlock()
 
 bme680_sensor = adafruit_bme680.Adafruit_BME680_I2C(i2c1, 0x77)  # 119
-card = notecard.OpenI2C(i2c1, 0x17, 0, debug=DEBUG)  # 23
+card = notecard.OpenI2C(i2c1, 0x17, 0, debug=CARD_DEBUG)  # 23
 
+if TWO_SENSORS:
+    # Connecting 2nd BME680 SD0 to GRND to change address
+    bme680_sensor_02 = adafruit_bme680.Adafruit_BME680_I2C(i2c1, 0x76) # 118
 
 def get_usb_status():
     req = {"req": "card.voltage"}
@@ -107,7 +115,7 @@ def get_gps():
     if 'lon' in rsp_keys:
         lon = rsp['lon']
 
-    return (lat, lon)
+    return (f'{lat:.8f}', f'{lon:.8f}')
 
 
 def start_gps():
@@ -165,9 +173,8 @@ _ = set_start_time()
 _ = start_gps()
 _ = get_IMEI()
 
-sleep(5) # to let sensors settle in
-
 while True:
+    time_spent = 0
     st_year, st_mon, st_day, st_hr, st_min, st_sec, st_wkday, st_yrday, st_isdst = (0, 0, 0, 0, 0, 0, 0, 0, -1)
     try:
         st_year, st_mon, st_day, st_hr, st_min, st_sec, st_wkday, st_yrday, st_isdst = localtime(START_TIME)
@@ -183,30 +190,82 @@ while True:
 
     lat, lon = get_gps()
 
+    temp_01_list = []
+    hum_01_list = []
+    if TWO_SENSORS:
+        temp_02_list = []
+        hum_02_list = []
+
+    for n in range(12):
+        if n > 1: # discard first two readings
+            try:
+                temp_01_list.append(bme680_sensor.temperature)
+                if TWO_SENSORS:
+                    temp_02_list.append(bme680_sensor_02.temperature)
+            except Exception as e:
+                print(f'bme680 temperature error: {e}')
+
+            try:
+                hum_01_list.append(bme680_sensor.relative_humidity)
+                if TWO_SENSORS:
+                    hum_02_list.append(bme680_sensor_02.relative_humidity)
+            except Exception as e:
+                print(f'bme680 humidity error: {e}')
+
+        time_spent += 1
+        sleep(1)
+
+    hum_01_list = [n for n in hum_01_list if round(n) != 100] # remove 100
+    if TWO_SENSORS:
+        hum_02_list = [n for n in hum_02_list if round(n) != 100] # remove 100
+
+    if DEBUG:
+        print(f'temp_01_list: {temp_01_list}')
+        print(f'hum_01_list: {hum_01_list}')
+        if TWO_SENSORS:
+            print(f'temp_02: {temp_02_list}')
+            print(f'hum_02: {hum_02_list}')
+
+    temp_01_list.remove(max(temp_01_list))
+    temp_01_list.remove(min(temp_01_list))
+    temp_01_avg = (sum(temp_01_list) / len(temp_01_list))
+
+    hum_01_list.remove(max(hum_01_list))
+    hum_01_list.remove(min(hum_01_list))
+    hum_01_avg = sum(hum_01_list) / len(hum_01_list)
+
+    if TWO_SENSORS:
+        temp_02_list.remove(max(temp_02_list))
+        temp_02_list.remove(min(temp_02_list))
+        temp_02_avg = (sum(temp_02_list) / len(temp_02_list))
+
+        hum_02_list.remove(max(hum_02_list))
+        hum_02_list.remove(min(hum_02_list))
+        hum_02_avg = sum(hum_02_list) / len(hum_02_list)
+
+    if TWO_SENSORS:
+        temp_wo_offset = (temp_01_avg + temp_02_avg) / 2
+        hum_wo_offset = (hum_01_avg + hum_02_avg) / 2
+    else:
+        temp_wo_offset = temp_01_avg
+        hum_wo_offset = hum_01_avg
+
     # From https://docs.circuitpython.org/projects/bme680/en/latest/examples.html
     # You will usually have to add an offset to account for the temperature of
     # the sensor. This is usually around 5 degrees but varies by use. Use a
     # separate temperature sensor to calibrate this one.
-    #temperature_offset = -5
-    temperature_offset = 0 
 
-    # let's take the 2nd reading here
-    for n in range(2):
-        temp = 0.00
-        try:
-            temp = bme680_sensor.temperature + temperature_offset
-        except Exception as e:
-            print(f'bme680 temperature error: {e}')
+    temp = temp_wo_offset + TEMPERATURE_OFFSET
+    hum = hum_wo_offset + HUMIDITY_OFFSET
 
-        hum = 0.00
-        try:
-            hum = bme680_sensor.relative_humidity
-            if DEBUG:
-                print(f'relative_humidity: {hum}, humidity: {bme680_sensor.humidity}')
-        except Exception as e:
-            print(f'bme680 humidity error: {e}')
-
-        sleep(2)
+    if DEBUG:
+        print(f'temp_01_list: {temp_01_list}, avg: {temp_01_avg}')
+        print(f'hum_01_list: {hum_01_list}, avg: {hum_01_avg}')
+        if TWO_SENSORS:
+            print(f'temp_02_list: {temp_02_list}, avg: {temp_02_avg}')
+            print(f'hum_02_list: {hum_02_list}, avg: {hum_02_avg}')
+        print(f'Final w/o offset: {temp_wo_offset:.0f}C {hum_wo_offset:.0f}%RH')
+    print(f'Final: {temp:.0f}C {hum:.0f}%RH')
 
 
     uptime = f'uptime: {START_TIME} {((now - START_TIME)) / (60*60*24):.3f}days {st_year}-{st_mon:02}-{st_day:02}T{st_hr:02}:{st_min:02}:{st_sec:02}Z {temp:.0f}C {(temp*9/5)+32:.0f}F, {hum:.0f}%RH, now: {nw_year}-{nw_mon:02}-{nw_day:02}T{nw_hr:02}:{nw_min:02}:{nw_sec:02}Z, USB Status:{get_usb_status()}'
@@ -230,16 +289,18 @@ while True:
     if DEBUG:
         print(f'POST response (note.add): {rsp}')
 
-
-    sleeping = ((300*12))
-    if DEBUG:
-        print(f'FINISHED: sleeping {sleeping} seconds')
-
     for n in range(5):
         led.value = True
         sleep(2)
         led.value = False
         sleep(2)
+
+        time_spent += 4
+
+    # 300 * 12 = 1hr
+    sleeping = ((300 * 12) - time_spent)
+
+    print(f'FINISHED: sleeping {sleeping} seconds')
 
     sleep(sleeping)
 
