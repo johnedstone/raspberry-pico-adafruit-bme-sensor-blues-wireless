@@ -11,7 +11,7 @@ from time import sleep, localtime
 import notecard
 
 import adafruit_bme680_cp as adafruit_bme680
-import secrets
+from secrets import productUID, TEMPERATURE_OFFSET, HUMIDITY_OFFSET
 
 START_TIME = 0
 DEBUG = True
@@ -21,8 +21,6 @@ IMEI = ''
 DO_NOT_WAIT_FOR_GPS = True
 
 TWO_SENSORS = False
-TEMPERATURE_OFFSET = -4
-HUMIDITY_OFFSET = +4
 
 led = digitalio.DigitalInOut(board.LED)
 led.direction = digitalio.Direction.OUTPUT
@@ -169,7 +167,7 @@ if CARD_RESTORE:
     sleep(120)
 
 req = {"req": "hub.set"}
-req["product"] = secrets.productUID
+req["product"] = productUID
 req["mode"] = "periodic"
 rsp = card.Transaction(req)
 
@@ -200,8 +198,8 @@ while True:
         temp_02_list = []
         hum_02_list = []
 
-    for n in range(12):
-        if n > 1: # discard first two readings
+    for n in range(30):
+        if n > 14: # discard first 15 readings
             try:
                 temp_01_list.append(bme680_sensor.temperature)
                 if TWO_SENSORS:
@@ -219,16 +217,16 @@ while True:
         time_spent += 1
         sleep(1)
 
-    hum_01_list = [n for n in hum_01_list if round(n) != 100] # remove 100
-    if TWO_SENSORS:
-        hum_02_list = [n for n in hum_02_list if round(n) != 100] # remove 100
-
     if DEBUG:
         print(f'temp_01_list: {temp_01_list}')
         print(f'hum_01_list: {hum_01_list}')
         if TWO_SENSORS:
             print(f'temp_02: {temp_02_list}')
             print(f'hum_02: {hum_02_list}')
+
+    hum_01_list = [n for n in hum_01_list if round(n) != 100] # remove 100
+    if TWO_SENSORS:
+        hum_02_list = [n for n in hum_02_list if round(n) != 100] # remove 100
 
     temp_01_list.remove(max(temp_01_list))
     temp_01_list.remove(min(temp_01_list))
@@ -272,7 +270,7 @@ while True:
     print(f'Final: {temp:.0f}C {hum:.0f}%RH')
 
 
-    uptime = f'uptime: {START_TIME} {((now - START_TIME)) / (60*60*24):.3f}days {st_year}-{st_mon:02}-{st_day:02}T{st_hr:02}:{st_min:02}:{st_sec:02}Z {temp:.0f}C {(temp*9/5)+32:.0f}F, {hum:.0f}%RH, now: {nw_year}-{nw_mon:02}-{nw_day:02}T{nw_hr:02}:{nw_min:02}:{nw_sec:02}Z, USB Status:{get_usb_status()}'
+    uptime = f'uptime: {START_TIME} {((now - START_TIME)) / (60*60*24):.3f}days {st_year}-{st_mon:02}-{st_day:02}T{st_hr:02}:{st_min:02}:{st_sec:02}Z {temp:.0f}C {(temp*9/5)+32:.0f}F, {hum:.0f}%RH, now: {nw_year}-{nw_mon:02}-{nw_day:02}T{nw_hr:02}:{nw_min:02}:{nw_sec:02}Z, USB Status:{get_usb_status()}, Offset: {TEMPERATURE_OFFSET}C, {HUMIDITY_OFFSET}%RH'
 
     if DEBUG:
         print(f'UPTIME: {uptime}')
