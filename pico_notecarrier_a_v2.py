@@ -5,13 +5,15 @@ from time import sleep, time, gmtime, localtime
 import notecard
 import time
 import adafruit_bme680
-import secrets
+from secrets import productUID, TEMPERATURE_OFFSET, HUMIDITY_OFFSET, TIME_SPENT_FUDGE
 
 START_TIME = 0
 DEBUG = True
 CARD_RESTORE = False
 IMEI = ''
 DO_NOT_WAIT_FOR_GPS = True
+
+TWO_SENSORS = False
 
 led = Pin(25, Pin.OUT)
 
@@ -21,6 +23,9 @@ print(f'i2c1.scan(): {i2c1.scan()}')
 bme680_sensor = adafruit_bme680.BME680_I2C(i2c1, address=119)
 card = notecard.OpenI2C(i2c1, 23, 0, debug=DEBUG)
 
+if TWO_SENSORS:
+    # Connecting 2nd BME680 SD0 to GRND to change address
+    bme680_sensor_02 = adafruit_bme680.BME680_I2C(i2c1, 0x76) # 118
 
 def get_usb_status():
     req = {"req": "card.voltage"}
@@ -80,8 +85,8 @@ def get_now():
     return now
 
 def get_gps():
-    lat = ''
-    lon = ''
+    lat = 0.0
+    lon = 0.0
     req = {"req": "card.location"}
     rsp = card.Transaction(req)
 
@@ -92,7 +97,12 @@ def get_gps():
     if 'lon' in rsp_keys:
         lon = rsp['lon']
 
-    return (lat, lon)
+    if DEBUG:
+            print(f'type(lat), type(lon): {type(lat)}, {type(lon)}')
+            print(f'lat, lon: {lat:.8f}, {lon:.8f}')
+
+    return (f'{lat:.8f}', f'{lon:.8f}')
+
 
 def start_gps():
     req = {"req": "card.triangulate"}
@@ -141,7 +151,7 @@ if CARD_RESTORE:
     sleep(120)
 
 req = {"req": "hub.set"}
-req["product"] = secrets.productUID
+req["product"] = productUID
 req["mode"] = "periodic"
 rsp = card.Transaction(req)
 
@@ -152,6 +162,7 @@ _ = get_IMEI()
 sleep(5) # to let sensors settle in
 
 while True:
+    time_spent = 0
     st_year, st_mon, st_day, st_hr, st_min, st_sec, st_wkday, st_yrday = (0, 0, 0, 0, 0, 0, 0, 0)
     try:
         st_year, st_mon, st_day, st_hr, st_min, st_sec, st_wkday, st_yrday = gmtime(START_TIME)
@@ -167,25 +178,85 @@ while True:
 
     lat, lon = get_gps()
 
-    for n in range(2):
-        temp = 0.00
-        try:
-            temp = bme680_sensor.temperature
-            if DEBUG:
-                print(f'temperature: {temp}')
-        except Exception as e:
-            print(f'bme680 temperature error: {e}')
-    
-        hum = 0.00
-        try:
-            hum = bme680_sensor.humidity
-            if DEBUG:
-                print(f'humidity: {hum}')
-        except Exception as e:
-            print(f'bme680 humidity error: {e}')
+    temp_01_list = []
+    hum_01_list = []
+    if TWO_SENSORS:
+        temp_02_list = []
+        hum_02_list = []
+
+    for n in range(30):
+        if n > 14: # discard first 15 readings
+            try:
+                temp_01_list.append(bme680_sensor.temperature)
+                if TWO_SENSORS:
+                    temp_02_list.append(bme680_sensor_02.temperature)
+            except Exception as e:
+                print(f'bme680 temperature error: {e}')
+
+            try:
+                hum_01_list.append(bme680_sensor.humidity)
+                if TWO_SENSORS:
+                    hum_02_list.append(bme680_sensor_02.humidity)
+            except Exception as e:
+                print(f'bme680 humidity error: {e}')
+
+        time_spent += 1
+        sleep(1)
+
+    if DEBUG:
+        print(f'temp_01_list: {temp_01_list}')
+        print(f'hum_01_list: {hum_01_list}')
+        if TWO_SENSORS:
+            print(f'temp_02: {temp_02_list}')
+            print(f'hum_02: {hum_02_list}')
+
+    hum_01_list = [n for n in hum_01_list if round(n) != 100] # remove 100
+    if TWO_SENSORS:
+        hum_02_list = [n for n in hum_02_list if round(n) != 100] # remove 100
+
+    temp_01_list.remove(max(temp_01_list))
+    temp_01_list.remove(min(temp_01_list))
+    temp_01_avg = (sum(temp_01_list) / len(temp_01_list))
+
+    hum_01_list.remove(max(hum_01_list))
+    hum_01_list.remove(min(hum_01_list))
+    hum_01_avg = sum(hum_01_list) / len(hum_01_list)
+
+    if TWO_SENSORS:
+        temp_02_list.remove(max(temp_02_list))
+        temp_02_list.remove(min(temp_02_list))
+        temp_02_avg = (sum(temp_02_list) / len(temp_02_list))
+
+        hum_02_list.remove(max(hum_02_list))
+        hum_02_list.remove(min(hum_02_list))
+        hum_02_avg = sum(hum_02_list) / len(hum_02_list)
+
+    if TWO_SENSORS:
+        temp_wo_offset = (temp_01_avg + temp_02_avg) / 2
+        hum_wo_offset = (hum_01_avg + hum_02_avg) / 2
+    else:
+        temp_wo_offset = temp_01_avg
+        hum_wo_offset = hum_01_avg
+
+    # From https://docs.circuitpython.org/projects/bme680/en/latest/examples.html
+    # You will usually have to add an offset to account for the temperature of
+    # the sensor. This is usually around 5 degrees but varies by use. Use a
+    # separate temperature sensor to calibrate this one.
+
+    temp = temp_wo_offset + TEMPERATURE_OFFSET
+    hum = hum_wo_offset + HUMIDITY_OFFSET
+
+    if DEBUG:
+        print(f'temp_01_list: {temp_01_list}, avg: {temp_01_avg}')
+        print(f'hum_01_list: {hum_01_list}, avg: {hum_01_avg}')
+        if TWO_SENSORS:
+            print(f'temp_02_list: {temp_02_list}, avg: {temp_02_avg}')
+            print(f'hum_02_list: {hum_02_list}, avg: {hum_02_avg}')
+        print(f'Final w/o offset: {temp_wo_offset:.0f}C {hum_wo_offset:.0f}%RH')
+    print(f'Final: {temp:.0f}C {hum:.0f}%RH')
 
 
-    uptime = f'uptime: {START_TIME} {((now - START_TIME)) / (60*60*24):.3f}days {st_year}-{st_mon:02}-{st_day:02}T{st_hr:02}:{st_min:02}:{st_sec:02}Z {temp:.0f}C {(temp*9/5)+32:.0f}F, {hum:.0f}%RH, now: {nw_year}-{nw_mon:02}-{nw_day:02}T{nw_hr:02}:{nw_min:02}:{nw_sec:02}Z, USB Status:{get_usb_status()}'
+    uptime = f'uptime: {START_TIME} {((now - START_TIME)) / (60*60*24):.3f}days {st_year}-{st_mon:02}-{st_day:02}T{st_hr:02}:{st_min:02}:{st_sec:02}Z {temp:.0f}C {(temp*9/5)+32:.0f}F, {hum:.0f}%RH, now: {nw_year}-{nw_mon:02}-{nw_day:02}T{nw_hr:02}:{nw_min:02}:{nw_sec:02}Z, USB Status:{get_usb_status()}, Offset: {TEMPERATURE_OFFSET}C, {HUMIDITY_OFFSET}%RH'
 
     if DEBUG:
         print(f'UPTIME: {uptime}')
@@ -206,16 +277,18 @@ while True:
     if DEBUG:
         print(f'POST response (note.add): {rsp}')
 
-
-    sleeping = ((300*12))
-    if DEBUG:
-        print(f'FINISHED: sleeping {sleeping} seconds')
-
     for n in range(5):
         led.value(1)
         sleep(2)
         led.value(0)
         sleep(2)
+
+        time_spent += 4
+
+    # 300 * 12 = 1hr
+    sleeping = ((300 * 12) - (time_spent + TIME_SPENT_FUDGE))
+
+    print(f'FINISHED: sleeping {sleeping} seconds')
 
     sleep(sleeping)
 
