@@ -14,7 +14,7 @@ import time
 import notecard
 
 import adafruit_bme680
-import secrets
+from secrets import productUID, TEMPERATURE_OFFSET, HUMIDITY_OFFSET, TIME_SPENT_FUDGE
 
 START_TIME = 0
 DEBUG = True
@@ -27,8 +27,6 @@ DO_NOT_WAIT_FOR_GPS = True
 FEATHER = True
 
 TWO_SENSORS = False
-TEMPERATURE_OFFSET = -1
-HUMIDITY_OFFSET = +4
 
 if FEATHER:
     led = Pin(13, Pin.OUT)
@@ -171,7 +169,7 @@ if CARD_RESTORE:
     sleep(120)
 
 req = {"req": "hub.set"}
-req["product"] = secrets.productUID
+req["product"] = productUID
 req["mode"] = "periodic"
 rsp = card.Transaction(req)
 
@@ -221,16 +219,16 @@ while True:
         time_spent += 1
         sleep(1)
 
-    hum_01_list = [n for n in hum_01_list if round(n) != 100] # remove 100
-    if TWO_SENSORS:
-        hum_02_list = [n for n in hum_02_list if round(n) != 100] # remove 100
-
     if DEBUG:
         print(f'temp_01_list: {temp_01_list}')
         print(f'hum_01_list: {hum_01_list}')
         if TWO_SENSORS:
             print(f'temp_02: {temp_02_list}')
             print(f'hum_02: {hum_02_list}')
+
+    hum_01_list = [n for n in hum_01_list if round(n) != 100] # remove 100
+    if TWO_SENSORS:
+        hum_02_list = [n for n in hum_02_list if round(n) != 100] # remove 100
 
     temp_01_list.remove(max(temp_01_list))
     temp_01_list.remove(min(temp_01_list))
@@ -273,7 +271,7 @@ while True:
         print(f'Final w/o offset: {temp_wo_offset:.0f}C {hum_wo_offset:.0f}%RH')
     print(f'Final: {temp:.0f}C {hum:.0f}%RH')
 
-    uptime = f'uptime: {START_TIME} {((now - START_TIME)) / (60*60*24):.3f}days {st_year}-{st_mon:02}-{st_day:02}T{st_hr:02}:{st_min:02}:{st_sec:02}Z {temp:.0f}C {(temp*9/5)+32:.0f}F, {hum:.0f}%RH, now: {nw_year}-{nw_mon:02}-{nw_day:02}T{nw_hr:02}:{nw_min:02}:{nw_sec:02}Z, USB Status:{get_usb_status()}'
+    uptime = f'uptime: {START_TIME} {((now - START_TIME)) / (60*60*24):.3f}days {st_year}-{st_mon:02}-{st_day:02}T{st_hr:02}:{st_min:02}:{st_sec:02}Z {temp:.0f}C {(temp*9/5)+32:.0f}F, {hum:.0f}%RH, now: {nw_year}-{nw_mon:02}-{nw_day:02}T{nw_hr:02}:{nw_min:02}:{nw_sec:02}Z, USB Status:{get_usb_status()}, Offset: {TEMPERATURE_OFFSET}C, {HUMIDITY_OFFSET}%RH'
 
     if DEBUG:
         print(f'UPTIME: {uptime}')
@@ -303,7 +301,7 @@ while True:
         time_spent += 4
 
     # 300 * 12 = 1hr
-    sleeping = ((300 * 12) - time_spent)
+    sleeping = ((300 * 12) - (time_spent + TIME_SPENT_FUDGE))
 
     print(f'FINISHED: sleeping {sleeping} seconds')
 

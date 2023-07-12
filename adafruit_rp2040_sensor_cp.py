@@ -11,7 +11,7 @@ from time import sleep, localtime
 import notecard
 
 import adafruit_bme680_cp as adafruit_bme680
-from secrets import productUID, TEMPERATURE_OFFSET, HUMIDITY_OFFSET
+from secrets import productUID, TEMPERATURE_OFFSET, HUMIDITY_OFFSET, TIME_SPENT_FUDGE
 
 START_TIME = 0
 DEBUG = True
@@ -300,7 +300,7 @@ while True:
         time_spent += 4
 
     # 300 * 12 = 1hr
-    sleeping = ((300 * 12) - time_spent)
+    sleeping = ((300 * 12) - (time_spent + TIME_SPENT_FUDGE))
 
     print(f'FINISHED: sleeping {sleeping} seconds')
 
