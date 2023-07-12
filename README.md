@@ -37,16 +37,16 @@
 
 ![Notecarrier F/Adafruit Feather RP2040](images/NC-F_feather_rp2040.png)
 
-#### Adafruit Feather RP2040 in Notecarrier A
+#### Adafruit Feather RP2040 with Notecarrier A
 _Note: ignore numbering on breadboard, as it's a pico-numbered breadboard_
 ![Notecarrier A/Adafruit Feather RP2040](images/NC-A_feather_rp2040.png)
 ##### Closeup image
 ![Notecarrier A/Adafruit Feather RP2040 closup](images/NC-A_feather_rp2040_closeup.png)
 
-#### Adafruit Feather RP2040 in Notecarrier A **with  no breadboard**
+#### Adafruit Feather RP2040 with Notecarrier A **with  no breadboard**
 _Note: feather is powered by I2C, i.e. no breadboard_
 ![Notecarrier A/Adafruit Feather RP2040 - No Breadboard](images/NC-A_feather_rp2040_no_breadboard.png)
 
-#### Raspberry Pi Pico in Notecarrier A
+#### Raspberry Pi Pico with Notecarrier A
 
 ![Notecarrier A/Raspberry Pi Pico](images/NC-A_pico.png)
