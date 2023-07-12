@@ -48,7 +48,6 @@ _Note: feather is powered by I2C, i.e. no breadboard_
 ![Notecarrier A/Adafruit Feather RP2040 - No Breadboard](images/NC-A_feather_rp2040_no_breadboard.png)
 
 #### Raspberry Pi Pico with Notecarrier A
-Need to test here: changing power config, to using an I2C from notecarrier to pico  
-This should work, as it does in the other boards
+Need to test here: changing power config, to using an I2C from notecarrier to pico. This should work, as it does in the other boards.
 
 ![Notecarrier A/Raspberry Pi Pico](images/NC-A_pico.png)
