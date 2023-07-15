@@ -48,6 +48,8 @@ Example for routing the `_health.qo` file.
 }
 ```
 And adding, the example for routing the `_track.qo` file.
+*Note: it looks like whenver the USB power is changed, _track.qo is fired,
+so perhaps following the _health.qo is not necessary if one is following the _track.qo*
 ```
 {
   "imei_string": $split(device, ":")[1],"start_time":0,
