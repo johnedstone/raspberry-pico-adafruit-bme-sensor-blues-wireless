@@ -34,17 +34,21 @@ Example for routing the `_health.qo` file.
 ### Adding Reporting Latitude and Longitude to Power Management
 ```
 > {
+  "req": "hub.set",
+  "mode": "minimum"
+}
+
+> {
   "req": "card.location.mode",
-  "mode": "periodic",
-  "seconds": 600
+  "mode": "periodic"
 }
 
 > {
   "req": "card.location.track",
   "start": true,
   "heartbeat": true,
- "sync": true,
- "hours": 1
+  "sync": true,
+  "hours": 1
 }
 ```
 And adding, the example for routing the `_track.qo` file.  
