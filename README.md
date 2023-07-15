@@ -51,3 +51,6 @@ _Note: feather is powered by I2C, i.e. no breadboard_
 Need to test here: changing power config, to using an I2C from notecarrier to pico. This should work, as it does in the other boards.
 
 ![Notecarrier A/Raspberry Pi Pico](images/NC-A_pico.png)
+
+#### Extras
+See the extras folder for an example of monitoring power with a notecard, notecarrier and a LiPo battery.
