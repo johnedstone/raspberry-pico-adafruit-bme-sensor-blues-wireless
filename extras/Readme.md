@@ -49,13 +49,15 @@ Example for routing the `_health.qo` file.
 ```
 And adding, the example for routing the `_track.qo` file.
 ```
-{  "imei_string": $split(device, ":")[1],"start_time":0,
+{
+  "imei_string": $split(device, ":")[1],"start_time":0,
   "uptime": $fromMillis(when * 1000) & ", " &
-  "location_type: " & best_location_type & ", " &
-  "latitude: " &
-  $round(best_lat, 8) & ", longitude: " & $round(best_lon, 8),
-  "latitude": $string($round(best_lat, 8)),
-  "longitude": $string($round(best_lon, 8))
+    "event: " & $lookup(body, "status") & ", " &
+    "location_type: " & best_location_type & ", " &
+    "latitude: " &
+    best_lat & ", longitude: " & best_lon,
+  "latitude": $string(best_lat),
+  "longitude": $string(best_lon)
 }
 ```
 
