@@ -25,6 +25,8 @@
 
 ### JSONata
 * [JSONata Exerciser](https://try.jsonata.org/)
+* Unsetting integers: set to -1
+* Unsetting strings: set to "-"
 
 Example for routing the `_health.qo` file.
 ```
