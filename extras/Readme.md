@@ -41,7 +41,7 @@ Example for routing the `_health.qo` file.
 > {
   "req": "card.location.mode",
   "mode": "periodic",
-  "seconds": 600
+  "seconds": 1800
 }
 
 > {
@@ -49,7 +49,7 @@ Example for routing the `_health.qo` file.
   "start": true,
   "heartbeat": true,
   "sync": true,
-  "hours": -1
+  "hours": 1
 }
 ```
 And adding, the example for routing the `_track.qo` file.  
