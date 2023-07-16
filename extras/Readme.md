@@ -56,15 +56,14 @@ And adding, the example for routing the `_track.qo` file.
 *Note: it looks like whenver the USB power is changed, _track.qo is fired,
 so perhaps following the _health.qo is not necessary if one is following the _track.qo*
 ```
-{
-  "imei_string": $split(device, ":")[1],"start_time":0,
-  "uptime": $fromMillis(when * 1000) & ", " &
-    "event: " & $lookup(body, "status") & ", " &
-    "location_type: " & best_location_type & ", " &
-    "latitude: " &
-    best_lat & ", longitude: " & best_lon,
-  "latitude": $string(best_lat),
-  "longitude": $string(best_lon)
+{"imei_string": $split(device, ":")[1],"start_time":0,
+"uptime": $fromMillis(when * 1000) & ", " &
+"event: " & $lookup(body, "status") & ", " &
+"location_type: " & best_location_type & ", " &
+"latitude: " &
+$round(best_lat, 8) & ", longitude: " & $round(best_lon, 8),
+"latitude": $string($round(best_lat, 8)),
+"longitude": $string($round(best_lon, 8))
 }
 ```
 
