@@ -69,6 +69,11 @@ $round(best_lat, 8) & ", longitude: " & $round(best_lon, 8),
 }
 ```
 
+### Another example without using `heartbeat`
+See this link, [https://discuss.blues.io/t/any-reason-not-to-use-card-location-track-just-to-get-heartbeat/1006/8](https://discuss.blues.io/t/any-reason-not-to-use-card-location-track-just-to-get-heartbeat/1006/8)
+for this idea:
+> You can do that, but if you don’t need the GPS/GNSS location you can achieve the same thing by using {"req":"hub.set","inbound":mins}, where min is how often you want the Notecard to check in with Notehub. When the sync occurs you’ll see a `_session.qo` event come through in Notehub.
+
 #### References
 * [JSONata Examples](https://blues.io/blog/10-jsonata-examples/)
 * [JSONata Docs](https://docs.jsonata.org/overview)
