@@ -77,7 +77,7 @@ so perhaps following the _health.qo (above) is not necessary if one is following
 }
 ```
 
-### Example without using `heartbeat`
+###Example without using heartbeat
 #### Example without using `heartbeat`, without using GPS
 See this link, [https://discuss.blues.io/t/any-reason-not-to-use-card-location-track-just-to-get-heartbeat/1006/8](https://discuss.blues.io/t/any-reason-not-to-use-card-location-track-just-to-get-heartbeat/1006/8)
 for this idea:
