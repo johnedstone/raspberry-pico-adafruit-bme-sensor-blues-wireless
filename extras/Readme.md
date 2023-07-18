@@ -77,8 +77,8 @@ so perhaps following the _health.qo (above) is not necessary if one is following
 }
 ```
 
-### An Example without using `heartbeat`
-#### An Example without using `heartbeat`, without using GPS
+### Example without using `heartbeat`
+#### Example without using `heartbeat`, without using GPS
 See this link, [https://discuss.blues.io/t/any-reason-not-to-use-card-location-track-just-to-get-heartbeat/1006/8](https://discuss.blues.io/t/any-reason-not-to-use-card-location-track-just-to-get-heartbeat/1006/8)
 for this idea:
 > You can do that, but if you don’t need the GPS/GNSS location you can achieve the same thing by using {"req":"hub.set","inbound":mins}, where min is how often you want the Notecard to check in with Notehub. When the sync occurs you’ll see a `_session.qo` event come through in Notehub.
