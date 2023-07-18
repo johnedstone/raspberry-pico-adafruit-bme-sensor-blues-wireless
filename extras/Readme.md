@@ -1,4 +1,5 @@
 ### Using the notecarrier/notecard alone, without a MCU, to monitor power on/off
+**Preferred Configuration**: see below, "Example without using `heartbeat`, without using GPS"
 
 ### Setup for Monitoring USB Power with LiPo Battary attached
 ```
