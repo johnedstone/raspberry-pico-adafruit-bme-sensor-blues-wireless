@@ -98,8 +98,9 @@ File: `_session.qo`
   "imei_string": $split(device, ":")[1],"start_time":0,
   "uptime": $fromMillis(when * 1000) & ", " &
     "why: " & $lookup(body, "why") & ", " &
-    "location_type: " & best_location_type & ", " &
-    "lat: " & $round(best_lat, 6) & ", lon: " & $round(best_lon, 8),
+    "location(" & best_location_type & "): " &
+    $round(best_lat, 6) & "," & $round(best_lon, 8) & ", " &
+    "voltage: " & $round(voltage, 2) ,
   "latitude": $string($round(best_lat, 8)),
   "longitude": $string($round(best_lon, 8))
 }
