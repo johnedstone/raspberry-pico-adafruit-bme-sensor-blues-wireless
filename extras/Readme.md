@@ -1,5 +1,7 @@
 ### Using the notecarrier/notecard alone, without a MCU, to monitor power on/off
-**Preferred Configuration**: [see below](#example-without-using-heartbeat), "Example without using `heartbeat`"
+**Preferred Configuration** the following two items:
+* `{"req": "card.voltage", "usb": true, "alert": true, "sync": true}` below
+* [see below](#example-without-using-heartbeat), "Example without using `heartbeat`"
 
 ### Setup for Monitoring USB Power with LiPo Battary attached
 ```
