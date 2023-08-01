@@ -1,7 +1,7 @@
 ### Using the notecarrier/notecard alone, without a MCU, to monitor power on/off
 **Preferred Configuration** _(the following two items)_:
 * `{"req": "card.voltage", "usb": true, "alert": true, "sync": true}` below
-* [see below](#example-without-using-heartbeat), "Example without using `heartbeat`"
+* [see below](#example-without-using-tracking-heartbeat), "Example without using `tracking heartbeat`"
 
 ### Setup for Monitoring USB Power with LiPo Battary attached
 ```
@@ -79,7 +79,7 @@ so perhaps following the _health.qo (above) is not necessary if one is following
 }
 ```
 
-### Example without using heartbeat
+### Example without using tracking heartbeat
 #### Example without using `heartbeat`, without using GPS
 See this link, [https://discuss.blues.io/t/any-reason-not-to-use-card-location-track-just-to-get-heartbeat/1006/8](https://discuss.blues.io/t/any-reason-not-to-use-card-location-track-just-to-get-heartbeat/1006/8)
 for this idea:
