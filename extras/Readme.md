@@ -121,7 +121,7 @@ File: `_session.qo`
  "seconds": 3600,
  "mode": "periodic"
 }
-> {"req": "card.location.track", "start": true, "seconds": 1800, "heartbeat": true, "hours": 1, "sync": true}
+> {"req": "card.location.track", "start": true, "heartbeat": true, "hours": 1, "sync": true}
 {
  "start": true,
  "minutes": 60,
