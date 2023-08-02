@@ -116,9 +116,9 @@ File: `_session.qo`
  "product": "com.gmail.johnedstone:wbna_500.69623",
  "device": "dev:868050040069623"
 }
-> {"req": "card.location.mode", "mode": "periodic", "seconds": 3600}
+> {"req": "card.location.mode", "mode": "periodic", "seconds": 1800}
 {
- "seconds": 3600,
+ "seconds": 1800,
  "mode": "periodic"
 }
 > {"req": "card.location.track", "start": true, "heartbeat": true, "hours": 1, "sync": true}
