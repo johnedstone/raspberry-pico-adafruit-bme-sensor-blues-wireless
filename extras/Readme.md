@@ -25,16 +25,19 @@ e.g. Raspberryp Pi Pico or Adafruit RP2040 Feather,  to monitor power on/off
 }
 ```
 
+##### Unsetting the notecard
+* Unsetting integers: set to -1
+* Unsetting strings: set to "-"
+
 #### JSONata Expression
 File: `_health.qo`  
 * [JSONata Exerciser](https://try.jsonata.org/)
 
-##### Unsetting the notecard
-* Unsetting integers: set to -1
-* Unsetting strings: set to "-"
 ```
-{"imei_string": $split(device, ":")[1],"start_time":0, "uptime": $fromMillis(when * 1000) & ", why: " &
-  $lookup(body, "text") & "," &
+{
+  "imei_string": $split(device, ":")[1],"start_time":0,
+  "uptime": $fromMillis(when * 1000) & ", why: " &
+  $lookup(body, "text") & ", " &
     "location(" & best_location_type & "): " &
     $round(best_lat, 6) & "," & $round(best_lon, 8) & ", " &
     "voltage: " & $round(voltage, 2) ,
