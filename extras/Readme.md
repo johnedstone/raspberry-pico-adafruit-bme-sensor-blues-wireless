@@ -39,7 +39,7 @@ File: `_health.qo`
   "uptime": $fromMillis(when * 1000) & ", why: " &
   $lookup(body, "text") & ", " &
     "location(" & best_location_type & "): " &
-    $round(best_lat, 6) & "," & $round(best_lon, 8) & ", " &
+    $round(best_lat, 8) & "," & $round(best_lon, 8) & ", " &
     "voltage: " & $round(voltage, 2) ,
   "latitude": $string($round(best_lat, 8)),
   "longitude": $string($round(best_lon, 8))
@@ -87,7 +87,7 @@ File: `_session.qo`
   "uptime": $fromMillis(when * 1000) & ", " &
     "why: " & $lookup(body, "why") & ", " &
     "location(" & best_location_type & "): " &
-    $round(best_lat, 6) & "," & $round(best_lon, 8) & ", " &
+    $round(best_lat, 8) & "," & $round(best_lon, 8) & ", " &
     "voltage: " & $round(voltage, 2) ,
   "latitude": $string($round(best_lat, 8)),
   "longitude": $string($round(best_lon, 8))
@@ -96,6 +96,7 @@ File: `_session.qo`
 
 ### Turning off hourly checks, turn on GPS tracking
 * _Note: turn off JSONata expression for `_session.qo` above_
+* including [BME280 sensor](https://dev.blues.io/notecard/notecard-walkthrough/advanced-notecard-configuration/#working-with-the-notecard-aux-pins)
 
 ```
 > {"req": "hub.get"}
@@ -133,6 +134,23 @@ File: `_session.qo`
  "temperature": 24.694623746435973,
  "pressure": 99327.93271799856,
  "humidity": 64.3365592121199
+}
+```
+
+#### JSONata Expression
+File: `_track.qo`
+```
+{
+  "imei_string": $split(device, ":")[1],
+  "start_time": 0,
+  "uptime": $fromMillis(when * 1000) & ", file: " & file &
+    ", " & "location(" & best_location_type & "): " &
+    $round(best_lat, 8) & "," & $round(best_lon, 8) & ", " &
+    $round($lookup(body, "temperature"), 1) & "C/" &
+    $round($lookup(body, "humidity"), 1) & "%RH, " &
+    "voltage: " & $round($lookup(body, "voltage"), 2),
+  "latitude": $string($round(best_lat, 8)),
+  "longitude": $string($round(best_lon, 8))
 }
 ```
 
