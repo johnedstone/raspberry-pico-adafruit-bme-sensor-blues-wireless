@@ -94,6 +94,48 @@ File: `_session.qo`
 }
 ```
 
+### Turning off hourly checks, turn on GPS tracking
+* _Note: turn off JSONata expression for `_session.qo` above_
+
+```
+> {"req": "hub.get"}
+{
+ "mode": "periodic",
+ "host": "a.notefile.net",
+ "product": "com.gmail.johnedstone:wbna_500.69623",
+ "device": "dev:868050040069623",
+ "inbound": 60
+}
+> {"req": "hub.set", "inbound": -1}
+{}
+> {"req": "hub.get"}
+{
+ "mode": "periodic",
+ "host": "a.notefile.net",
+ "product": "com.gmail.johnedstone:wbna_500.69623",
+ "device": "dev:868050040069623"
+}
+> {"req": "card.location.mode", "mode": "periodic", "seconds": 3600}
+{
+ "seconds": 3600,
+ "mode": "periodic"
+}
+> {"req": "card.location.track", "start": true, "seconds": 1800, "heartbeat": true, "hours": 1, "sync": true}
+{
+ "start": true,
+ "minutes": 60,
+ "heartbeat": true,
+ "sync": true
+}
+> {"req": "card.aux", "mode": "track"}
+{
+ "mode": "track",
+ "temperature": 24.694623746435973,
+ "pressure": 99327.93271799856,
+ "humidity": 64.3365592121199
+}
+```
+
 ### References
 * [JSONata Examples](https://blues.io/blog/10-jsonata-examples/)
 * [JSONata Docs](https://docs.jsonata.org/overview)
