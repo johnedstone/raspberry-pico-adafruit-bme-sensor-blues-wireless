@@ -48,9 +48,35 @@ File: `_health.qo`
 
 ### Adding Reporting Latitude and Longitude
 * Turning on GPS
+* Reference: [dev.blues.io Time and Location Requests](https://dev.blues.io/notecard/notecard-walkthrough/time-and-location-requests/#working-with-gps-on-the-notecard)
 ```
-> {"req": "card.location.mode", "mode": "periodic"}
-{"mode":"periodic"}
+> {"req": "card.location.mode", "mode": "periodic", "seconds": 3600}
+{
+ "seconds": 3600,
+ "mode": "periodic"
+}
+
+> {"req": "card.location"}
+{
+ "status": "GPS inactive {gps-inactive}",
+ "mode": "periodic"
+}
+
+> {"req": "card.location"}
+{
+ "status": "GPS inactive {gps-inactive} {gps}",
+ "mode": "periodic",
+ "lat": 39.88019205,
+ "lon": -86.0825915166667,
+ "dop": 1.5,
+ "time": 1690981627
+}
+```
+
+### Turning on hourly checkin
+```
+> {"req": "hub.set", "inbound": 60, "mode": "periodic"}
+{}
 ```
 
 #### JSONata Expression
