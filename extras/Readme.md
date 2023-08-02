@@ -28,6 +28,8 @@ e.g. Raspberryp Pi Pico or Adafruit RP2040 Feather,  to monitor power on/off
 #### JSONata Expression
 File: `_health.qo`  
 * [JSONata Exerciser](https://try.jsonata.org/)
+
+##### Unsetting the notecard
 * Unsetting integers: set to -1
 * Unsetting strings: set to "-"
 ```
