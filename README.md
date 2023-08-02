@@ -54,3 +54,7 @@ Need to test here: changing power config, to using an I2C from notecarrier to pi
 
 #### Extras
 See the extras folder for an example of monitoring power with a notecard, notecarrier and a LiPo battery.
+
+<!--
+# vim: ai et ts=4 sts=4 sw=4 nu
+-->
