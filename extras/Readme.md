@@ -150,7 +150,9 @@ File: `_track.qo`
     $round($lookup(body, "humidity"), 1) & "%RH, " &
     "voltage: " & $round($lookup(body, "voltage"), 2),
   "latitude": $string($round(best_lat, 8)),
-  "longitude": $string($round(best_lon, 8))
+  "longitude": $string($round(best_lon, 8)),
+  "temperature": $string($round($lookup(body, "temperature"), 2)),
+  "humidity": $string($round($lookup(body, "humidity"), 2))
 }
 ```
 
