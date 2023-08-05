@@ -147,12 +147,12 @@ File: `_track.qo`
     ", " & "location(" & best_location_type & "): " &
     $round(best_lat, 8) & "," & $round(best_lon, 8) & ", " &
     $round($lookup(body, "temperature"), 1) & "C/" &
-    $round($lookup(body, "humidity"), 1) & "%RH, " &
+    $round("humidity" in $keys(body) ? $lookup(body, "humidity"):0.0, 1) & "%RH, " &
     "voltage: " & $round($lookup(body, "voltage"), 2),
   "latitude": $string($round(best_lat, 8)),
   "longitude": $string($round(best_lon, 8)),
   "temperature": $string($round($lookup(body, "temperature"), 2)),
-  "humidity": $string($round($lookup(body, "humidity"), 2))
+  "humidity": $string($round("humidity" in $keys(body) ? $lookup(body, "humidity"):0.0, 2))
 }
 ```
 
