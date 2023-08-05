@@ -74,6 +74,7 @@ File: `_health.qo`
 ```
 
 ### Turning on hourly checkin
+_To disable and use tracking (preferred), see the next section_
 ```
 > {"req": "hub.set", "inbound": 60, "mode": "periodic"}
 {}
