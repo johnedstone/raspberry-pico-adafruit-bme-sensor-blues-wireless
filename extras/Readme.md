@@ -40,7 +40,7 @@ File: `_health.qo`
   $lookup(body, "text") & ", " &
     "location(" & best_location_type & "): " &
     $round(best_lat, 8) & "," & $round(best_lon, 8) & ", " &
-    "voltage: " & $round(voltage, 2) ,
+    "voltage: " & $round("voltage" in $keys(body) ? $lookup(body, "voltage"):0, 2) ,
   "latitude": $string($round(best_lat, 8)),
   "longitude": $string($round(best_lon, 8))
 }
