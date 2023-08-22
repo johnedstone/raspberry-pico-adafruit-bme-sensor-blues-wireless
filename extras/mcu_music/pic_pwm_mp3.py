@@ -1,6 +1,12 @@
 """
 Reference:
     https://learn.adafruit.com/mp3-playback-rp2040/pico-mp3
+    What is next: https://embeddedcomputing.com/technology/open-source/i2s-volume-control-with-raspberry-pi-pico-and-circuitpython
+                  https://embeddedcomputing.com/technology/processing/interface-io/simple-mp3-audio-playback-with-raspberry-pi-pico
+                  https://www.adafruit.com/product/3006
+                  https://www.onetransistor.eu/2021/04/media-keys-rpi-pico-circuitpython.html
+                  https://github.com/JeremySCook/circuitpython-experiments/blob/main/sound-playback/i2s_mp3_wav_volume_control.py
+                  https://forums.adafruit.com/viewtopic.php?t=124233
 
     device: raspberryp pi pico
 """
