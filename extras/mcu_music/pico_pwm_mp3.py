@@ -22,15 +22,25 @@ import board
 import audiomp3
 import audiopwmio
 
+CONTINUOUS = True
+
 audio = audiopwmio.PWMAudioOut(board.GP0)
 
 decoder = audiomp3.MP3Decoder(open("/music/somewhere_01.mp3", "rb"))
 
-audio.play(decoder)
-while audio.playing:
-    pass
+if CONTINUOUS:
+    while True:
+        audio.play(decoder)
+        while audio.playing:
+            pass
 
-print("Done playing!")
+        print("Done playing!")
+else:
+    audio.play(decoder)
+    while audio.playing:
+        pass
+
+    print("Done playing!")
 
 
 # vim: ai et ts=4 sw=4 sts=4 nu
