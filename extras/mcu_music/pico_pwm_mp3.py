@@ -9,6 +9,7 @@ Reference:
                   https://forums.adafruit.com/viewtopic.php?t=124233
 
     device: raspberryp pi pico
+    ffmpeg -hide_banner -i Somewhere.wav -ss 35 -t 120 -bitexact -ac 1  -ar 22050 somewhere_2min.mp3
 """
 # SPDX-FileCopyrightText: 2021 Kattni Rembor for Adafruit Industries
 #
@@ -26,7 +27,8 @@ CONTINUOUS = True
 
 audio = audiopwmio.PWMAudioOut(board.GP0)
 
-decoder = audiomp3.MP3Decoder(open("/music/somewhere_01.mp3", "rb"))
+#decoder = audiomp3.MP3Decoder(open("/music/somewhere_01.mp3", "rb"))
+decoder = audiomp3.MP3Decoder(open("/music/somewhere_2min.mp3", "rb"))
 
 if CONTINUOUS:
     while True:
