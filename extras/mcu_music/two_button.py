@@ -10,6 +10,18 @@ from audiopwmio import PWMAudioOut as AudioOut
 
 from digitalio import DigitalInOut, Direction, Pull
 
+# range: 0.1 - 1.0
+TONE_VOLUME = 0.5
+
+def get_note(tone_frequency):
+    length = 8000 // tone_frequency
+    sine_wave = array.array("H", [0] * length)
+    for index in range(length):
+        sine_wave[index] = int((1 + math.sin(math.pi * 2 * index / length))
+                               * TONE_VOLUME * (2 ** 15 - 1))
+
+    return RawSample(sine_wave)
+
 audio = AudioOut(board.GP0)
 
 # a
@@ -17,39 +29,39 @@ audio = AudioOut(board.GP0)
 decoder = audiomp3.MP3Decoder(open("/music/somewhere_01.mp3", "rb"))
 
 # b
-tone_volume = 0.5
-tone_frequency = 262
+note_C4_freq = 262
 
 if not True:
-#if 'a' == 2:
     audio.play(decoder)
     while audio.playing:
         pass
 
     print("Done playing!")
-#elif 'b' = 3:
-    length = 8000 // tone_frequency
-    sine_wave = array.array("H", [0] * length)
-    for index in range(length):
-        sine_wave[index] = int((1 + math.sin(math.pi * 2 * index / length))
-                               * tone_volume * (2 ** 15 - 1))
+if True:
+    #length = 8000 // tone_frequency
+    #sine_wave = array.array("H", [0] * length)
+    #for index in range(length):
+    #    sine_wave[index] = int((1 + math.sin(math.pi * 2 * index / length))
+    #                           * tone_volume * (2 ** 15 - 1))
+    #sine_wave_sample = RawSample(sine_wave)
+    sine_wave_sample = get_note(note_C4_freq)
 
-    sine_wave_sample = RawSample(sine_wave)
-
-    print(f'tone_frequency: {tone_frequency}')
+    #print(f'tone_frequency: {tone_frequency}')
     audio.play(sine_wave_sample, loop=True)
     time.sleep(1.5)
     audio.stop()
     time.sleep(1)
 
 
-
-# button
 button_note_C4 = DigitalInOut(board.GP1)
 button_note_C4.direction = Direction.INPUT
 button_note_C4.pull = Pull.UP
 
-while True:
+button_note_D4 = DigitalInOut(board.GP2)
+button_note_D4.direction = Direction.INPUT
+button_note_D4.pull = Pull.UP
+
+while not True:
     if not button_note_C4.value:
         print("Button activated")
 
