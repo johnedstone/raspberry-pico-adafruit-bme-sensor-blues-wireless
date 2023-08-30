@@ -36,7 +36,7 @@ File: `_health.qo`
 ```
 {
   "imei_string": $split(device, ":")[1],"start_time":0,
-  "uptime": $fromMillis(when * 1000) & ", why: " &
+  "uptime": $fromMillis(when * 1000) & ", file: " & file & ", why: " &
   $lookup(body, "text") & ", " &
     "location(" & best_location_type & "): " &
     $round(best_lat, 8) & "," & $round(best_lon, 8) & ", " &
@@ -146,12 +146,12 @@ File: `_track.qo`
   "start_time": 0,
   "uptime": $fromMillis(when * 1000) & ", file: " & file &
     ", " & "location(" & best_location_type & "): " &
-    $round(best_lat, 8) & "," & $round(best_lon, 8) & ", " &
+    $round(where_lat, 8) & "," & $round(where_lon, 8) & ", " &
     $round($lookup(body, "temperature"), 1) & "C/" &
     $round("humidity" in $keys(body) ? $lookup(body, "humidity"):0.0, 1) & "%RH, " &
     "voltage: " & $round($lookup(body, "voltage"), 2),
-  "latitude": $string($round(best_lat, 8)),
-  "longitude": $string($round(best_lon, 8)),
+  "latitude": $string($round(where_lat, 8)),
+  "longitude": $string($round(where_lon, 8)),
   "temperature": $string($round($lookup(body, "temperature"), 2)),
   "humidity": $string($round("humidity" in $keys(body) ? $lookup(body, "humidity"):0.0, 2))
 }
