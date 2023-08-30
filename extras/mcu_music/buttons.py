@@ -24,26 +24,28 @@ def get_note(tone_frequency):
 
 audio = AudioOut(board.GP0)
 
-#decoder = audiomp3.MP3Decoder(open("/music/somewhere_2min.mp3", "rb"))
-decoder = audiomp3.MP3Decoder(open("/music/somewhere_01.mp3", "rb"))
+decoder = audiomp3.MP3Decoder(open("/music/somewhere_2min.mp3", "rb"))
+#decoder = audiomp3.MP3Decoder(open("/music/somewhere_01.mp3", "rb"))
 
 note_C4 = get_note(262)
 note_E4 = get_note(330)
 note_G4 = get_note(392)
-chord_C4M = note_C4 + note_E4 + note_G4
+note_C5 = get_note(523)
 
 KEY_PINS = (
         board.GP1,
         board.GP3,
         board.GP4,
         board.GP5,
+        board.GP6,
 )
 
 NOTE_CODES = (
         ('C4', note_C4),
         ('E4', note_E4),
         ('G4', note_G4),
-        ('chord_C4M', chord_C4M),
+        ('C5', note_C5),
+        ('Somewhere ...', decoder)
 )
 
 keys = keypad.Keys(KEY_PINS, value_when_pressed=False, pull=True)
@@ -52,12 +54,15 @@ while True:
     event = keys.events.get()
     if event:
         key, tone = NOTE_CODES[event.key_number]
-        #print(NOTE_CODES[event.key_number])
         if event.pressed:
-            print(f"playing: {key}")
-            audio.play(tone, loop=True)
+            print(f'playing: {key}')
+            if key == 'Somewhere ...':
+                audio.play(decoder)
+            else:
+                audio.play(tone, loop=True)
+
         if event.released:
-            print(f"stoping: {key}")
+            print(f'stoping: {key}')
             audio.stop()
 
 # vim: ai et ts=4 sts=4 sw=4 nu
