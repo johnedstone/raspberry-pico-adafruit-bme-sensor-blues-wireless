@@ -145,6 +145,7 @@ File: `_track.qo`
   "imei_string": $split(device, ":")[1],
   "start_time": 0,
   "uptime": $fromMillis(when * 1000) & ", file: " & file &
+    ", where_when: " & $fromMillis(where_when * 1000) &
     ", " & "location(" & best_location_type & "): " &
     $round(where_lat, 8) & "," & $round(where_lon, 8) & ", " &
     $round($lookup(body, "temperature"), 1) & "C/" &
