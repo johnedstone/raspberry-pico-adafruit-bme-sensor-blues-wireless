@@ -11,7 +11,7 @@
 * [rp2040 pinout](https://learn.adafruit.com/adafruit-feather-rp2040-pico/pinouts)
 
 ### Sax-A-Boom wave files
-* script: `saxaboom_v02.py`
+* script: `saxaboom_v02_pico.py`
 * Reference: https://github.com/david6983/saxaboom/tree/master/Samples
 * ffmpeg commands
 ```
