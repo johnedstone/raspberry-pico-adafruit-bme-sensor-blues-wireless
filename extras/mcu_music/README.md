@@ -7,6 +7,8 @@
 * [adafruit switches](https://learn.adafruit.com/make-it-switch/other-types-of-switches)
     * [coding switches](https://learn.adafruit.com/make-it-switch/code-your-micro)
     * [debouncing](https://learn.adafruit.com/key-pad-matrix-scanning-in-circuitpython/keys-one-key-per-pin)
+* [feather power switch](https://io.adafruit.com/blog/tip/2016/12/14/feather-power-switch/) 
+* [rp2040 pinout](https://learn.adafruit.com/adafruit-feather-rp2040-pico/pinouts)
 
 ### Sax-A-Boom wave files
 * script: `saxaboom_v02.py`
