@@ -9,14 +9,15 @@
     * [debouncing](https://learn.adafruit.com/key-pad-matrix-scanning-in-circuitpython/keys-one-key-per-pin)
 
 ### Sax-A-Boom wave files
-* ffmpeg
+* Reference: https://github.com/david6983/saxaboom/tree/master/Samples
+* ffmpeg commands
 ```
 ffmpeg -i sbLoop1_orig.wav -bitexact -ac 1  -ar 22050  sbLoop1.wav
 
 ffmpeg -i sbLoop.wav -i sbLoop1.wav -filter_complex amix=inputs=2:duration=shortest:dropout_transition=0:weights="1 1":normalize=0 -bitexact -ac 1  -ar 22050  sbLoop1_rhythm.wav
 ```
 
-### Sax-A-Boom mp3 files
+### Sax-A-Boom mp3 files _ignore because of audiomp3.MP3Decoder clipping at start_
 * Reference: https://github.com/david6983/saxaboom/tree/master
 * ffmpeg (sbLoop.wav is rhythm and is the longest duration):
     * `ffmpeg -i sbLoop.wav -i sbLoop1.wav -filter_complex amix=inputs=2:duration=longest:dropout_transition=0:weights="0.40 1":normalize=0 rhythm_and_track1.mp3`
