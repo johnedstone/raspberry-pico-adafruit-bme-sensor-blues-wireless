@@ -24,33 +24,46 @@ audio = AudioOut(board.GP0)
 
 track1_file = open("/sax_music/sbLoop1.wav", "rb")
 track1_wave = WaveFile(track1_file)
+track2_file = open("/sax_music/sbLoop2.wav", "rb")
+track2_wave = WaveFile(track2_file)
+track3_file = open("/sax_music/sbLoop3.wav", "rb")
+track3_wave = WaveFile(track3_file)
+
 track1_rhythm_file = open("/sax_music/sbLoop1_rhythm.wav", "rb")
 track1_rhythm_wave = WaveFile(track1_rhythm_file)
+track2_rhythm_file = open("/sax_music/sbLoop2_rhythm.wav", "rb")
+track2_rhythm_wave = WaveFile(track2_rhythm_file)
+track3_rhythm_file = open("/sax_music/sbLoop3_rhythm.wav", "rb")
+track3_rhythm_wave = WaveFile(track3_rhythm_file)
 
 # https://github.com/adafruit/circuitpython/issues/5136
 # Documents clipping with PWM wave
 KEY_PINS = (
         board.GP1,
         board.GP2,
+        board.GP3,
+        board.GP4,
         board.GP5,
 )
 
 WAVE_CODES = (
-        #('Stop the music', track1_wave),
         ('Stop the music', ''),
         ('Track 1', track1_wave),
-        #('Toggle Rhythm', track1_wave),
+        ('Track 2', track2_wave),
+        ('Track 3', track3_wave),
         ('Toggle Rhythm', ''),
 )
 
 WAVE_CODES_RHYTHM = (
         ('Stop the music', ''),
         ('Track 1 Plus Rhythm', track1_rhythm_wave),
+        ('Track 2 Plus Rhythm', track2_rhythm_wave),
+        ('Track 3 Plus Rhythm', track3_rhythm_wave),
         ('Toggle Rhythm', ''),
 )
 
 STOP_KEY = 0
-TOGGLE_KEY = 2
+TOGGLE_KEY = 4
 
 keys = keypad.Keys(KEY_PINS, value_when_pressed=False, pull=True)
 

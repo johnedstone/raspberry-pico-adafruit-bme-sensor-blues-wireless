@@ -9,6 +9,7 @@
     * [debouncing](https://learn.adafruit.com/key-pad-matrix-scanning-in-circuitpython/keys-one-key-per-pin)
 
 ### Sax-A-Boom wave files
+* script: `saxaboom_v02.py`
 * Reference: https://github.com/david6983/saxaboom/tree/master/Samples
 * ffmpeg commands
 ```
@@ -27,7 +28,7 @@ ffmpeg -i sbLoop.wav -i sbLoop1.wav -filter_complex amix=inputs=2:duration=short
 ### PWMAudioOut
 * **Problem:** clipping sound for PWMAudioOut at the beginning of each loop :(
 * Workaround: use wave files, not mp3
-* `saxaboom_v01.py`: git commit `30f71ed` and `1cb163c`
+* script: `saxaboom_v01.py`: git commit `30f71ed` and `1cb163c`
 * Raspberry Pi Pico
 * Amplifier: Adafruit PAM8302A
 * Adafruit Mono Enclosed Speaker - 3W 4 Ohm Product ID: 3351 
