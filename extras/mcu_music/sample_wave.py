@@ -36,15 +36,17 @@ KEY_PINS = (
 )
 
 WAVE_CODES = (
-        ('Stop the music', track1_wave),
+        #('Stop the music', track1_wave),
+        ('Stop the music', ''),
         ('Track 1', track1_wave),
-        ('Toggle Rhythm', track1_wave),
+        #('Toggle Rhythm', track1_wave),
+        ('Toggle Rhythm', ''),
 )
 
 WAVE_CODES_RHYTHM = (
-        ('Stop the music', track1_rhythm_wave),
+        ('Stop the music', ''),
         ('Track 1 Plus Rhythm', track1_rhythm_wave),
-        ('Toggle Rhythm', track1_rhythm_wave),
+        ('Toggle Rhythm', ''),
 )
 
 STOP_KEY = 0
@@ -68,7 +70,10 @@ while True:
                     key, wave = WAVE_CODES_RHYTHM[CURRENT_KEY_NUMBER]
 
                 audio.stop()
-                audio.play(wave, loop=True)
+                try:
+                    audio.play(wave, loop=True)
+                except Exception as e:
+                    print(f'Error playing audio: {e}')
 
                 CURRENTLY_PLAYING = key
 
@@ -91,7 +96,12 @@ while True:
         elif CURRENTLY_PLAYING != key:
             audio.stop()
             CURRENTLY_PLAYING = key
-            audio.play(wave, loop=True)
+
+            try:
+                audio.play(wave, loop=True)
+            except Exception as e:
+                print(f'Error playing audio: {e}')
+
         else:
             print('Do nothing')
             pass
