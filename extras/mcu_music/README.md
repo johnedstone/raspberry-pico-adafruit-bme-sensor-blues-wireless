@@ -11,6 +11,8 @@
 ### Sax-A-Boom wave files
 * ffmpeg
 ```
+ffmpeg -i sbLoop1_orig.wav -bitexact -ac 1  -ar 22050  sbLoop1.wav
+
 ffmpeg -i sbLoop.wav -i sbLoop1.wav -filter_complex amix=inputs=2:duration=shortest:dropout_transition=0:weights="1 1":normalize=0 -bitexact -ac 1  -ar 22050  sbLoop1_rhythm.wav
 ```
 
