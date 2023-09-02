@@ -61,13 +61,13 @@ while True:
             if CURRENT_KEY_NUMBER not in [0,4]:
                 if PLAY_MP3_CODES:
                     key, mp3 = MP3_CODES[CURRENT_KEY_NUMBER]
-                    CURRENTLY_PLAYING = key
                 else:
                     key, mp3 = MP3_CODES_RHYTHM[CURRENT_KEY_NUMBER]
-                    CURRENTLY_PLAYING = key
 
                 audio.stop()
                 audio.play(mp3, loop=True)
+
+                CURRENTLY_PLAYING = key
 
                 print(f'#4: event.key_number: {event.key_number}')
                 print(f'#4: PLAY_MP3_CODES: {PLAY_MP3_CODES}')
