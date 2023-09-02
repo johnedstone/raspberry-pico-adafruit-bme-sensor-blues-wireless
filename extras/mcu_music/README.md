@@ -24,6 +24,7 @@ ffmpeg -i sbLoop.wav -i sbLoop1.wav -filter_complex amix=inputs=2:duration=short
 ```
 
 ### Sax-A-Boom mp3 files _ignore because of audiomp3.MP3Decoder clipping at start_
+* [Documentation:clipping audiomp3.MP3Decoder](https://github.com/adafruit/circuitpython/issues/5136)
 * script: `saxaboom_v01.py`
 * Raspberry Pi Pico
 * Amplifier: Adafruit PAM8302A
