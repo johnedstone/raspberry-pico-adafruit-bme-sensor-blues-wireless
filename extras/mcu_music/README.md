@@ -16,7 +16,7 @@
     * `ffmpeg -i sbLoop.wav -i sbLoop2.wav -filter_complex amix=inputs=2:duration=shortest:dropout_transition=0:weights="1 1":normalize=0 rthymn_and_track2_short_equal.mp3`
 
 ### PWMAudioOut
-* `saxaboom_v01.py`
+* `saxaboom_v01.py`: git commit `30f71ed` and `1cb163c`
 * Raspberry Pi Pico
 * Amplifier: Adafruit PAM8302A
 * Adafruit Mono Enclosed Speaker - 3W 4 Ohm Product ID: 3351 
