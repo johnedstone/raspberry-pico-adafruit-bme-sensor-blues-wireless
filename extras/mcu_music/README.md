@@ -10,8 +10,9 @@
 ### Sax-A-Boom wav files
 * Reference: https://github.com/david6983/saxaboom/tree/master
 * ffmpeg (sbLoop.wav is rhythm and is the longest duration):
-    * ffmpeg -i sbLoop.wav -i sbLoop1.wav -filter_complex amix=inputs=2:duration=longest:dropout_transition=0:weights="0.40 1":normalize=0 rhythm_and_track1.mp3 
-    * ffmpeg -i sbLoop.wav -i sbLoop2.wav -filter_complex amix=inputs=2:duration=shortest:dropout_transition=0:weights="0.40 1":normalize=0 rthymn_and_track2_short.mp3
+    * `ffmpeg -i sbLoop.wav -i sbLoop1.wav -filter_complex amix=inputs=2:duration=longest:dropout_transition=0:weights="0.40 1":normalize=0 rhythm_and_track1.mp3`
+    * `ffmpeg -i sbLoop.wav -i sbLoop2.wav -filter_complex amix=inputs=2:duration=shortest:dropout_transition=0:weights="0.40 1":normalize=0 rthymn_and_track2_short.mp3`
+    * `ffmpeg -i sbLoop.wav -i sbLoop2.wav -filter_complex amix=inputs=2:duration=shortest:dropout_transition=0:weights="1 1":normalize=0 rthymn_and_track2_short_equal.mp3`
 
 
 
