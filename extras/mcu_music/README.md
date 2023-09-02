@@ -7,6 +7,7 @@
 * [adafruit switches](https://learn.adafruit.com/make-it-switch/other-types-of-switches)
     * [coding switches](https://learn.adafruit.com/make-it-switch/code-your-micro)
     * [debouncing](https://learn.adafruit.com/key-pad-matrix-scanning-in-circuitpython/keys-one-key-per-pin)
+
 ### Sax-A-Boom wav files
 * Reference: https://github.com/david6983/saxaboom/tree/master
 * ffmpeg (sbLoop.wav is rhythm and is the longest duration):
@@ -14,7 +15,17 @@
     * `ffmpeg -i sbLoop.wav -i sbLoop2.wav -filter_complex amix=inputs=2:duration=shortest:dropout_transition=0:weights="0.40 1":normalize=0 rthymn_and_track2_short.mp3`
     * `ffmpeg -i sbLoop.wav -i sbLoop2.wav -filter_complex amix=inputs=2:duration=shortest:dropout_transition=0:weights="1 1":normalize=0 rthymn_and_track2_short_equal.mp3`
 
+### PWMAudioOut
+* `saxaboom_v01.py`
+* Raspberry Pi Pico
+* Amplifier: Adafruit PAM8302A
+* Adafruit Mono Enclosed Speaker - 3W 4 Ohm Product ID: 3351 
+* Adafruit Breadboard trim potentiometer - 10K Product ID: 356 
+* Problem: clipping sound for PWMAudioOut at the beginning of each loop :(
 
+### I2S
+* Amplifier: [Adafruit I2S 3W Class D Amplifier Breakout - MAX98357A](https://www.adafruit.com/product/3006)
+* Reference: https://learn.adafruit.com/mp3-playback-rp2040/pico-i2s-mp3
 
 ### References, not directly relevant
 * [circuitplayground: play tone](https://learn.adafruit.com/circuitpython-made-easy-on-circuit-playground-express/play-tone)
