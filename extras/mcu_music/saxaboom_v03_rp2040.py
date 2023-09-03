@@ -14,6 +14,12 @@ from audiocore import WaveFile
 
 import keypad
 
+import adafruit_logging as logging
+logger = logging.getLogger('saxaboom')
+
+#logger.setLevel(logging.ERROR)
+logger.setLevel(logging.INFO)
+
 # range: 0.1 - 1.0
 TONE_VOLUME = 0.5
 CURRENTLY_PLAYING = '' 
@@ -62,77 +68,90 @@ WAVE_CODES_RHYTHM = (
 STOP_KEY = 0
 TOGGLE_LOOP_KEY = 3
 TOGGLE_RHYTHM_KEY = 4
+MUSIC_KEYS = [1, 2]
 
 keys = keypad.Keys(KEY_PINS, value_when_pressed=False, pull=True)
 
 PLAY_WAVE_CODES = True # That is, no rhythm
-PLAY_LOOP = True
+PLAY_LOOP = False
 
+CURRENT_KEY = ''
 CURRENT_KEY_NUMBER = None
 
 while True:
     event = keys.events.get()
     if event and event.pressed:
-        if event.key_number in [TOGGLE_RHYTHM_KEY, TOGGLE_LOOP_KEY]:
-            if event.key_number == TOGGLE_RHYTHM_KEY:
-                PLAY_WAVE_CODES = not PLAY_WAVE_CODES 
-            else:
-                PLAY_LOOP = not PLAY_LOOP 
+        logger.debug(f"Start of loop, key pressed: {event.key_number}")
+        if event.key_number == STOP_KEY:
+            audio.stop()
+            CURRENTLY_KEY = ''
+            CURRENT_KEY_NUMBER = None
+            logger.info(f"STOP and CURRENTLY_PLAYING: {CURRENTLY_PLAYING}")
+            continue
 
-            if not PLAY_LOOP:
-                audio.stop()
-                print(f'Toggle: PLAY_LOOP: {PLAY_LOOP}')
-                continue
-            else:
-                # Switch wave file
-                if CURRENT_KEY_NUMBER not in [STOP_KEY, TOGGLE_RHYTHM_KEY, TOGGLE_LOOP_KEY]:
+        if event.key_number == TOGGLE_LOOP_KEY:
+            audio.stop()
+            CURRENTLY_KEY = ''
+            CURRENT_KEY_NUMBER = None
+            PLAY_LOOP = not PLAY_LOOP 
+            logger.info(f"STOP and PLAY_LOOP Value: {PLAY_LOOP}")
+            continue
+
+        if event.key_number == TOGGLE_RHYTHM_KEY:
+            PLAY_WAVE_CODES = not PLAY_WAVE_CODES 
+
+            try:
+                if CURRENT_KEY_NUMBER:
                     if PLAY_WAVE_CODES:
                         key, wave = WAVE_CODES[CURRENT_KEY_NUMBER]
                     else:
                         key, wave = WAVE_CODES_RHYTHM[CURRENT_KEY_NUMBER]
 
-                    audio.stop()
-                    try:
+                    if PLAY_LOOP:
+                        audio.stop()
                         audio.play(wave, loop=PLAY_LOOP)
-                    except Exception as e:
-                        print(f'Error playing audio: {e}')
+                        CURRENT_KEY = key
+                    else:
+                        continue
+                else:
+                    continue
+            except Exception as e:
+                logger.error(f"Error playing audio during rhythm toggle: {e}")
 
-                    CURRENTLY_PLAYING = key
+            finally:
+                logger.info(f"Toggle: event.key_number: {event.key_number}")
+                logger.info(f"Toggle: PLAY_WAVE_CODES: {PLAY_WAVE_CODES}")
+                logger.info(f"Toggle: PLAY_LOOP: {PLAY_LOOP}")
+                logger.info(f"Toggle: CURRENTLY_KEY_NUMBER: {CURRENT_KEY_NUMBER}")
+                logger.info(f"Toggle: CURRENTLY_KEY: {CURRENT_KEY}")
 
-                    print(f'Toggle: event.key_number: {event.key_number}')
-                    print(f'Toggle: PLAY_WAVE_CODES: {PLAY_WAVE_CODES}')
-                    print(f'Toggle: CURRENTLY_PLAYING: {CURRENTLY_PLAYING}')
-                    print(f'Toggle: PLAY_LOOP: {PLAY_LOOP}')
+            continue
 
-                continue
-
-        # Below then, are the track keys and the stop key
-        print(f'event.key_number: {event.key_number}')
-        print(f'PLAY_WAVE_CODES: {PLAY_WAVE_CODES}')
-
-        if PLAY_WAVE_CODES:
-            key, wave = WAVE_CODES[event.key_number]
-        else:
-            key, wave = WAVE_CODES_RHYTHM[event.key_number]
-
-        if event.key_number == STOP_KEY:
-            audio.stop()
-            CURRENTLY_PLAYING = ''
-        elif not PLAY_LOOP or (CURRENTLY_PLAYING != key and PLAY_LOOP):
-            audio.stop()
-            CURRENTLY_PLAYING = key
+        if event.key_number in MUSIC_KEYS:
+            logger.info(f"event.key_number: {event.key_number} | MUSIC_KEYS: {MUSIC_KEYS}")
+            if PLAY_WAVE_CODES:
+                key, wave = WAVE_CODES[event.key_number]
+            else:
+                key, wave = WAVE_CODES_RHYTHM[event.key_number]
 
             try:
+                audio.stop()
                 audio.play(wave, loop=PLAY_LOOP)
+                if PLAY_LOOP:
+                    CURRENT_KEY = key
+                    CURRENT_KEY_NUMBER = event.key_number
+                else:
+                    CURRENTLY_KEY = ''
+                    CURRENT_KEY_NUMBER = None
             except Exception as e:
-                print(f'Error playing audio: {e}')
-
+                logger.error(f"Error playing audio: {e}")
+            finally:
+                logger.info(f"event.key_number: {event.key_number}")
+                logger.info(f"PLAY_WAVE_CODES: {PLAY_WAVE_CODES}")
+                logger.info(f"PLAY_LOOP: {PLAY_LOOP}")
+                logger.info(f"CURRENT_KEY_NUMBER: {CURRENT_KEY_NUMBER}")
+                logger.info(f"END: CURRENT_KEY: {CURRENT_KEY}")
         else:
-            print('Do nothing')
-            pass
-
-        CURRENT_KEY_NUMBER = event.key_number
-
-        print(f'END: CURRENTLY_PLAYING: {CURRENTLY_PLAYING}')
+            logger.warning("PASS: how did we get here?")
 
 # vim: ai et ts=4 sts=4 sw=4 nu
