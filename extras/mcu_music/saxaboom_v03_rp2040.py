@@ -47,7 +47,7 @@ WAVE_CODES = (
         ('Stop the music', ''),
         ('Track 1', track1_wave),
         ('Track 2', track2_wave),
-        ('No Loop', ''),
+        ('Toggle Loop', ''),
         ('Toggle Rhythm', ''),
 )
 
@@ -55,48 +55,53 @@ WAVE_CODES_RHYTHM = (
         ('Stop the music', ''),
         ('Track 1 Plus Rhythm', track1_rhythm_wave),
         ('Track 2 Plus Rhythm', track2_rhythm_wave),
-        ('No Loop', ''),
+        ('Toggle Loop', ''),
         ('Toggle Rhythm', ''),
 )
 
 STOP_KEY = 0
-TOGGLE_KEY = 4
-NO_LOOP_KEY = 3
+TOGGLE_LOOP_KEY = 3
+TOGGLE_RHYTHM_KEY = 4
 
 keys = keypad.Keys(KEY_PINS, value_when_pressed=False, pull=True)
 
-PLAY_WAVE_CODES = True
+PLAY_WAVE_CODES = True # That is, no rhythm
+PLAY_LOOP = True
+
 CURRENT_KEY_NUMBER = None
 
 while True:
     event = keys.events.get()
     if event and event.pressed:
-
-        if event.key_number in [TOGGLE_KEY, NO_LOOP_KEY]:
-            if event.key_number == TOGGLE_KEY:
+        if event.key_number in [TOGGLE_RHYTHM_KEY, TOGGLE_LOOP_KEY]:
+            if event.key_number == TOGGLE_RHYTHM_KEY:
                 PLAY_WAVE_CODES = not PLAY_WAVE_CODES 
-                if CURRENT_KEY_NUMBER not in [STOP_KEY, TOGGLE_KEY]:
-                    if PLAY_WAVE_CODES:
-                        key, wave = WAVE_CODES[CURRENT_KEY_NUMBER]
-                    else:
-                        key, wave = WAVE_CODES_RHYTHM[CURRENT_KEY_NUMBER]
-    
-                    audio.stop()
-                    try:
-                        audio.play(wave, loop=True)
-                    except Exception as e:
-                        print(f'Error playing audio: {e}')
-    
-                    CURRENTLY_PLAYING = key
-    
-                    print(f'Toggle: event.key_number: {event.key_number}')
-                    print(f'Toggle: PLAY_WAVE_CODES: {PLAY_WAVE_CODES}')
-                    print(f'Toggle: CURRENTLY_PLAYING: {CURRENTLY_PLAYING}')
             else:
-                pass  # No Loop Key
+                PLAY_LOOP = not PLAY_LOOP 
+
+            # Switch wave file
+            if CURRENT_KEY_NUMBER not in [STOP_KEY, TOGGLE_RHYTHM_KEY, TOGGLE_LOOP_KEY]:
+                if PLAY_WAVE_CODES:
+                    key, wave = WAVE_CODES[CURRENT_KEY_NUMBER]
+                else:
+                    key, wave = WAVE_CODES_RHYTHM[CURRENT_KEY_NUMBER]
+
+                audio.stop()
+                try:
+                    audio.play(wave, loop=PLAY_LOOP)
+                except Exception as e:
+                    print(f'Error playing audio: {e}')
+
+                CURRENTLY_PLAYING = key
+
+                print(f'Toggle: event.key_number: {event.key_number}')
+                print(f'Toggle: PLAY_WAVE_CODES: {PLAY_WAVE_CODES}')
+                print(f'Toggle: CURRENTLY_PLAYING: {CURRENTLY_PLAYING}')
+                print(f'Toggle: PLAY_LOOP: {PLAY_LOOP}')
 
             continue
 
+        # Below then, are the track keys and the stop key
         print(f'event.key_number: {event.key_number}')
         print(f'PLAY_WAVE_CODES: {PLAY_WAVE_CODES}')
 
@@ -108,12 +113,12 @@ while True:
         if event.key_number == STOP_KEY:
             audio.stop()
             CURRENTLY_PLAYING = ''
-        elif CURRENTLY_PLAYING != key:
+        elif not PLAY_LOOP or (CURRENTLY_PLAYING != key and PLAY_LOOP):
             audio.stop()
             CURRENTLY_PLAYING = key
 
             try:
-                audio.play(wave, loop=True)
+                audio.play(wave, loop=PLAY_LOOP)
             except Exception as e:
                 print(f'Error playing audio: {e}')
 
