@@ -79,27 +79,32 @@ while True:
             else:
                 PLAY_LOOP = not PLAY_LOOP 
 
-            # Switch wave file
-            if CURRENT_KEY_NUMBER not in [STOP_KEY, TOGGLE_RHYTHM_KEY, TOGGLE_LOOP_KEY]:
-                if PLAY_WAVE_CODES:
-                    key, wave = WAVE_CODES[CURRENT_KEY_NUMBER]
-                else:
-                    key, wave = WAVE_CODES_RHYTHM[CURRENT_KEY_NUMBER]
-
+            if not PLAY_LOOP:
                 audio.stop()
-                try:
-                    audio.play(wave, loop=PLAY_LOOP)
-                except Exception as e:
-                    print(f'Error playing audio: {e}')
-
-                CURRENTLY_PLAYING = key
-
-                print(f'Toggle: event.key_number: {event.key_number}')
-                print(f'Toggle: PLAY_WAVE_CODES: {PLAY_WAVE_CODES}')
-                print(f'Toggle: CURRENTLY_PLAYING: {CURRENTLY_PLAYING}')
                 print(f'Toggle: PLAY_LOOP: {PLAY_LOOP}')
+                continue
+            else:
+                # Switch wave file
+                if CURRENT_KEY_NUMBER not in [STOP_KEY, TOGGLE_RHYTHM_KEY, TOGGLE_LOOP_KEY]:
+                    if PLAY_WAVE_CODES:
+                        key, wave = WAVE_CODES[CURRENT_KEY_NUMBER]
+                    else:
+                        key, wave = WAVE_CODES_RHYTHM[CURRENT_KEY_NUMBER]
 
-            continue
+                    audio.stop()
+                    try:
+                        audio.play(wave, loop=PLAY_LOOP)
+                    except Exception as e:
+                        print(f'Error playing audio: {e}')
+
+                    CURRENTLY_PLAYING = key
+
+                    print(f'Toggle: event.key_number: {event.key_number}')
+                    print(f'Toggle: PLAY_WAVE_CODES: {PLAY_WAVE_CODES}')
+                    print(f'Toggle: CURRENTLY_PLAYING: {CURRENTLY_PLAYING}')
+                    print(f'Toggle: PLAY_LOOP: {PLAY_LOOP}')
+
+                continue
 
         # Below then, are the track keys and the stop key
         print(f'event.key_number: {event.key_number}')
