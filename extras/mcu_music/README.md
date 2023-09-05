@@ -9,8 +9,8 @@
 * [Wiring Adafruit PAM8302A](https://learn.adafruit.com/adafruit-pam8302-mono-2-5w-class-d-audio-amplifier/pinouts)
 
 ### Sax-A-Boom wave files
-* script: `saxaboom_v02_pico.py`
-* [Link to hardware image](media/saxaboom_v02_pico.png)
+* script: `saxaboom_v04.py`
+* [Link to hardware image saxaboom_v02_pico.png](media/saxaboom_v02_pico.png)
 * Raspberry Pi Pico
 * Amplifier: Adafruit PAM8302A
 * Adafruit Mono Enclosed Speaker - 3W 4 Ohm Product ID: 3351 
