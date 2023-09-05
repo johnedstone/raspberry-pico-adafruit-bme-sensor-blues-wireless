@@ -10,7 +10,8 @@
 
 ### Sax-A-Boom wave files
 * script: `saxaboom_v04.py`
-* [Link to hardware image saxaboom_v02_pico.png](media/saxaboom_v02_pico.png)
+* [Link to hardware image saxaboom_v03_rp2040_music_and_rhythm.py](media/saxaboom_v03_rp2040_music_and_rhythm.png)
+* [Link to hardware image saxaboom_v02_pico.py](media/saxaboom_v02_pico.png)
 * Raspberry Pi Pico
 * Amplifier: Adafruit PAM8302A
 * Adafruit Mono Enclosed Speaker - 3W 4 Ohm Product ID: 3351 
