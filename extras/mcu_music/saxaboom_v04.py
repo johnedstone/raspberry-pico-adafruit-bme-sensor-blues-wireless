@@ -1,9 +1,11 @@
 """
 wave: https://learn.adafruit.com/circuitpython-essentials/circuitpython-audio-out
-ffmpeg:
+ffmpeg example:
     ffmpeg -i sbLoop.wav -i sbLoop1.wav \
             -filter_complex amix=inputs=2:duration=shortest:dropout_transition=0:weights="1 1":normalize=0 \
             -bitexact -ac 1 -ar 22050  sbLoop1_rhythm.wav
+
+Monitor: sudo screen /dev/ttyACM0 115200
 """
 import time
 
@@ -22,61 +24,58 @@ logger.setLevel(logging.INFO)
 
 # range: 0.1 - 1.0
 TONE_VOLUME = 0.5
-CURRENTLY_PLAYING = '' 
 
 audio = AudioOut(board.A0)
 
 
+track0_file = open("/sax_music/sbLoop.wav", "rb")
+track0_wave = WaveFile(track0_file)
 track1_file = open("/sax_music/sbLoop1.wav", "rb")
 track1_wave = WaveFile(track1_file)
 track2_file = open("/sax_music/sbLoop2.wav", "rb")
 track2_wave = WaveFile(track2_file)
-#track3_file = open("/sax_music/sbLoop3.wav", "rb")
-#track3_wave = WaveFile(track3_file)
+track3_file = open("/sax_music/sbLoop3.wav", "rb")
+track3_wave = WaveFile(track3_file)
+track4_file = open("/sax_music/sbLoop4.wav", "rb")
+track4_wave = WaveFile(track4_file)
+track5_file = open("/sax_music/sbLoop5.wav", "rb")
+track5_wave = WaveFile(track5_file)
+track6_file = open("/sax_music/sbLoop6.wav", "rb")
+track6_wave = WaveFile(track6_file)
+track8_file = open("/sax_music/sbLoop8.wav", "rb")
+track8_wave = WaveFile(track8_file)
 
-track1_rhythm_file = open("/sax_music/sbLoop1_rhythm.wav", "rb")
-track1_rhythm_wave = WaveFile(track1_rhythm_file)
-track2_rhythm_file = open("/sax_music/sbLoop2_rhythm.wav", "rb")
-track2_rhythm_wave = WaveFile(track2_rhythm_file)
-#track3_rhythm_file = open("/sax_music/sbLoop3_rhythm.wav", "rb")
-#track3_rhythm_wave = WaveFile(track3_rhythm_file)
 
 KEY_PINS = (
         board.D24, # Stop the music
-        board.D25, # Track 1
-        board.D4,  # Track 2
-        board.D12, # No Loop
-        board.D13, # Toggle Rhythm
+        board.D25, # Track 0 Rhythm
+        board.D4,  # Track 8
+        board.D13, # Track 6
+        board.D12, # Track 5
+        board.D11, # Track 4
+        board.D10, # Track 3
+        board.D9,  # Track 2
+        board.D6,  # Track 1
 )
 
 WAVE_CODES = (
-        ('Stop the music', ''),
-        ('Track 1', track1_wave),
+        ('Stop the music', ''),  # Stop the music
+        ('Track 0', track0_wave), # Rhythm
+        ('Track 8', track8_wave),
+        ('Track 6', track6_wave),
+        ('Track 5', track5_wave),
+        ('Track 4', track4_wave),
+        ('Track 3', track3_wave),
         ('Track 2', track2_wave),
-        ('Toggle Loop', ''),
-        ('Toggle Rhythm', ''),
+        ('Track 1', track1_wave),
 )
 
-WAVE_CODES_RHYTHM = (
-        ('Stop the music', ''),
-        ('Track 1 Plus Rhythm', track1_rhythm_wave),
-        ('Track 2 Plus Rhythm', track2_rhythm_wave),
-        ('Toggle Loop', ''),
-        ('Toggle Rhythm', ''),
-)
 
 STOP_KEY = 0
-TOGGLE_LOOP_KEY = 3
-TOGGLE_RHYTHM_KEY = 4
-MUSIC_KEYS = [1, 2]
-
-keys = keypad.Keys(KEY_PINS, value_when_pressed=False, pull=True)
-
-PLAY_WAVE_CODES = True # That is, no rhythm
+MUSIC_KEYS = range(1,9) 
 PLAY_LOOP = False
 
-CURRENT_KEY = ''
-CURRENT_KEY_NUMBER = None
+keys = keypad.Keys(KEY_PINS, value_when_pressed=False, pull=True)
 
 while True:
     event = keys.events.get()
@@ -84,73 +83,19 @@ while True:
         logger.debug(f"Start of loop, key pressed: {event.key_number}")
         if event.key_number == STOP_KEY:
             audio.stop()
-            CURRENTLY_KEY = ''
-            CURRENT_KEY_NUMBER = None
-            logger.info(f"STOP and CURRENTLY_PLAYING: {CURRENTLY_PLAYING}")
-            continue
-
-        if event.key_number == TOGGLE_LOOP_KEY:
-            audio.stop()
-            CURRENTLY_KEY = ''
-            CURRENT_KEY_NUMBER = None
-            PLAY_LOOP = not PLAY_LOOP 
-            logger.info(f"STOP and PLAY_LOOP Value: {PLAY_LOOP}")
-            continue
-
-        if event.key_number == TOGGLE_RHYTHM_KEY:
-            PLAY_WAVE_CODES = not PLAY_WAVE_CODES 
-
-            try:
-                if CURRENT_KEY_NUMBER:
-                    if PLAY_WAVE_CODES:
-                        key, wave = WAVE_CODES[CURRENT_KEY_NUMBER]
-                    else:
-                        key, wave = WAVE_CODES_RHYTHM[CURRENT_KEY_NUMBER]
-
-                    if PLAY_LOOP:
-                        audio.stop()
-                        audio.play(wave, loop=PLAY_LOOP)
-                        CURRENT_KEY = key
-                    else:
-                        continue
-                else:
-                    continue
-            except Exception as e:
-                logger.error(f"Error playing audio during rhythm toggle: {e}")
-
-            finally:
-                logger.info(f"Toggle: event.key_number: {event.key_number}")
-                logger.info(f"Toggle: PLAY_WAVE_CODES: {PLAY_WAVE_CODES}")
-                logger.info(f"Toggle: PLAY_LOOP: {PLAY_LOOP}")
-                logger.info(f"Toggle: CURRENTLY_KEY_NUMBER: {CURRENT_KEY_NUMBER}")
-                logger.info(f"Toggle: CURRENTLY_KEY: {CURRENT_KEY}")
-
+            logger.info(f"STOP")
             continue
 
         if event.key_number in MUSIC_KEYS:
             logger.info(f"event.key_number: {event.key_number} | MUSIC_KEYS: {MUSIC_KEYS}")
-            if PLAY_WAVE_CODES:
-                key, wave = WAVE_CODES[event.key_number]
-            else:
-                key, wave = WAVE_CODES_RHYTHM[event.key_number]
-
+            key, wave = WAVE_CODES[event.key_number]
             try:
                 audio.stop()
                 audio.play(wave, loop=PLAY_LOOP)
-                if PLAY_LOOP:
-                    CURRENT_KEY = key
-                    CURRENT_KEY_NUMBER = event.key_number
-                else:
-                    CURRENTLY_KEY = ''
-                    CURRENT_KEY_NUMBER = None
             except Exception as e:
                 logger.error(f"Error playing audio: {e}")
             finally:
-                logger.info(f"event.key_number: {event.key_number}")
-                logger.info(f"PLAY_WAVE_CODES: {PLAY_WAVE_CODES}")
-                logger.info(f"PLAY_LOOP: {PLAY_LOOP}")
-                logger.info(f"CURRENT_KEY_NUMBER: {CURRENT_KEY_NUMBER}")
-                logger.info(f"END: CURRENT_KEY: {CURRENT_KEY}")
+                logger.info(f"END: key: {key}")
         else:
             logger.warning("PASS: how did we get here?")
 
