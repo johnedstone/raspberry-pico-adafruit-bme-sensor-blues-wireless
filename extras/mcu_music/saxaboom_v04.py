@@ -7,9 +7,10 @@ ffmpeg example:
 
 Monitor: sudo screen /dev/ttyACM0 115200
 """
-import time
+from time import sleep
 
 import board
+import digitalio
 
 from audiopwmio import PWMAudioOut as AudioOut
 from audiocore import WaveFile
@@ -21,6 +22,9 @@ logger = logging.getLogger('saxaboom')
 
 #logger.setLevel(logging.ERROR)
 logger.setLevel(logging.INFO)
+
+play_once = digitalio.DigitalInOut(board.D5)
+play_once.pull = digitalio.Pull.UP  # True/False when switch Open/Closed
 
 # range: 0.1 - 1.0
 TONE_VOLUME = 0.5
@@ -73,14 +77,36 @@ WAVE_CODES = (
 
 STOP_KEY = 0
 MUSIC_KEYS = range(1,9) 
-PLAY_LOOP = False
+
+try:
+    PLAY_ONCE = play_once.value  # Default when switch is not closed
+except Exception as e:
+    logger.error(f'PLAY_ONCE not detected, setting to True')
+    PLAY_ONCE = True  # Default when switch is not closed
+
+logger.info(f'PLAY_ONCE: {PLAY_ONCE}')
 
 keys = keypad.Keys(KEY_PINS, value_when_pressed=False, pull=True)
 
 while True:
     event = keys.events.get()
+
+    try:
+        current_play_once = play_once.value
+
+        if current_play_once == PLAY_ONCE:
+            pass # no change
+        else:
+            PLAY_ONCE = current_play_once
+            audio.stop()
+            logger.info(f'PLAY_ONCE changed to {current_play_once}')
+            continue
+
+    except Exception as e:
+        logger.error(f'error getting play_once: {e}')
+
     if event and event.pressed:
-        logger.debug(f"Start of loop, key pressed: {event.key_number}")
+        logger.debug(f"Start of while loop, key pressed: {event.key_number}")
         if event.key_number == STOP_KEY:
             audio.stop()
             logger.info(f"STOP")
@@ -91,7 +117,7 @@ while True:
             key, wave = WAVE_CODES[event.key_number]
             try:
                 audio.stop()
-                audio.play(wave, loop=PLAY_LOOP)
+                audio.play(wave, loop=not PLAY_ONCE)
             except Exception as e:
                 logger.error(f"Error playing audio: {e}")
             finally:
