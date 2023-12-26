@@ -3,7 +3,7 @@
 * Using microcontrollers, such as Rasperry PI Pico, Adafruit Feather or QT RP2040
 
 ### Latest: Blues.io Notecarrier alone.
-* see [this script `extras/Readme_x71767.md`](./extras/Readme_x71767.md) 
+* see [this script: `extras/Readme_x71767.md`](./extras/Readme_x71767.md) 
 which uses only Notecarrier A, Notecard WBGLW, a BME280 sensor, and a Adafruit Lithium Ion Polymer Battery
 
 #### Note on power
