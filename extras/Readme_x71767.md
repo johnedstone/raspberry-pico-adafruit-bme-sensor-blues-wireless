@@ -24,12 +24,12 @@ e.g. Raspberryp Pi Pico or Adafruit RP2040 Feather,  to monitor power on/off
 
 #### Notes
 * `{"req": "card.aux", "mode": "track"}` (probably) needs to be enabled for even the `card.temp` working
-* The `card.temp` writes every 45 min, and since '`outbound` is sent to 60 min, the device sends a request every hour because there is a new `\_temp.qo` waiting.
+* The `card.temp` writes every 45 min.  Since `outbound` is sent to 60 min, the device sends a request every hour because there is a new `_temp.qo` waiting.
 
 ### JSONata Expression
 * catching two files for temp and tracking info in onr `Route`:
-    * `\_temp.qo`
-    * `\_track.qo'
+    * `_temp.qo`
+    * `_track.qo'
 
 ```
 {
