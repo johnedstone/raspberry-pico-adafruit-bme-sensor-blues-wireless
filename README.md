@@ -2,6 +2,9 @@
 * Getting started with [Blues Wireless](https://blues.io) notecarriers and notecards
 * Using microcontrollers, such as Rasperry PI Pico, Adafruit Feather or QT RP2040
 
+### Latest: Blues.io Notecarrier alone.
+* see [this script which uses only Notecarrier A, Notecard WBGLQ, a BME280 sensor, and a Adafruit Lithium Ion Polymer Battery](./extras/Readme_x71767.md)
+
 #### Note on power
 * For development, both the MCU and the Notecarrier are USB powered to the same computer
     * Usually, it's best to plug the notecarrier into your computer first, then the MCU,
