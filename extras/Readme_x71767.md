@@ -29,7 +29,7 @@ e.g. Raspberryp Pi Pico or Adafruit RP2040 Feather,  to monitor power on/off
 ### JSONata Expression
 * catching two files for temp and tracking info in onr `Route`:
     * `_temp.qo`
-    * `_track.qo'
+    * `_track.qo`
 
 ```
 {
@@ -50,7 +50,7 @@ e.g. Raspberryp Pi Pico or Adafruit RP2040 Feather,  to monitor power on/off
 }
 ```
 
-* catching one file, `\_health.qo`
+* catching one file, `_health.qo`
 ```
 {
   "imei_string": $split(device, ":")[1],"start_time":0,
