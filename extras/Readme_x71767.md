@@ -1,7 +1,9 @@
 ### Monitor power on/off
 * Using the notecarrier/notecard alone without a microcontroller,
 e.g. Raspberryp Pi Pico or Adafruit RP2040 Feather,  to monitor power on/off
-* Not using heartbeat, rather use BME280 sensor attached to Notecarrier A,
+* Not using heartbeat, rather use BME280 sensor attached to Notecarrier A to get hourly checkin
+
+
 ![image of Notecarrier A, WBGGLW, and BME280](images/nca_wbglw_bme280.jpg)
 
 
