@@ -49,6 +49,7 @@ e.g. Raspberryp Pi Pico or Adafruit RP2040 Feather,  to monitor power on/off
   "humidity": $string($round("humidity" in $keys(body) ? $lookup(body, "humidity"):0.0, 2))
 }
 ```
+*Note: changed where_lat/lon to best_lat/lon, as sometimes where_lat/lon is missing*
 
 * catching one file, `_health.qo`
 ```
