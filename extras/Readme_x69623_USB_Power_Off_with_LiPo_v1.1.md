@@ -138,14 +138,14 @@ and had to restore notecard to it's original (see below)
 > {"req": "card.restore", "delete": true}
 {}
 
-> {"req": "hub.set", "product": "com.gmail.johnedstone:wbna_500.69623", "mode": "periodic"}
+> {"req": "hub.set", "product": "com.gmail.xxxx", "mode": "periodic"}
 {}
 
 > {"req": "hub.sync"}
 {}
 
 > {"req": "hub.get"}
-{"mode":"periodic","host":"a.notefile.net","product":"com.gmail.johnedstone:wbna_500.69623","device":"dev:868050040069623"}
+{"mode":"periodic","host":"a.notefile.net","product":"com.gmail.xxxx","device":"dev:xxxx69623"}
 
 > {"req": "card.voltage", "usb": true, "alert": true, "sync": true}
 {"usb":true,"alert":true,"mode":"usb","value":5.076108630173553,"calibration":0.35,"sync":true}
