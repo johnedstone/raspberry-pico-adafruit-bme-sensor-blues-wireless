@@ -92,6 +92,8 @@ e.g. Raspberryp Pi Pico or Adafruit RP2040 Feather,  to monitor power on/off
 
 ### 24-Aug-2024 (later)
 * upgraded to firmware: `6.2.5.16868`
+* Note: lost functionality of {"req": "card.aux", "mode": "track"}
+and had to restore notecard to it's original (see below)
 * Redid JSONataExpression: `Route: USB on/off _health.qo` 
 
 ```
@@ -129,6 +131,37 @@ e.g. Raspberryp Pi Pico or Adafruit RP2040 Feather,  to monitor power on/off
   "when_captured_by_device": $fromMillis(when * 1000),
   "received_by_notehub": $fromMillis(received * 1000)
 }
+```
+
+### Resetting Card after firmware upgrade
+```
+> {"req": "card.restore", "delete": true}
+{}
+
+> {"req": "hub.set", "product": "com.gmail.johnedstone:wbna_500.69623", "mode": "periodic"}
+{}
+
+> {"req": "hub.sync"}
+{}
+
+> {"req": "hub.get"}
+{"mode":"periodic","host":"a.notefile.net","product":"com.gmail.johnedstone:wbna_500.69623","device":"dev:868050040069623"}
+
+> {"req": "card.voltage", "usb": true, "alert": true, "sync": true}
+{"usb":true,"alert":true,"mode":"usb","value":5.076108630173553,"calibration":0.35,"sync":true}
+
+> {"req": "card.location.mode", "mode": "periodic", "seconds": 1800}
+{"seconds":1800,"mode":"periodic"}
+
+> {"req": "card.location.track", "start": true, "heartbeat": true, "hours": 1, "sync": true}
+{"start":true,"hours":1,"heartbeat":true,"sync":true}
+
+> {"req": "card.aux", "mode": "track"}
+{"mode":"track","temperature":27.378273782463896,"pressure":99474.64740809557,"humidity":63.62531812004408}
+
+> {"req": "card.aux"}
+{"mode":"track","temperature":27.378273782463896,"pressure":99474.64740809557,"humidity":63.62531812004408}
+
 ```
 
 <!--
