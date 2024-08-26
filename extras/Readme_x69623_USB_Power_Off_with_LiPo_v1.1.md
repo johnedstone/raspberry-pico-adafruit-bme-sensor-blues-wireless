@@ -34,13 +34,16 @@ e.g. Raspberryp Pi Pico or Adafruit RP2040 Feather,  to monitor power on/off
 
 ### Purpose of this README
 * Current date 24-Aug-2024
-* to document what v1 really is
-* Currently, this version, v1,
+* to document what v1 (and v1.1) really is
+* Currently, this version, v1 (and v1.1),
     * When it is not in motion, it report in every hour.  And sends the most recent track.qo 
     to the server and says it's best guess is gps, even if it is a stale gps file
     * When it is in motion it sends the track.qo file every 30 min
     * From below: `hub.set` `inbound` and `outbound` must be set to -1
 * Triangulation is off 
+
+### Verification
+* This is the verification of the configuration
 
 ```
 ~ DeviceUID dev:x69623 (NOTE-WBNA-500) running firmware 5.1.1.16026
