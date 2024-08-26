@@ -88,9 +88,10 @@ e.g. Raspberryp Pi Pico or Adafruit RP2040 Feather,  to monitor power on/off
 ```
 
 ### 24-Aug-2024 (later)
-* upgraded to firmware: ``
-* Redid _health.qo JSONataExpression: `Route: USB on/off _health.qo` 
-    ```
+* upgraded to firmware: `6.2.5.16868`
+* Redid JSONataExpression: `Route: USB on/off _health.qo` 
+
+```
 {
   "imei_string": $split(device, ":")[1],
   "uptime": "text: " &
@@ -104,10 +105,11 @@ e.g. Raspberryp Pi Pico or Adafruit RP2040 Feather,  to monitor power on/off
   "when_captured_by_device": $fromMillis(when * 1000),
   "received_by_notehub": $fromMillis(received * 1000)
 }
-    ```
+```
 
-* Redid _track.qo JSONataExpression: `Route: GPS Tracking _track.qo v2`
-    ```
+* Redid JSONataExpression: `Route: GPS Tracking _track.qo v2`
+
+```
 {
   "imei_string": $split(device, ":")[1],
   "uptime": "status: " & ("status" in $keys(body) ? $lookup(body, "status"):"n/a") & ", " &
@@ -124,7 +126,7 @@ e.g. Raspberryp Pi Pico or Adafruit RP2040 Feather,  to monitor power on/off
   "when_captured_by_device": $fromMillis(when * 1000),
   "received_by_notehub": $fromMillis(received * 1000)
 }
-    ```
+```
 
 <!--
 # vim: ai et ts=4 sts=4 sw=4 nu
