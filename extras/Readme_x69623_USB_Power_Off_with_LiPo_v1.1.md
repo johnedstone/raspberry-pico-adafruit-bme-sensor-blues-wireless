@@ -99,9 +99,7 @@ and had to restore notecard to it's original (see below)
 ```
 {
   "imei_string": $split(device, ":")[1],
-  "uptime": "text: " &
-  $lookup(body, "text") & ", " &
-    "voltage: " & $string($round("voltage" in $keys(body) ? $lookup(body, "voltage"):0, 2)) ,
+  "uptime": "body: " & $replace($string(body), '\"', "'"),
   "latitude": $string($round(best_lat, 8)),
   "longitude": $string($round(best_lon, 8)),
   "best_location_type": best_location_type,
@@ -117,9 +115,7 @@ and had to restore notecard to it's original (see below)
 ```
 {
   "imei_string": $split(device, ":")[1],
-  "uptime": "status: " & ("status" in $keys(body) ? $lookup(body, "status"):"n/a") & ", " &
-    "usb: " & ("usb" in $keys(body) ? $lookup(body, "usb"): "n/a") & ", " &
-    "voltage: " & $string($round("voltage" in $keys(body) ? $lookup(body, "voltage"):0, 2)) ,
+  "uptime": "body: " &  $replace($string(body), '\"', "'"),
   "temperature": $string($round("temperature" in $keys(body) ? $lookup(body, "temperature"), 2)),
   "humidity": $string($round("humidity" in $keys(body) ? $lookup(body, "humidity"), 2)),
   "pressure": $string($round("pressure" in $keys(body) ? $lookup(body, "pressure"), 1)),
