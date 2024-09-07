@@ -128,7 +128,7 @@ and had to restore notecard to it's original (see below)
 
 ```
 
-### Set Volage for Lithium-ion capacities
+### Set Volage for Lithium-ion capacitors
 * Reference: https://dev.blues.io/api-reference/notecard-api/card-requests/latest/#card-voltage
 
 ```
