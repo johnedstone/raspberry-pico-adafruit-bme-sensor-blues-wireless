@@ -128,6 +128,15 @@ and had to restore notecard to it's original (see below)
 
 ```
 
+### Set Volage for Lithium-ion capacities
+* Reference: https://dev.blues.io/api-reference/notecard-api/card-requests/latest/#card-voltage
+
+```
+{
+  "req": "card.voltage",
+  "mode": "lic"
+}
+```
 <!--
 # vim: ai et ts=4 sts=4 sw=4 nu
 -->
