@@ -137,6 +137,9 @@ and had to restore notecard to it's original (see below)
   "mode": "lic"
 }
 ```
+
+### Another Reference
+* https://github.com/blues/app-accelerators
 <!--
 # vim: ai et ts=4 sts=4 sw=4 nu
 -->
