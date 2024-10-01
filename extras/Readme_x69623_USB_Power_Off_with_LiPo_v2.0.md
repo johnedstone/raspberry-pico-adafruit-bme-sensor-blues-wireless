@@ -18,9 +18,10 @@ e.g. Raspberryp Pi Pico or Adafruit RP2040 Feather,  to monitor power on/off
 {"req": "hub.sync"}
 {"req": "card.triangulate", "mode": "-"}
 {"req": "card.voltage", "usb": true, "alert": true, "sync": false, "mode": "usb:4.6;high:3.8;normal:3.6;low:3.4;dead:3.2"}
-{"req": "card.location.mode", "mode": "periodic", "seconds": 1800}
+{"req": "card.location.mode", "mode": "periodic", "vseconds": "usb:1800;high:1800;normal:1800;low:0;dead:0"}
 {"req": "card.location.track", "start": true, "heartbeat": true, "hours": 1, "sync": false}
 {"req": "card.aux", "mode": "track"}
+
 
 ### JSONataExpression: `Route: USB on/off _health.qo` 
 
