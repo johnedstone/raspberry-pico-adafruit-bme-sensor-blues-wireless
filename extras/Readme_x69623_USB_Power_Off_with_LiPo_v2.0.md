@@ -23,7 +23,8 @@ e.g. Raspberryp Pi Pico or Adafruit RP2040 Feather,  to monitor power on/off
 {"req": "card.aux", "mode": "track"}
 
 
-### JSONataExpression: `Route: USB on/off _health.qo` 
+### [JSONataExpression](https://try.jsonata.org/): `Route: USB on/off _health.qo` 
+* Added voltage 01-Oct-2024
 
 ```
 {
@@ -35,11 +36,13 @@ e.g. Raspberryp Pi Pico or Adafruit RP2040 Feather,  to monitor power on/off
   "best_location_when": $fromMillis(best_location_when * 1000),
   "which_file": file,
   "when_captured_by_device": $fromMillis(when * 1000),
-  "received_by_notehub": $fromMillis(received * 1000)
+  "received_by_notehub": $fromMillis(received * 1000),
+  "voltage": $string("voltage" in $keys(body) ? $lookup(body, "voltage"))
 }
 ```
 
 ### JSONataExpression: `Route: GPS Tracking _track.qo v2`
+* Added voltage 01-Oct-2024
 
 ```
 {
@@ -54,7 +57,8 @@ e.g. Raspberryp Pi Pico or Adafruit RP2040 Feather,  to monitor power on/off
   "best_location_when": $fromMillis(best_location_when * 1000),
   "which_file": file,
   "when_captured_by_device": $fromMillis(when * 1000),
-  "received_by_notehub": $fromMillis(received * 1000)
+  "received_by_notehub": $fromMillis(received * 1000),
+  "voltage": $string("voltage" in $keys(body) ? $lookup(body, "voltage"))
 }
 ```
 
