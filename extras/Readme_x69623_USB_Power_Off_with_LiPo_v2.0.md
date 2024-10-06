@@ -11,6 +11,23 @@ e.g. Raspberryp Pi Pico or Adafruit RP2040 Feather,  to monitor power on/off
 * https://dev.blues.io/guides-and-tutorials/notecard-guides/asset-tracking/
 * https://dev.blues.io/notecard/notecard-walkthrough/low-power-design/#customizing-voltage-variable-behaviors
 
+### Changes
+* 06-Oct-2024: Changed the following. So `low` is now > 3.2 and < 3.6, and `dead` is < 3.2
+```
+{"req": "card.voltage", "usb": true, "alert": true, "mode": "usb:4.6;high:3.8;normal:3.6;low:3.4;dead:3.2"}
+```
+to
+```
+{"req": "card.voltage", "usb": true, "alert": true, "mode": "usb:4.6;high:3.8;normal:3.6;low:3.2;dead:0"}
+```
+and changed the following so that GPS will work in `low` period
+```
+{"req": "card.location.mode", "mode": "periodic", "vseconds": "usb:1800;high:1800;normal:1800;low:0;dead:0"}
+```
+to
+```
+{"req": "card.location.mode", "mode": "periodic", "vseconds": "usb:1800;high:1800;normal:1800;low:1800;dead:0"}
+```
 
 ### Configure
 ```
@@ -18,8 +35,8 @@ e.g. Raspberryp Pi Pico or Adafruit RP2040 Feather,  to monitor power on/off
 {"req": "hub.set", "product": "your-productuid", "mode": "periodic", "voutbound": "usb:60;high:60;normal:60;low:0;dead:0", "vinbound": "usb:1440;high:1440;normal:1440;low:0;dead:0"}
 {"req": "hub.sync"}
 {"req": "card.triangulate", "mode": "-"}
-{"req": "card.voltage", "usb": true, "alert": true, "mode": "usb:4.6;high:3.8;normal:3.6;low:3.4;dead:3.2"}
-{"req": "card.location.mode", "mode": "periodic", "vseconds": "usb:1800;high:1800;normal:1800;low:0;dead:0"}
+{"req": "card.voltage", "usb": true, "alert": true, "mode": "usb:4.6;high:3.8;normal:3.6;low:3.2;dead:0"}
+{"req": "card.location.mode", "mode": "periodic", "vseconds": "usb:1800;high:1800;normal:1800;low:1800;dead:0"}
 {"req": "card.location.track", "start": true, "heartbeat": true, "hours": 1}
 {"req": "card.aux", "mode": "track"}
 ```
