@@ -28,6 +28,14 @@ to
 ```
 {"req": "card.location.mode", "mode": "periodic", "vseconds": "usb:1800;high:1800;normal:1800;low:1800;dead:0"}
 ```
+and changed the following so that the device will sync outbound during the `low` period
+```
+{"req": "hub.set", "mode": "periodic", "voutbound": "usb:60;high:60;normal:60;low:0;dead:0"}
+```
+to
+```
+{"req": "hub.set","mode": "periodic", "voutbound": "usb:60;high:60;normal:60;low:60;dead:0"}
+```
 
 ### Configure
 ```
