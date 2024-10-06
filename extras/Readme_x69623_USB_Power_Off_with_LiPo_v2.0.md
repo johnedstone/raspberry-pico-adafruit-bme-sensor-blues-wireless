@@ -34,7 +34,7 @@ and changed the following so that the device will sync outbound during the `low`
 ```
 to
 ```
-{"req": "hub.set","mode": "periodic", "voutbound": "usb:60;high:60;normal:60;low:60;dead:0"}
+{"req": "hub.set", "mode": "periodic", "voutbound": "usb:60;high:60;normal:60;low:60;dead:0"}
 ```
 
 ### Configure
