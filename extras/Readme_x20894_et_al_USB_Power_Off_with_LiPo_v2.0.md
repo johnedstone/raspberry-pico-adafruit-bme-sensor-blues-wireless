@@ -1,7 +1,8 @@
 ### Monitor power on/off
 * Using the Notecarrier A and a Notecard alone __without__ a microcontroller,
 * DeviceUID dev:x20894 (NOTE-WBGLW) running firmware 7.4.2.16888
-* Case: Takachi WP11-15 -4G with P124 Solar Panel (Voltaic Systems) with 4xPMF-12HAS vents with Voltaic LIC
+* DeviceUID dev:x17148 (NOTE-WBGLW) running firmware 7.4.2.16888
+* Case: Takachi WP11-15-4G/WP10-10-4G with P124/0.3W Solar Panel (Voltaic Systems) with 4xPMF-12HAS vents with Voltaic LIC
 
 ### Configure
 ```
