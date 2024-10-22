@@ -59,7 +59,7 @@
 }
 ```
 
-### Debug
+### Debugging notes
 * Reference: https://dev.blues.io/guides-and-tutorials/notecard-guides/debugging-with-the-ftdi-debug-cable/
 * Windows: using CoolTerm
 * Ubuntu: using Cutecom
