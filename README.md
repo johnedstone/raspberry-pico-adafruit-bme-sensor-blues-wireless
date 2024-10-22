@@ -3,7 +3,7 @@
 * Using microcontrollers, such as Rasperry PI Pico, Adafruit Feather or QT RP2040
 
 ### Latest: Blues.io Notecarrier alone.
-* Most current configuration: [this script: `extras/Readme_x20894_et_al_USB_Power_Off_with_LiPo_v2.0.md`](.extras/Readme_x20894_et_al_USB_Power_Off_with_LiPo_v2.0.md)
+* Most current configuration: [this script: `extras/Readme_x20894_et_al_USB_Power_Off_with_LiPo_v2.0.md`](https://github.com/johnedstone/raspberry-pico-adafruit-bme-sensor-blues-wireless/blob/main/extras/Readme_x20894_et_al_USB_Power_Off_with_LiPo_v2.0.md)
 
 #### Note on power
 * For development, both the MCU and the Notecarrier are USB powered to the same computer
