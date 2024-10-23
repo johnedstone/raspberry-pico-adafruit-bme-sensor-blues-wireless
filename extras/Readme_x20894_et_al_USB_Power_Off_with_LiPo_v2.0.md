@@ -1,4 +1,4 @@
-### Monitor power on/off
+### Monitor power on/off and temperature and humidity w/o a mcu
 * Using the Notecarrier A and a Notecard alone __without__ a microcontroller,
 * DeviceUID dev:x20894 (NOTE-WBGLW) running firmware notecard-6.2.5.16868
 * DeviceUID dev:x17148 (NOTE-WBGLW) running firmware notecard-6.2.5.16868
