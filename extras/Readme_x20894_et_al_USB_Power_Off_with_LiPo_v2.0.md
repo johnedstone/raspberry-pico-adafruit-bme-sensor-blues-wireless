@@ -6,7 +6,10 @@
 * Sensor: [BME280 from Adafruit](https://www.adafruit.com/product/2652)
 * LIC: [Voltaicsystems.com](https://voltaicsystems.com/LIC-solar-charger/)
 * Power for WP11-15-4G, using [Adafruit bq24074, for Solar and USB](https://www.adafruit.com/product/4755)
-* ![WP11-15-4G, Adafruit bq24074](images/notecard_powered_and_charged_by_solar_and_usb.png)
+
+![WP11-15-4G, Adafruit bq24074](images/notecard_powered_and_charged_by_solar_and_usb.png)
+![Lid of WP11-15](images/20241024_083543.jpg)
+
 
 ### Configure
 ```
