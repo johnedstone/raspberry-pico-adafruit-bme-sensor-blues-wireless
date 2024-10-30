@@ -1,3 +1,5 @@
+### Most Current version can be found
+* Most Current Version can be in [Readme_x20894_et_al_USB_Power_Off_with_LiPo_v2.0.md](Readme_x20894_et_al_USB_Power_Off_with_LiPo_v2.0.md)
 ### Monitor power on/off
 * Using the Notecarrier A and a Notecard alone __without__ a microcontroller,
 e.g. Raspberryp Pi Pico or Adafruit RP2040 Feather,  to monitor power on/off
