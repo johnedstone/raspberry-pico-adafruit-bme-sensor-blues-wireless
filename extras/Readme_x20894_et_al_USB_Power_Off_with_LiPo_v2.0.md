@@ -10,10 +10,11 @@
     * Power is USB and Lipo battery with Solar panel attached to Notecarrier, or
     * .... USB and LIC attached to Notecarrier and the LIC is charged from the Solar panel
 
-#### Scratch these photos as the Adafruit bq24074 did not charge the LIC and was of no use.
+#### Scratch these photos below as the Adafruit bq24074 did not charge the LIC as configured here and was of no use.
 * See, for instance, [https://forums.adafruit.com/viewtopic.php?t=201852](https://forums.adafruit.com/viewtopic.php?t=201852)
 ![WP11-15-4G, Adafruit bq24074](images/notecard_powered_and_charged_by_solar_and_usb.png)
 ![Lid of WP11-15](images/20241024_083543.jpg)
+* Working on alternative configuration
 
 
 ### Configure
