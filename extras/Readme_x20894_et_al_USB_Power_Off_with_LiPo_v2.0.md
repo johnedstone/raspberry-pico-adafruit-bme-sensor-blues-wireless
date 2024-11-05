@@ -4,18 +4,25 @@
 * DeviceUID dev:x17148 (NOTE-WBGLW) running firmware notecard-6.2.5.16868
 * DeviceUID dev:x69623 (NOTE-WBNA-500) running firmware notecard-6.2.5.16868
 * DeviceUID dev:x77139 (NOTE-WBNA-500) running firmware notecard-6.2.5.16868
-* Case: Takachi WP11-15-4G/WP10-10-4G with P124/0.3W Solar Panel (Voltaic Systems) with 4xPMF-12HAS vents with Voltaic LIC
+* Case: Takachi WP11-15-4G/WP10-10-4G with P124/0.3W Solar Panel (Voltaic Systems)
 * Sensor: [BME280 from Adafruit](https://www.adafruit.com/product/2652)
 * LIC: [Voltaicsystems.com](https://voltaicsystems.com/LIC-solar-charger/)
 * Power for WP11-15-4G, ~~using [Adafruit bq24074, for Solar and USB](https://www.adafruit.com/product/4755)~~
     * Power is USB and Lipo battery with Solar panel attached to Notecarrier, or
     * .... USB and LIC attached to Notecarrier and the LIC is charged from the Solar panel
 
-#### Scratch these photos below as the Adafruit bq24074 did not charge the LIC as configured here and was of no use.
-* See, for instance, [https://forums.adafruit.com/viewtopic.php?t=201852](https://forums.adafruit.com/viewtopic.php?t=201852)
-![WP11-15-4G, Adafruit bq24074](images/notecard_powered_and_charged_by_solar_and_usb.png)
-![Lid of WP11-15](images/20241024_083543.jpg)
-* Working on alternative configuration
+### Purpose
+Two distinct applications using the same configuration
+so that the device can be deployed in either one of two environments.
+
+**The first case, which is reporting when USB power is on/off**
+* powered by USB,
+* have the USB charge the LIC
+* and when the USB power fails, then the LIC will take over and send a “USB off/on” alert.
+And, the LIC will continue to power the device until the USB power is restored
+
+**The second case is that the device is powered by LIC and charged by solar.**
+* There is no USB required.
 
 
 ### Configure
