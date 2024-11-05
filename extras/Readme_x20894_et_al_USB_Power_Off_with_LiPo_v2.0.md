@@ -7,7 +7,7 @@
 * Case: Takachi WP11-15-4G/WP10-10-4G with P124/0.3W Solar Panel (Voltaic Systems)
 * Sensor: [BME280 from Adafruit](https://www.adafruit.com/product/2652)
 * LIC: [Voltaicsystems.com](https://voltaicsystems.com/LIC-solar-charger/)
-* [Adafruit bq24074B](https://www.adafruit.com/product/4755)~~
+* [Adafruit bq24074B](https://www.adafruit.com/product/4755)
 
 ### Purpose
 Two distinct applications using the same configuration
