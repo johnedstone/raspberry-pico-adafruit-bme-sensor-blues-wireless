@@ -7,9 +7,7 @@
 * Case: Takachi WP11-15-4G/WP10-10-4G with P124/0.3W Solar Panel (Voltaic Systems)
 * Sensor: [BME280 from Adafruit](https://www.adafruit.com/product/2652)
 * LIC: [Voltaicsystems.com](https://voltaicsystems.com/LIC-solar-charger/)
-* Power for WP11-15-4G, ~~using [Adafruit bq24074, for Solar and USB](https://www.adafruit.com/product/4755)~~
-    * Power is USB and Lipo battery with Solar panel attached to Notecarrier, or
-    * .... USB and LIC attached to Notecarrier and the LIC is charged from the Solar panel
+* [Adafruit bq24074B](https://www.adafruit.com/product/4755)~~
 
 ### Purpose
 Two distinct applications using the same configuration
