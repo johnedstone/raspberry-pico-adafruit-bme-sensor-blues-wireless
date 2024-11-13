@@ -22,6 +22,31 @@ And, the LIC will continue to power the device until the USB power is restored
 **The second case is that the device is powered by LIC and charged by solar.**
 * There is no USB required.
 
+### Picture and text posted on Blues Forum
+* [Reference on Blues Form](https://discuss.blues.com/t/charging-scoop-from-notecarrier-a/2379)
+
+* Two distinct applications using the same configuration, so that the device can be deployed in either one of two environments.
+
+**The first case: the blues device will report to the Notehub when USB power is on/off, that is, it will have some kind of battery backup**
+
+It will be …
+* powered by USB,
+* have the USB charge the LIC (e.g. Scoop)
+* and when the USB power fails, then the LIC will take over and capture the “USB off/on” alert. And, the LIC will continue to power the device until the USB power is restored
+
+**The second case: the blues device is powered by LIC and charged by solar.**
+* There is no USB required.
+
+Here is a picture of the current working solution
+
+![configuration_v2|375x500](images/configuration_v2.png)
+
+**Note: in this configuration:**
+* the blues device can be powered by either USB or LIC
+* the LIC can be charged by either USB or Solar
+* the LIC is being charged by the load out of Adafruit’s bq24074, and
+* the LIC out is connected to the blues device lipo connection
+* Note: this configuration as been tested with Voltaicsystems.com P124 and P126 solar panel
 
 ### Configure
 ```
