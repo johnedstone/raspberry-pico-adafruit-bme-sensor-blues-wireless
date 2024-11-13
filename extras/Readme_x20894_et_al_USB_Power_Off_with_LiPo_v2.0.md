@@ -48,7 +48,7 @@ Here is a picture of the current working solution
 * the LIC out is connected to the blues device lipo connection
 * Note: this configuration as been tested with Voltaicsystems.com P124 and P126 solar panel
 
-### Configure
+### Notecard Configuration
 ```
 {"req": "card.restore", "delete": true}
 {"req": "hub.set", "product": "your-productuid", "mode": "periodic", "voutbound": "usb:60;high:60;normal:60;low:60;dead:0", "vinbound": "usb:1440;high:1440;normal:1440;low:0;dead:0"}
