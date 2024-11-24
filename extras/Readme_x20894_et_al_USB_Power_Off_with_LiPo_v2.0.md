@@ -47,7 +47,7 @@ Here is a picture of the current working solution
 * the LIC is being charged by the load out of Adafruit’s bq24074, and
 * the LIC out is connected to the blues device lipo connection
 * Note: this configuration as been tested with Voltaicsystems.com P124 and P126 solar panel
-* Note: **[Adafruit is recommending a different configuration](https://forums.adafruit.com/viewtopic.php?t=214945)**
+* **Note: [Adafruit is recommending a different configuration](https://forums.adafruit.com/viewtopic.php?t=214945)**
 
 ### Notecard Configuration
 ```
