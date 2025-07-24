@@ -5,6 +5,7 @@
 * DeviceUID dev:x69623 (NOTE-WBNA-500) running firmware notecard-6.2.5.16868
 * DeviceUID dev:x77139 (NOTE-WBNA-500) running firmware notecard-6.2.5.16868
 * DeviceUID dev:x11049 (NOTE-NBGL-500) running firmware notecard-5.1.1.16026
+* DeviceUID (coming soon 7/2025) dev:x22194 (NOTE-NBGL-500)
 * Case: Takachi WP11-15-4G/WP10-10-4G with P124/0.3W Solar Panel (Voltaic Systems)
 * Sensor: [BME280 from Adafruit](https://www.adafruit.com/product/2652)
 * LIC: [Voltaicsystems.com](https://voltaicsystems.com/LIC-solar-charger/)
