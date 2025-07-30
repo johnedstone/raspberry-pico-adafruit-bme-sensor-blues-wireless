@@ -79,7 +79,14 @@ Here is a picture of the current working solution
   "which_file": file,
   "when_captured_by_device": $fromMillis(when * 1000),
   "received_by_notehub": $fromMillis(received * 1000),
-  "voltage": $string("voltage" in $keys(body) ? $lookup(body, "voltage"))
+  "voltage": $string("voltage" in $keys(body) ? $lookup(body, "voltage")),
+  "t_when": $fromMillis(tower_when * 1000),
+  "t_lat": $string($round(tower_lat, 8)),
+  "t_lon": $string($round(tower_lon, 8)),
+  "t_loc": tower_location,
+  "t_country": tower_country,
+  "t_tz": tower_timezone
+
 }
 ```
 
@@ -100,7 +107,13 @@ Here is a picture of the current working solution
   "which_file": file,
   "when_captured_by_device": $fromMillis(when * 1000),
   "received_by_notehub": $fromMillis(received * 1000),
-  "voltage": $string("voltage" in $keys(body) ? $lookup(body, "voltage"))
+  "voltage": $string("voltage" in $keys(body) ? $lookup(body, "voltage")),
+  "t_when": $fromMillis(tower_when * 1000),
+  "t_lat": $string($round(tower_lat, 8)),
+  "t_lon": $string($round(tower_lon, 8)),
+  "t_loc": tower_location,
+  "t_country": tower_country,
+  "t_tz": tower_timezone
 }
 ```
 
