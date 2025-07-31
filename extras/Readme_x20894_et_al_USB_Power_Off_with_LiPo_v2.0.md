@@ -113,7 +113,8 @@ Here is a picture of the current working solution
   "t_lon": $string($round(tower_lon, 8)),
   "t_loc": tower_location,
   "t_country": tower_country,
-  "t_tz": tower_timezone
+  "t_tz": tower_timezone,
+  "body_when": "when" in $keys(body) ? $fromMillis($lookup(body, "when") * 1000)
 }
 ```
 
