@@ -114,7 +114,7 @@ Here is a picture of the current working solution
   "t_loc": tower_location,
   "t_country": tower_country,
   "t_tz": tower_timezone,
-  "body_when": "when" in $keys(body) ? $fromMillis($lookup(body, "when") * 1000)
+  "body_time": "time" in $keys(body) ? $fromMillis($lookup(body, "time") * 1000)
 }
 ```
 
