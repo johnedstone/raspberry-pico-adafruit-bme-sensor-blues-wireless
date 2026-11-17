@@ -2,7 +2,7 @@
 * Using the Notecarrier A and a Notecard alone __without__ a microcontroller,
 * DeviceUID dev:x20894 (NOTE-WBGLW) running firmware notecard-6.2.5.16868
 * DeviceUID dev:x17148 (NOTE-WBGLW) running firmware notecard-6.2.5.16868
-* DeviceUID dev:x69623 (NOTE-WBNA-500) running firmware notecard-6.2.5.16868
+* DeviceUID dev:x69623 (NOTE-WBNA-500) running firmware notecard-10.3.1 2026-11-16
 * DeviceUID dev:x77139 (NOTE-WBNA-500) running firmware notecard-10.3.1.17827 2026-11-13
 * DeviceUID dev:x11049 (NOTE-NBGL-500) running firmware notecard-5.1.1.16026
 * DeviceUID dev:x52738 (NOTE-NBGL-500) running firmware notecard-8.2.1.17285 2025-07-28
